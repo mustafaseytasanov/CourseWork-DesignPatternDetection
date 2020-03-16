@@ -1,0 +1,3111 @@
+### 89
+package templatemethod;
+
+public abstract class Game {
+	   abstract void initialize();
+	   abstract void startPlay();
+	   abstract void endPlay();
+
+	   // template method
+	   public final void play(){
+
+	      // initialize the game
+	      initialize();
+
+	      // start game
+	      startPlay();
+
+	      // end game
+	      endPlay();
+	   }
+	}
+
+
+
+###
+package templatemethod;
+
+public class Basketball extends Game {
+
+	   @Override
+	   void endPlay() {
+	      System.out.println("Basketball Game Finished!");
+	   }
+
+	   @Override
+	   void initialize() {
+	      System.out.println("Basketball Game Initialized! Start playing.");
+	   }
+
+	   @Override
+	   void startPlay() {
+	      System.out.println("Basketball Game Started. Enjoy the game!");
+	   }
+	}
+
+
+
+### 90
+package templatemethod;
+
+public abstract class Game {
+	   abstract void initialize();
+	   abstract void startPlay();
+	   abstract void endPlay();
+
+	   // template method
+	   public final void play(){
+
+	      // initialize the game
+	      initialize();
+
+	      // start game
+	      startPlay();
+
+	      // end game
+	      endPlay();
+	   }
+	}
+
+
+
+###
+package templatemethod;
+
+public class Football extends Game {
+
+	   @Override
+	   void endPlay() {
+	      System.out.println("Football Game Finished!");
+	   }
+
+	   @Override
+	   void initialize() {
+	      System.out.println("Football Game Initialized! Start playing.");
+	   }
+
+	   @Override
+	   void startPlay() {
+	      System.out.println("Football Game Started. Enjoy the game!");
+	   }
+	}
+
+
+
+
+
+
+
+
+
+### 91
+package ir.hri.bl;
+
+public abstract class CaffeineBeverage {
+    public void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    }
+
+    public void boilWater() {
+        System.out.println("جوشاندن آب");
+    }
+
+    public abstract void brew();
+
+    public abstract void pourInCup();
+
+    public abstract void addCondiments();
+}
+
+
+###
+package ir.hri.bl;
+
+public class Coffee extends CaffeineBeverage {
+    @Override
+    public void brew() {
+        System.out.println("ریختن پودر قهوه به داخل آب جوشانده شده");
+    }
+
+    @Override
+    public void pourInCup() {
+        System.out.println("ریختن قهوه به فنجان");
+    }
+
+    @Override
+    public void addCondiments() {
+        System.out.println("اضافه کردن شیر و شکر");
+    }
+}
+
+
+
+
+### 92
+package ir.hri.bl;
+
+public abstract class CaffeineBeverage {
+    public void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    }
+
+    public void boilWater() {
+        System.out.println("جوشاندن آب");
+    }
+
+    public abstract void brew();
+
+    public abstract void pourInCup();
+
+    public abstract void addCondiments();
+}
+
+
+###  
+package ir.hri.bl;
+
+public class Tea extends CaffeineBeverage {
+    @Override
+    public void brew() {
+        System.out.println("ریختن چای به داخل آب جوشانده شده");
+    }
+
+    @Override
+    public void pourInCup() {
+        System.out.println("ریختن چای به فنجان");
+    }
+
+    @Override
+    public void addCondiments() {
+        System.out.println("اضافه کردن شکر");
+    }
+}
+
+
+
+
+
+
+
+
+### 93
+package patterned;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+/**
+ * テキスト処理のための派生クラスに共通の処理を定義する抽象クラス
+ * 
+ * @author shiva
+ *
+ */
+public abstract class TextProcessorBase {
+
+	/**
+	 * メソッドの実行順序を規定する
+	 * 
+	 * final修飾子をつけることで、小クラスでのオーバーライドを禁止する
+	 * 
+	 * @param filePath
+	 */
+	final public void completeProcess(String filePath) {
+		// 1. ファイルの読み込み
+		String[] words = textFileToStringArray(filePath);
+		// 2. 文字配列の処理
+		process(words);
+		// 3. 結果の表示
+		printResult();
+	}
+
+	/**
+	 * 文字列の配列を受け取り処理を行う
+	 * 
+	 * @param words
+	 */
+	protected abstract void process(String[] words);
+
+	/**
+	 * 処理結果をコンソールに表示
+	 */
+	protected abstract void printResult();
+
+	/**
+	 * テキストファイルを読み込みスペースで区切って文字列の配列に格納する
+	 * 
+	 * @param filePath
+	 *            ファイルの場所
+	 * @return 分割された文字列の配列
+	 */
+	protected String[] textFileToStringArray(String filePath) {
+		// System.out.println(new File(filePath).getAbsolutePath());
+
+		// try-with-resource 構文
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(
+				filePath)))) {
+			ArrayList<String> list = new ArrayList<String>();
+
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				String[] words = line.split(" ");
+				for (String word : words) {
+					String w = filter(word);
+					if (w.length() > 0) {
+						list.add(w);
+					}
+				}
+			}
+			// ArrayListをString[]に変換してリターン
+			return list.toArray(new String[0]);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 読み込みに失敗した場合は空の配列をリターン
+		return new String[0];
+	}
+
+	/**
+	 * 不要な文字を取り除く
+	 * 
+	 * @param word
+	 * @return
+	 */
+	private String filter(String word) {
+		String w = word.replace(",", "").replace(".", "").replace(":", "")
+				.replace("-", "").replace("—", "").replace("?", "")
+				.replace("\"", "");
+		try {
+			// 数字として認識できる場合は空文字列を返す
+			Double.parseDouble(word);
+			return "";
+		} catch (Exception e) {
+		}
+
+		return w.trim();
+	}
+
+}
+
+
+###
+package patterned.processors;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import patterned.TextProcessorBase;
+
+/**
+ * テキスト内の各単語の出現回数を数える
+ * 
+ * @author shiva
+ *
+ */
+public class WordAppearanceCountProcessor extends TextProcessorBase {
+
+	private Map<String, Integer> map = new HashMap<String, Integer>();
+
+	/**
+	 * 出現した単語数を数える（重複は省く）
+	 */
+	@Override
+	public void process(String[] words) {
+
+		for (String word : words) {
+			// 全て小文字に変換
+			word = word.toLowerCase();
+
+			// まだ出現していなければ追加
+			if (!map.containsKey(word)) {
+				map.put(word, 0);
+			}
+
+			// 単語の出現回数をインクリメント
+			int num = map.get(word) + 1;
+			map.put(word, num);
+		}
+
+	}
+
+	/**
+	 * ワードカウントの結果をコンソールに表示する
+	 */
+	@Override
+	public void printResult() {
+
+		// ラムダを用いて出現回数の多い順にソートして出力している
+		Set<String> keys = map.keySet();
+		keys.stream().sorted((s1, s2) -> {
+			// 出現回数順にソート
+				return map.get(s2) - map.get(s1);
+			}).forEach((key) -> {
+			// 出力
+				System.out.println(key + ":" + map.get(key));
+			});
+	}
+
+
+}
+
+
+
+
+
+
+### 94
+package patterned;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+/**
+ * テキスト処理のための派生クラスに共通の処理を定義する抽象クラス
+ * 
+ * @author shiva
+ *
+ */
+public abstract class TextProcessorBase {
+
+	/**
+	 * メソッドの実行順序を規定する
+	 * 
+	 * final修飾子をつけることで、小クラスでのオーバーライドを禁止する
+	 * 
+	 * @param filePath
+	 */
+	final public void completeProcess(String filePath) {
+		// 1. ファイルの読み込み
+		String[] words = textFileToStringArray(filePath);
+		// 2. 文字配列の処理
+		process(words);
+		// 3. 結果の表示
+		printResult();
+	}
+
+	/**
+	 * 文字列の配列を受け取り処理を行う
+	 * 
+	 * @param words
+	 */
+	protected abstract void process(String[] words);
+
+	/**
+	 * 処理結果をコンソールに表示
+	 */
+	protected abstract void printResult();
+
+	/**
+	 * テキストファイルを読み込みスペースで区切って文字列の配列に格納する
+	 * 
+	 * @param filePath
+	 *            ファイルの場所
+	 * @return 分割された文字列の配列
+	 */
+	protected String[] textFileToStringArray(String filePath) {
+		// System.out.println(new File(filePath).getAbsolutePath());
+
+		// try-with-resource 構文
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(
+				filePath)))) {
+			ArrayList<String> list = new ArrayList<String>();
+
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				String[] words = line.split(" ");
+				for (String word : words) {
+					String w = filter(word);
+					if (w.length() > 0) {
+						list.add(w);
+					}
+				}
+			}
+			// ArrayListをString[]に変換してリターン
+			return list.toArray(new String[0]);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 読み込みに失敗した場合は空の配列をリターン
+		return new String[0];
+	}
+
+	/**
+	 * 不要な文字を取り除く
+	 * 
+	 * @param word
+	 * @return
+	 */
+	private String filter(String word) {
+		String w = word.replace(",", "").replace(".", "").replace(":", "")
+				.replace("-", "").replace("—", "").replace("?", "")
+				.replace("\"", "");
+		try {
+			// 数字として認識できる場合は空文字列を返す
+			Double.parseDouble(word);
+			return "";
+		} catch (Exception e) {
+		}
+
+		return w.trim();
+	}
+
+}
+
+
+
+
+
+
+###
+package patterned.processors;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import patterned.TextProcessorBase;
+
+/**
+ * テキスト内の単語数を数える
+ * 
+ * @author shiva
+ *
+ */
+public class WordCountProcessor extends TextProcessorBase {
+
+	private int wordCount;
+
+	/**
+	 * 出現した単語数を数える（重複は省く）
+	 */
+	@Override
+	public void process(String[] words) {
+
+		// セットは重複要素を保持しない
+		Set<String> set = new HashSet<String>();
+
+		for (String word : words) {
+			set.add(word);
+		}
+
+		// 重複要素は含まれないのでセットのサイズが単語の数
+		wordCount = set.size();
+
+	}
+
+	/**
+	 * ワードカウントの結果をコンソールに表示する
+	 */
+	@Override
+	public void printResult() {
+		System.out.println("Word Count : " + wordCount);
+	}
+
+}
+
+
+
+
+
+
+### 95
+public abstract class Hoagie {
+
+	//
+	// TemplateMethod
+	//
+
+	final void templateMethod() {
+
+		// Definitively must be done
+		cutBun();
+
+		//
+		// Options
+		//
+
+		if (customerWantsMeat()) {
+			addMeat();
+		}
+
+		if (customerWantsCheese()) {
+			addCheese();
+		}
+
+		if (customerWantsVegetables()) {
+			addVegetables();
+		}
+
+		if (customerWantsCondiments()) {
+			addCondiments();
+		}
+
+		// Definitively must be done
+		wrapTheHoagie();
+
+	}
+
+	// Definitively must be done
+	public void cutBun() {
+		System.out.println("The Hoagie is cut");
+	}
+
+	// Definitively must be done
+	public void wrapTheHoagie() {
+		System.out.println("Wrap the hoagie");
+	}
+
+	abstract void addMeat();
+
+	abstract void addCheese();
+
+	abstract void addVegetables();
+
+	abstract void addCondiments();
+
+	//
+	// Hooks
+	//
+
+	boolean customerWantsMeat() {
+		return true;
+	}
+
+	boolean customerWantsCheese() {
+		return true;
+	}
+
+	boolean customerWantsVegetables() {
+		return true;
+	}
+
+	boolean customerWantsCondiments() {
+		return true;
+	}
+
+}
+
+
+###
+// Hoagie == Riesensandwitch
+public class ItalianHoagie extends Hoagie {
+
+	String[] meatUsed = { "Salamie", "Pepperoni", "Capicola Ham" };
+	String[] cheeseUsed = { "Provolone" };
+	String[] veggiesUsed = { "Lettuce", "Tomatoes", "Onions", "Sweet Pappers" };
+	String[] condimentsUsed = { "Oil", "Vinegar" };
+
+	@Override
+	void addMeat() {
+
+		System.out.println("Adding the meat: ");
+
+		for (String meat : meatUsed) {
+			System.out.println(meat + " ");
+		}
+
+	}
+
+	@Override
+	void addCheese() {
+
+		System.out.println("Adding the cheese: ");
+
+		for (String cheese : cheeseUsed) {
+			System.out.println(cheese + " ");
+		}
+
+	}
+
+	@Override
+	void addVegetables() {
+
+		System.out.println("Adding the veggies: ");
+
+		for (String veggie : veggiesUsed) {
+			System.out.println(veggie + " ");
+		}
+
+	}
+
+	@Override
+	void addCondiments() {
+
+		System.out.println("Adding the condiments: ");
+
+		for (String condiment : condimentsUsed) {
+			System.out.println(condiment + " ");
+		}
+
+	}
+
+}
+
+
+
+
+
+### 96
+public abstract class Hoagie {
+
+	//
+	// TemplateMethod
+	//
+
+	final void templateMethod() {
+
+		// Definitively must be done
+		cutBun();
+
+		//
+		// Options
+		//
+
+		if (customerWantsMeat()) {
+			addMeat();
+		}
+
+		if (customerWantsCheese()) {
+			addCheese();
+		}
+
+		if (customerWantsVegetables()) {
+			addVegetables();
+		}
+
+		if (customerWantsCondiments()) {
+			addCondiments();
+		}
+
+		// Definitively must be done
+		wrapTheHoagie();
+
+	}
+
+	// Definitively must be done
+	public void cutBun() {
+		System.out.println("The Hoagie is cut");
+	}
+
+	// Definitively must be done
+	public void wrapTheHoagie() {
+		System.out.println("Wrap the hoagie");
+	}
+
+	abstract void addMeat();
+
+	abstract void addCheese();
+
+	abstract void addVegetables();
+
+	abstract void addCondiments();
+
+	//
+	// Hooks
+	//
+
+	boolean customerWantsMeat() {
+		return true;
+	}
+
+	boolean customerWantsCheese() {
+		return true;
+	}
+
+	boolean customerWantsVegetables() {
+		return true;
+	}
+
+	boolean customerWantsCondiments() {
+		return true;
+	}
+
+}
+
+
+
+
+###
+// Hoagie == Riesensandwitch
+public class VeggieHoagie extends Hoagie {
+
+	String[] veggiesUsed = { "Lettuce", "Tomatoes", "Onions", "Sweet Pappers" };
+	String[] condimentsUsed = { "Oil", "Vinegar" };
+
+	//
+	// Override the not wanted methods
+	//
+
+	@Override
+	boolean customerWantsMeat() {
+		return false; // Now false
+	}
+
+	@Override
+	boolean customerWantsCheese() {
+		return false; // Now false
+	}
+
+	//
+	//
+	//
+
+	@Override
+	void addMeat() {
+
+		// Empty
+
+	}
+
+	@Override
+	void addCheese() {
+
+		// Empty
+
+	}
+
+	@Override
+	void addVegetables() {
+
+		System.out.println("Adding the veggies: ");
+
+		for (String veggie : veggiesUsed) {
+			System.out.println(veggie + " ");
+		}
+
+	}
+
+	@Override
+	void addCondiments() {
+
+		System.out.println("Adding the condiments: ");
+
+		for (String condiment : condimentsUsed) {
+			System.out.println(condiment + " ");
+		}
+
+	}
+
+}
+
+
+
+
+
+
+### 97
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package abstractclaass;
+
+/**
+ *
+ * @author qt
+ */
+public abstract class Application {
+
+    public void templateMethod() {
+        primitiveOperation1();
+        primitiveOperation2();
+    }
+    
+    
+    public abstract void primitiveOperation1();
+    public abstract void primitiveOperation2();
+}
+
+
+
+###
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package concreteclaass;
+
+import abstractclaass.Application;
+
+/**
+ *
+ * @author qt
+ */
+public class MyApplication extends Application {
+
+    @Override
+    public void primitiveOperation1() {
+        System.out.println("Primitive Operation 1");
+    }
+
+    @Override
+    public void primitiveOperation2() {
+        System.out.println("Primitive Operation 2");
+    }
+    
+}
+
+
+
+
+
+
+
+
+### 98
+public abstract class Sub {
+
+    // Template methods
+    final void makeSandwhich() {
+
+        cutBread();
+
+        if(customerWantsMeat()) {
+            addMeat();
+        }
+        if(customerWantsCheese()) {
+            addCheese();
+        }
+        if(customerWantsVegetables()) {
+            addVegtables();
+        }
+
+        wrapSub();
+    }
+
+    // Abstract methods
+    abstract void addMeat();
+    abstract void addCheese();
+    abstract void addVegtables();
+
+    // Hook methods
+    boolean customerWantsMeat(){return true;}
+    boolean customerWantsCheese() {return true;}
+    boolean customerWantsVegetables() {return true;}
+
+    // Concrete methods
+    public void cutBread() {
+        System.out.println("The sub is cut");
+    }
+
+    public void wrapSub() {
+        System.out.println("Wrap the sub");
+    }
+
+}
+
+
+
+###
+public class ItalianSub extends Sub {
+
+    String meat = "Pepperoni";
+    String cheese = "Cheddar";
+    String[] veggiesUsed = {"Salad", "Tomatoes", "Onions"};
+
+    @Override
+    void addMeat() {
+        System.out.println("Adding the meat: " +  meat);
+    }
+
+    @Override
+    void addCheese() {
+        System.out.println("Adding the cheese: " + cheese);
+    }
+
+    @Override
+    void addVegtables() {
+        for(String veggie: veggiesUsed) {
+            System.out.println("Adding the veggies: " + veggie);
+        }
+    }
+}
+
+
+
+
+### 99
+public abstract class Sub {
+
+    // Template methods
+    final void makeSandwhich() {
+
+        cutBread();
+
+        if(customerWantsMeat()) {
+            addMeat();
+        }
+        if(customerWantsCheese()) {
+            addCheese();
+        }
+        if(customerWantsVegetables()) {
+            addVegtables();
+        }
+
+        wrapSub();
+    }
+
+    // Abstract methods
+    abstract void addMeat();
+    abstract void addCheese();
+    abstract void addVegtables();
+
+    // Hook methods
+    boolean customerWantsMeat(){return true;}
+    boolean customerWantsCheese() {return true;}
+    boolean customerWantsVegetables() {return true;}
+
+    // Concrete methods
+    public void cutBread() {
+        System.out.println("The sub is cut");
+    }
+
+    public void wrapSub() {
+        System.out.println("Wrap the sub");
+    }
+
+}
+
+
+
+###
+public class VeggieSub extends Sub {
+
+    String[] veggiesUsed = {"Salad", "Tomatoes", "Onions"};
+
+    @Override
+    boolean customerWantsMeat(){return false;}
+    @Override
+    boolean customerWantsCheese(){return false;}
+
+    @Override
+    void addMeat() { }
+
+    @Override
+    void addCheese() { }
+
+    @Override
+    void addVegtables() {
+        for (String veggie: veggiesUsed) {
+            System.out.println("Adding veggie: " + veggie);
+        }
+    }
+}
+
+
+
+
+
+
+### 100
+package myweb.templates;
+
+import myweb.utils.DataSource;
+import myweb.models.Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * Template claass for working with JDBC
+ * Created by And.Zarazka on 14.04.2017.
+ */
+public abstract class Template {
+
+    /**
+     * Execute query (CREATE, UPDATE, DELETE ) the database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     */
+    public final void execute(final DataSource instance, final String query) {
+        executeQuery(instance, query, new Object[0]);
+    }
+
+    /**
+     * Execute query (CREATE, UPDATE, DELETE ) the database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     */
+    public final void execute(final DataSource instance, final String query, Object... args) {
+        executeQuery(instance, query, args);
+    }
+
+    /**
+     * Reading from database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @return the list of {@link myweb.models.Model}
+     */
+    public final List<Model> executeAndReturn(final DataSource instance, final String query) {
+        return executeAndReturnValue(instance, query, new Object[0]);
+    }
+
+    /**
+     * Reading from database by parameter
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     * @return the list of {@link myweb.models.Model}
+     */
+    public final List<Model> executeAndReturn(final DataSource instance, final String query, Object... args) {
+        return executeAndReturnValue(instance, query, args);
+    }
+
+    /**
+     * Template for methods {@link #execute(DataSource, String), {@link #execute(DataSource, String, Object...)}}
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     */
+    private final void executeQuery(final DataSource instance, String query, Object... args) {
+        Connection conn = instance.getConnection();
+        try (PreparedStatement st = conn.prepareStatement(query);) {
+            setArgsOfPreparedStatement(st, args);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        instance.closeConnection(conn);
+    }
+
+    /**
+     * Template for methods {@link #executeAndReturn(DataSource, String)} ,
+     * {@link #executeAndReturn(DataSource, String, Object...)}}
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     * @return the list of {@link myweb.models.Model}
+     */
+    private final List<Model> executeAndReturnValue(final DataSource instance, final String query, Object... args) {
+        List<Model> models = null;
+        Connection conn = instance.getConnection();
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            setArgsOfPreparedStatement(statement, args);
+            try (ResultSet rs = statement.executeQuery();) {
+                models = getListOfResult(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        instance.closeConnection(conn);
+        return models;
+    }
+
+    /**
+     * Sets args of prepared statement.
+     * Sets the value of the designated parameter using the given object.
+     * The JDBC specification specifies a standard mapping from Java Object types to SQL types.
+     * The given argument will be converted to the corresponding SQL type before being sent to the database.
+     *
+     * @param statement the PreparedStatement
+     * @param args      the args
+     * @throws SQLException hte SQL exception
+     */
+    private final void setArgsOfPreparedStatement(PreparedStatement statement, Object... args) throws SQLException {
+        for (int i = 0; i < args.length; i++) {
+            statement.setObject(i + 1, args[i]);
+        }
+    }
+
+    /**
+     * Creates objects {@link myweb.models.User, {@link myweb.models.Role}}
+     *
+     * @param rs the ResultSet
+     * @return the list of {@link myweb.models.Model}
+     * @throws SQLException hte SQL exception
+     */
+    public abstract List<Model> getListOfResult(ResultSet rs) throws SQLException;
+}
+
+
+
+
+
+###
+package myweb.templates;
+
+import myweb.models.Model;
+import myweb.models.Role;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+/**
+ * Created by And.Zarazka on 16.04.2017.
+ */
+public class RoleTemplate extends Template {
+    @Override
+    public List<Model> getListOfResult(ResultSet rs) throws SQLException {
+        List<Model> models = new ArrayList<>();
+        while (rs.next()) {
+            Role role = new Role();
+            role.setId(rs.getInt("ID"));
+            role.setName(rs.getString("NAME"));
+            models.add(role);
+        }
+        return models;
+    }
+}
+
+
+
+
+
+### 101
+package myweb.templates;
+
+import myweb.utils.DataSource;
+import myweb.models.Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * Template claass for working with JDBC
+ * Created by And.Zarazka on 14.04.2017.
+ */
+public abstract class Template {
+
+    /**
+     * Execute query (CREATE, UPDATE, DELETE ) the database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     */
+    public final void execute(final DataSource instance, final String query) {
+        executeQuery(instance, query, new Object[0]);
+    }
+
+    /**
+     * Execute query (CREATE, UPDATE, DELETE ) the database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     */
+    public final void execute(final DataSource instance, final String query, Object... args) {
+        executeQuery(instance, query, args);
+    }
+
+    /**
+     * Reading from database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @return the list of {@link myweb.models.Model}
+     */
+    public final List<Model> executeAndReturn(final DataSource instance, final String query) {
+        return executeAndReturnValue(instance, query, new Object[0]);
+    }
+
+    /**
+     * Reading from database by parameter
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     * @return the list of {@link myweb.models.Model}
+     */
+    public final List<Model> executeAndReturn(final DataSource instance, final String query, Object... args) {
+        return executeAndReturnValue(instance, query, args);
+    }
+
+    /**
+     * Template for methods {@link #execute(DataSource, String), {@link #execute(DataSource, String, Object...)}}
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     */
+    private final void executeQuery(final DataSource instance, String query, Object... args) {
+        Connection conn = instance.getConnection();
+        try (PreparedStatement st = conn.prepareStatement(query);) {
+            setArgsOfPreparedStatement(st, args);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        instance.closeConnection(conn);
+    }
+
+    /**
+     * Template for methods {@link #executeAndReturn(DataSource, String)} ,
+     * {@link #executeAndReturn(DataSource, String, Object...)}}
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     * @return the list of {@link myweb.models.Model}
+     */
+    private final List<Model> executeAndReturnValue(final DataSource instance, final String query, Object... args) {
+        List<Model> models = null;
+        Connection conn = instance.getConnection();
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            setArgsOfPreparedStatement(statement, args);
+            try (ResultSet rs = statement.executeQuery();) {
+                models = getListOfResult(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        instance.closeConnection(conn);
+        return models;
+    }
+
+    /**
+     * Sets args of prepared statement.
+     * Sets the value of the designated parameter using the given object.
+     * The JDBC specification specifies a standard mapping from Java Object types to SQL types.
+     * The given argument will be converted to the corresponding SQL type before being sent to the database.
+     *
+     * @param statement the PreparedStatement
+     * @param args      the args
+     * @throws SQLException hte SQL exception
+     */
+    private final void setArgsOfPreparedStatement(PreparedStatement statement, Object... args) throws SQLException {
+        for (int i = 0; i < args.length; i++) {
+            statement.setObject(i + 1, args[i]);
+        }
+    }
+
+    /**
+     * Creates objects {@link myweb.models.User, {@link myweb.models.Role}}
+     *
+     * @param rs the ResultSet
+     * @return the list of {@link myweb.models.Model}
+     * @throws SQLException hte SQL exception
+     */
+    public abstract List<Model> getListOfResult(ResultSet rs) throws SQLException;
+}
+
+
+
+
+
+
+
+###
+package myweb.templates;
+
+import myweb.models.Model;
+import myweb.models.Role;
+import myweb.models.User;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+/**
+ * Created by And.Zarazka on 14.04.2017.
+ */
+public class UserTemplate extends Template {
+    @Override
+    public List<Model> getListOfResult(ResultSet rs) throws SQLException {
+        List<Model> models = new ArrayList<>();
+        while (rs.next()) {
+            User user = new User();
+            user.setId(rs.getInt("ID"));
+            user.setLogin(rs.getString("LOGIN"));
+            user.setPassword(rs.getString("PASSWORD"));
+            user.setFirstName(rs.getString("FIRST_NAME"));
+            user.setLastName(rs.getString("LAST_NAME"));
+            user.setAge(rs.getInt("AGE"));
+            user.setRole(new Role(rs.getInt("ROLE_ID")));
+            models.add(user);
+        }
+        return models;
+    }
+}
+
+
+
+
+
+
+
+
+
+### 102
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.Imposto;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public abstract class TemplateDeImpostoCondicional implements Imposto {
+
+    public double calcula(Orcamento orcamento) {
+	 if(deveUsarMaximaTaxacao(orcamento)) {
+	     return maximaTaxacao(orcamento);
+	 } else {
+	     return minimaTaxacao(orcamento);
+	 }
+    }
+
+    public abstract double minimaTaxacao(Orcamento orcamento);
+    public abstract double maximaTaxacao(Orcamento orcamento);
+    public abstract boolean deveUsarMaximaTaxacao(Orcamento orcamento);
+
+}
+
+
+
+
+
+###
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public class ICPP extends TemplateDeImpostoCondicional {
+
+    @Override
+    public double minimaTaxacao(Orcamento orcamento) {
+	return orcamento.getValor() * 0.05;
+    }
+
+    @Override
+    public double maximaTaxacao(Orcamento orcamento) {
+	return orcamento.getValor() * 0.07;
+    }
+
+    @Override
+    public boolean deveUsarMaximaTaxacao(Orcamento orcamento) {
+	if (orcamento.getValor() >= 500) return true;
+	return false;
+    }
+
+}
+
+
+
+
+
+### 103
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.Imposto;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public abstract class TemplateDeImpostoCondicional implements Imposto {
+
+    public double calcula(Orcamento orcamento) {
+	 if(deveUsarMaximaTaxacao(orcamento)) {
+	     return maximaTaxacao(orcamento);
+	 } else {
+	     return minimaTaxacao(orcamento);
+	 }
+    }
+
+    public abstract double minimaTaxacao(Orcamento orcamento);
+    public abstract double maximaTaxacao(Orcamento orcamento);
+    public abstract boolean deveUsarMaximaTaxacao(Orcamento orcamento);
+
+}
+
+
+
+
+
+
+
+###
+package com.learning.pattern.template.method.imposto.impl;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.learning.pattern.template.method.imposto.models.Item;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public class IHIT extends TemplateDeImpostoCondicional {
+
+    @Override
+    public double minimaTaxacao(Orcamento orcamento) {
+	return calculaPorcentagemPorItem(orcamento);
+    }
+
+    private double calculaPorcentagemPorItem(Orcamento orcamento) {
+	System.out.println("Aplicando taxação para cada item");
+	double total = 0;
+	for(Item item : orcamento.getItens()){
+	    total = total + (item.getValor() * 0.01);
+    	}
+	return total;
+    }
+
+    @Override
+    public double maximaTaxacao(Orcamento orcamento) {
+	System.out.println("Aplicando máxima taxação por itens com mesmo nome");
+	return (orcamento.getValor() * 0.13) + 100.0;
+    }
+
+    @Override
+    public boolean deveUsarMaximaTaxacao(Orcamento orcamento) {
+	if(possuiDoisItensComMesmoNome(orcamento)) return true;
+	return false;
+    }
+
+    private boolean possuiDoisItensComMesmoNome(Orcamento orcamento) {
+	Set<String> nomesSemRepetir = new HashSet<>(); 
+	List<Item> itens = orcamento.getItens();
+	itens.stream().forEach(item -> {
+	    nomesSemRepetir.add(item.getNome());
+	});
+	if(nomesSemRepetir.size() < itens.size()) return true;
+	return false;
+    }
+    
+   
+
+}
+
+
+
+
+
+
+### 104
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.Imposto;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public abstract class TemplateDeImpostoCondicional implements Imposto {
+
+    public double calcula(Orcamento orcamento) {
+	 if(deveUsarMaximaTaxacao(orcamento)) {
+	     return maximaTaxacao(orcamento);
+	 } else {
+	     return minimaTaxacao(orcamento);
+	 }
+    }
+
+    public abstract double minimaTaxacao(Orcamento orcamento);
+    public abstract double maximaTaxacao(Orcamento orcamento);
+    public abstract boolean deveUsarMaximaTaxacao(Orcamento orcamento);
+
+}
+
+
+
+
+
+
+###
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.models.Item;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public class IKCV extends TemplateDeImpostoCondicional {
+
+    @Override
+    public double minimaTaxacao(Orcamento orcamento) {
+	return orcamento.getValor() * 0.06;
+    }
+
+    @Override
+    public double maximaTaxacao(Orcamento orcamento) {
+	return orcamento.getValor() * 0.10;
+    }
+
+    @Override
+    public boolean deveUsarMaximaTaxacao(Orcamento orcamento) {
+	if(orcamento.getValor() > 500 && possuiItemComValorSuperiorACem(orcamento)) return true;
+	return false;
+    }
+
+    private boolean possuiItemComValorSuperiorACem(Orcamento orcamento) {
+	for(Item item : orcamento.getItens()){
+	    if(item.getValor() > 100) return true;
+	}
+	return false;
+    }
+
+}
+
+
+
+
+
+
+### 105
+public abstract class Game {
+
+    abstract void initialize();
+    abstract void startPlay();
+    abstract void endPlay();
+
+    public final void play() {
+        initialize();
+        startPlay();
+        endPlay();
+    }
+
+}
+
+
+
+###
+public class Cricket extends Game {
+
+    @Override
+    void initialize() {
+        System.out.println("Cricket Game Initialized! Start playing.");
+    }
+
+    @Override
+    void startPlay() {
+        System.out.println("Cricket Game Started. Enjoy the game!");
+    }
+
+    @Override
+    void endPlay() {
+        System.out.println("Cricket Game Finished!");
+    }
+
+}
+
+
+
+### 106
+public abstract class Game {
+
+    abstract void initialize();
+    abstract void startPlay();
+    abstract void endPlay();
+
+    public final void play() {
+        initialize();
+        startPlay();
+        endPlay();
+    }
+
+}
+
+
+
+
+###
+public class Football extends Game {
+
+    @Override
+    void initialize() {
+        System.out.println("Football Game Initialized! Start playing.");
+    }
+
+    @Override
+    void startPlay() {
+        System.out.println("Football Game Started. Enjoy the game!");
+    }
+
+    @Override
+    void endPlay() {
+        System.out.println("Football Game Finished!");
+    }
+
+}
+
+
+
+
+
+
+
+### 107
+public abstract class HouseTemplate {
+
+	public final void buildHouse(){
+		buildFundation();
+		buildPillars();
+		buildWalls();
+		buildWindows();
+		System.out.println("House is built.");
+	}
+	
+	public void buildWindows(){
+		System.out.println("Building glass windows.");
+	}
+	
+	public abstract void buildWalls();
+	
+	public abstract void buildPillars();
+	
+	public void buildFundation(){
+		System.out.println("Building fundation with cement,iron rods and sand.");
+	}
+	
+	
+}
+
+
+
+
+###
+public class GlassHouse extends HouseTemplate {
+
+	@Override
+	public void buildWalls() {
+		System.out.println("Building Glass Walls");
+		
+	}
+
+	@Override
+	public void buildPillars() {
+		System.out.println("Building Pillars with Glass coating");
+	}
+
+}
+
+
+
+### 108
+public abstract class HouseTemplate {
+
+	public final void buildHouse(){
+		buildFundation();
+		buildPillars();
+		buildWalls();
+		buildWindows();
+		System.out.println("House is built.");
+	}
+	
+	public void buildWindows(){
+		System.out.println("Building glass windows.");
+	}
+	
+	public abstract void buildWalls();
+	
+	public abstract void buildPillars();
+	
+	public void buildFundation(){
+		System.out.println("Building fundation with cement,iron rods and sand.");
+	}
+	
+	
+}
+
+
+
+###
+public class WoodenHouse extends HouseTemplate {
+
+	@Override
+	public void buildWalls() {
+		System.out.println("Building Wooden Walls");
+		
+	}
+
+	@Override
+	public void buildPillars() {
+		System.out.println("Building Pillars with Wood coating");
+		
+	}
+
+}
+
+
+
+
+
+### 109
+package implementacao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Bolo {
+	
+	protected List<String> ingredientes = new ArrayList<String>();
+	protected String tempoDeAssar;
+	
+	public final String fazerBolo() {
+		
+		adicionarIngredientes();
+		
+		adicionarTempoParaAssar();
+		
+		return finalizar();
+	}
+
+	protected abstract void adicionarIngredientes();
+	
+	protected abstract void adicionarTempoParaAssar();
+
+	protected abstract String finalizar();
+	
+}
+
+
+###
+package implementacao;
+
+public class BoloCenoura extends Bolo {
+
+	@Override
+	protected void adicionarIngredientes() {
+
+		this.ingredientes.add("1/2 xícara (chá) de óleo");
+		this.ingredientes.add("3 cenouras médias raladas");
+		this.ingredientes.add("4 ovos");
+		this.ingredientes.add("2 xícaras (chá) de açúcar");
+		this.ingredientes.add("2 e 1/2 xícaras (chá) de farinha de trigo");
+		this.ingredientes.add("1 colher (sopa) de fermento em pó");
+		
+	}
+
+	@Override
+	protected void adicionarTempoParaAssar() {
+		this.tempoDeAssar = "1 hora";
+	}
+
+	@Override
+	protected String finalizar() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Igredientes: \n");
+		
+		for (String ingrediente : ingredientes) {
+			builder.append(ingrediente +'\n');
+		}
+		
+		builder.append("\nO bolo de Cenoura com os ingredientes acima foi assado por "+tempoDeAssar+" e está pronto para consumo.");
+		return builder.toString();
+	}
+
+}
+
+
+
+
+### 110
+package implementacao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Bolo {
+	
+	protected List<String> ingredientes = new ArrayList<String>();
+	protected String tempoDeAssar;
+	
+	public final String fazerBolo() {
+		
+		adicionarIngredientes();
+		
+		adicionarTempoParaAssar();
+		
+		return finalizar();
+	}
+
+	protected abstract void adicionarIngredientes();
+	
+	protected abstract void adicionarTempoParaAssar();
+
+	protected abstract String finalizar();
+	
+}
+
+
+
+
+###
+package implementacao;
+
+public class BoloChocolate extends Bolo {
+
+	@Override
+	protected void adicionarIngredientes() {
+		
+		this.ingredientes.add("4 ovos");
+		this.ingredientes.add("2 colheres (sopa) de manteiga");
+		this.ingredientes.add("4 colheres (sopa) de chocolate em pó");
+		this.ingredientes.add("3 xícaras (chá) de farinha de trigo");
+		this.ingredientes.add("2 xícaras (chá) de açúcar");
+		this.ingredientes.add("2 colheres (sopa) de fermento");
+		this.ingredientes.add("1 xícara (chá) de leite");
+		
+	}
+
+	@Override
+	protected void adicionarTempoParaAssar() {
+		this.tempoDeAssar = "40 minutos";
+	}
+
+	@Override
+	protected String finalizar() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Igredientes: \n");
+		
+		for (String ingrediente : ingredientes) {
+			builder.append(ingrediente +'\n');
+		}
+		
+		builder.append("\nO bolo de chocolate com os ingredientes acima foi assado por "+tempoDeAssar +" e está pronto para consumo.");
+		return builder.toString();
+	}
+
+}
+
+
+
+
+
+
+
+
+### 111
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designpatterntemplatemethod.papers;
+
+/**
+ *
+ * @author rocket
+ */
+public abstract class BasicEngineering {
+    
+    public void papers(){
+        math();
+        softSkills();
+        specialPaper();
+    }
+    
+    // already implemented by Template class
+    private void math(){
+        System.out.println("Mathematics");
+    }
+    
+    // already implemented by Template class
+    private void softSkills(){
+        System.out.println("Soft Skills");
+    }
+    
+    //abstract method must be implemented by the derived class
+    public abstract void specialPaper();
+
+   
+}
+
+###
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designpatterntemplatemethod.papers;
+
+/**
+ *
+ * @author rocket
+ */
+public class ComputerScience extends BasicEngineering {
+
+    @Override
+    public void specialPaper() {
+        System.out.println("Object oriented programming stuff.");
+    }
+    
+}
+
+
+
+
+### 112
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designpatterntemplatemethod.papers;
+
+/**
+ *
+ * @author rocket
+ */
+public abstract class BasicEngineering {
+    
+    public void papers(){
+        math();
+        softSkills();
+        specialPaper();
+    }
+    
+    // already implemented by Template class
+    private void math(){
+        System.out.println("Mathematics");
+    }
+    
+    // already implemented by Template class
+    private void softSkills(){
+        System.out.println("Soft Skills");
+    }
+    
+    //abstract method must be implemented by the derived class
+    public abstract void specialPaper();
+
+   
+}
+
+
+
+
+###
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designpatterntemplatemethod.papers;
+
+/**
+ *
+ * @author rocket
+ */
+public class Electronics extends BasicEngineering {
+
+    @Override
+    public void specialPaper() {
+        System.out.println("Digital Logic and Circuit theory");
+    }
+    
+}
+
+
+
+
+
+
+
+
+### 113
+import java.util.Arrays;
+
+/**
+ * Created by proshad on 9/21/16.
+ */
+public abstract class SortTemplatePattern {
+
+    // template method
+    public final void sort(int[] array, int low, int high) {
+        if (low < high) {
+            int q = divide(array, low, high);
+            sort(array, low, q - 1);
+            sort(array, q + 1, high);
+            merge(array, low, q, high);
+        }
+    }
+
+    abstract int divide(int[] array, int left, int right);
+    abstract void merge(int[] array, int left, int center, int right);
+
+}
+
+
+
+
+###
+import java.util.Arrays;
+
+/**
+ * Created by proshad on 9/21/16.
+ * take help from https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/p/challenge-implement-merge
+ */
+public class MergeSort extends SortTemplatePattern {
+    public MergeSort() {
+        System.out.println("Using merge sort:");
+    }
+
+
+    @Override
+    int divide(int[] array, int left, int right) {
+
+        int center = (left + right) / 2;
+        return center;
+    }
+
+    @Override
+    void merge(int[] array, int left, int center, int right) {
+
+        int firstArrSize = center - left + 1;
+        int[] lowHalf = new int[firstArrSize];
+        int secondArrSize = right - center;
+        int[] highHalf = new int[secondArrSize];
+
+        int i, j, k = left;
+        for (i = 0; k <= center; i++, k++) {
+            lowHalf[i] = array[k];
+        }
+        for (j = 0; k <= right; j++, k++) {
+            highHalf[j] = array[k];
+        }
+
+        k = left;
+        i = 0;
+        j = 0;
+
+
+        while (i < lowHalf.length && j < highHalf.length) {
+            if (lowHalf[i] < highHalf[j]) {
+                array[k++] = lowHalf[i++];
+            } else {
+                array[k++] = highHalf[j++];
+            }
+        }
+        while (i < lowHalf.length) {
+            array[k++] = lowHalf[i++];
+        }
+        while (j < highHalf.length) {
+            array[k++] = highHalf[j++];
+        }
+
+    }
+
+}
+
+
+
+
+### 114
+import java.util.Arrays;
+
+/**
+ * Created by proshad on 9/21/16.
+ */
+public abstract class SortTemplatePattern {
+
+    // template method
+    public final void sort(int[] array, int low, int high) {
+        if (low < high) {
+            int q = divide(array, low, high);
+            sort(array, low, q - 1);
+            sort(array, q + 1, high);
+            merge(array, low, q, high);
+        }
+    }
+
+    abstract int divide(int[] array, int left, int right);
+    abstract void merge(int[] array, int left, int center, int right);
+
+}
+
+
+
+
+
+
+
+###
+import java.util.Arrays;
+
+/**
+ * Created by proshad on 9/21/16.
+ *
+ * algorithm from https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/p/challenge-implement-partition
+ */
+
+public class QuickSort extends SortTemplatePattern {
+    public QuickSort() {
+        System.out.println("Using quicksort:");
+    }
+
+
+    @Override
+    int divide(int[] array, int left, int right) {
+        for (int i = left; i < right; i++) {
+            if (array[i] <= array[right]) {
+                swap(array, i, left);
+                left++;
+            }
+        }
+        swap(array, right, left);
+        return left;
+
+    }
+    @Override
+    void merge(int[] array, int left, int center, int right) {
+        // in quick sort, no need to merge as merge taken place in parallel with dividing steps
+    }
+
+    private void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+
+}
+
+
+
+
+
+
+
+### 115
+package com.game.Process;
+/*
+ * 简易游戏流程抽象类
+ */
+public abstract class Module {
+    //模板方法，用来控制配置游戏的流程（游戏的流程是一样的-复用）
+    //申明为final,不希望子类复用这个方法，防止更改流程的执行顺序
+        public final void gameProcess(){
+            //第一步：选择登陆方式
+            this.loginMethod();
+            //第二步：登陆游戏
+            this.login();
+            //第三步：点击开始按钮
+            this.clickBeginBt();
+            //第四步：选择英雄
+            this.chooseHero();
+            //第五步：选择召唤师技能
+            this.chooseSkill();
+            //开始游戏
+            this.beginGame();
+        }
+    //定义结构里哪些方法是所有过程都是一样的可复用的，哪些是需要子类进行实现的
+
+    //第一步：登陆方式不一样（一个是QQ登陆，一个是微信登陆）
+    //所以申明为抽象方法，具体由子类实现
+        abstract void loginMethod();
+
+    //第二步：登陆游戏是一样的，直接实现
+        void login(){
+            System.out.println("登陆游戏");
+        }
+
+    //第三步：点击开始按钮是，直接实现
+        void clickBeginBt(){
+            System.out.println("点击开始按钮");
+        }
+
+    //第四步：玩家选择的英雄有差异，申明为抽象方法，具体由子类实现
+        abstract void chooseHero();
+
+    //第五步：选择召唤师技能不同，申明为抽象方法，具体由子类实现
+        abstract void chooseSkill();
+
+    //开始游戏
+        void beginGame(){
+            System.out.println("敌军还有5s到达战场，请做好准备！");
+        }
+}
+
+
+###
+package com.game.Process;
+/*
+ *Module子类
+ */
+
+import com.game.Skill.imple.JiPao;
+import com.game.domain.HouYi;
+
+public class ModuleSon01 extends Module {
+
+    @Override
+    void loginMethod() {
+        System.out.println("选择QQ登陆");
+    }
+
+    @Override
+    void chooseHero() {
+        System.out.println("选择出战的英雄是：【"+new HouYi().getHeroName()+"】");
+    }
+
+    @Override
+    void chooseSkill() {
+        HouYi hero=new HouYi();
+        System.out.print("选择的召唤师技能是：");
+        hero.setIskill(new JiPao());
+        hero.skill();
+    }
+}
+
+
+
+
+
+### 116
+package com.game.Process;
+/*
+ * 简易游戏流程抽象类
+ */
+public abstract class Module {
+    //模板方法，用来控制配置游戏的流程（游戏的流程是一样的-复用）
+    //申明为final,不希望子类复用这个方法，防止更改流程的执行顺序
+        public final void gameProcess(){
+            //第一步：选择登陆方式
+            this.loginMethod();
+            //第二步：登陆游戏
+            this.login();
+            //第三步：点击开始按钮
+            this.clickBeginBt();
+            //第四步：选择英雄
+            this.chooseHero();
+            //第五步：选择召唤师技能
+            this.chooseSkill();
+            //开始游戏
+            this.beginGame();
+        }
+    //定义结构里哪些方法是所有过程都是一样的可复用的，哪些是需要子类进行实现的
+
+    //第一步：登陆方式不一样（一个是QQ登陆，一个是微信登陆）
+    //所以申明为抽象方法，具体由子类实现
+        abstract void loginMethod();
+
+    //第二步：登陆游戏是一样的，直接实现
+        void login(){
+            System.out.println("登陆游戏");
+        }
+
+    //第三步：点击开始按钮是，直接实现
+        void clickBeginBt(){
+            System.out.println("点击开始按钮");
+        }
+
+    //第四步：玩家选择的英雄有差异，申明为抽象方法，具体由子类实现
+        abstract void chooseHero();
+
+    //第五步：选择召唤师技能不同，申明为抽象方法，具体由子类实现
+        abstract void chooseSkill();
+
+    //开始游戏
+        void beginGame(){
+            System.out.println("敌军还有5s到达战场，请做好准备！");
+        }
+    }
+
+
+
+
+
+###
+package com.game.Process;
+/*
+ *Module子类
+ */
+import com.game.Skill.imple.KuangBao;
+import com.game.domain.LuBanQiHao;
+
+public class ModuleSon02 extends Module {
+
+    @Override
+    void loginMethod() {
+        System.out.println("选择微信登陆");
+    }
+
+    @Override
+    void chooseHero() {
+        System.out.println("选择出战的英雄是：【"+new LuBanQiHao().getHeroName()+"】");
+    }
+
+    @Override
+    void chooseSkill() {
+        LuBanQiHao hero=new LuBanQiHao();
+        System.out.print("选择的召唤师技能是：");
+        hero.setIskill(new KuangBao());
+        hero.skill();
+    }
+
+}
+
+
+
+
+
+### 117
+package com.game.domain;
+import com.game.Skill.ISkill;
+/*
+ * 英雄类（抽象类）
+ */
+public abstract class Hero {
+    //英雄的名称
+    private String heroName;
+    //英雄的召唤师技能的接口（组合关系，需要使用时传入一个具体的技能对象）
+    private ISkill iskill;  
+    //英雄的自我介绍的方法
+    public abstract void display(); 
+    //加入一个新的成员（英雄单次攻击的伤害值）
+    private int heroHurt;   
+    //英雄的普通攻击的方法
+    public abstract void normalAttack();    
+    //英雄的召唤师技能的使用方法
+    public void skill() {
+        iskill.useSkill();
+    }   
+    //set/get
+    public String getHeroName() {
+        return heroName;
+    }
+    public void setHeroName(String heroName) {
+        this.heroName = heroName;
+    }
+    public void setIskill(ISkill iskill) {
+        this.iskill = iskill;
+    }
+    public int getHeroHurt() {
+        return heroHurt;
+    }
+    public void setHeroHurt(int heroHurt) {
+        this.heroHurt = heroHurt;
+    }
+}
+
+
+###
+package com.game.domain;
+/*
+ * 英雄后羿类
+ */
+public class HouYi extends Hero {
+    //编写构造方法
+    public HouYi() {
+        super.setHeroName("后羿");
+    }
+    //后羿英雄的自我介绍
+    @Override
+    public void display() {
+        System.out.println("觉醒吧，猎杀时刻！");
+
+    }
+    //后羿英雄的普通攻击
+    @Override
+    public void normalAttack() {
+        System.out.println("xiuxiu~ 被动：迟缓之箭");
+    }
+}
+
+
+
+### 118
+package com.game.domain;
+import com.game.Skill.ISkill;
+/*
+ * 英雄类（抽象类）
+ */
+public abstract class Hero {
+    //英雄的名称
+    private String heroName;
+    //英雄的召唤师技能的接口（组合关系，需要使用时传入一个具体的技能对象）
+    private ISkill iskill;  
+    //英雄的自我介绍的方法
+    public abstract void display(); 
+    //加入一个新的成员（英雄单次攻击的伤害值）
+    private int heroHurt;   
+    //英雄的普通攻击的方法
+    public abstract void normalAttack();    
+    //英雄的召唤师技能的使用方法
+    public void skill() {
+        iskill.useSkill();
+    }   
+    //set/get
+    public String getHeroName() {
+        return heroName;
+    }
+    public void setHeroName(String heroName) {
+        this.heroName = heroName;
+    }
+    public void setIskill(ISkill iskill) {
+        this.iskill = iskill;
+    }
+    public int getHeroHurt() {
+        return heroHurt;
+    }
+    public void setHeroHurt(int heroHurt) {
+        this.heroHurt = heroHurt;
+    }
+}
+
+
+
+
+
+###
+package com.game.domain;
+
+/*
+ * 英雄（鲁班七号）
+ */
+public class LuBanQiHao extends Hero {
+    
+    public LuBanQiHao() {
+        super.setHeroName("鲁班七号");
+    }
+    
+    //英雄的自我介绍
+    @Override
+    public void display() {
+        System.out.println("鲁班七号，智商二百五");
+    }
+
+    //英雄的普通攻击
+    @Override
+    public void normalAttack() {
+        System.out.println("dadada~ 被动：集中火力");
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+### 119
+package in.blogspot.randomcompiler.template.method.pattern.api;
+
+public abstract class BoardGame {
+	public abstract void initializeBoard();
+	
+	public abstract void startGame();
+	
+	public abstract void endGame();
+	
+	public void play() {
+		initializeBoard();
+		startGame();
+		endGame();
+	}
+
+}
+
+
+###
+package in.blogspot.randomcompiler.template.method.pattern.impl;
+
+import in.blogspot.randomcompiler.template.method.pattern.api.BoardGame;
+
+public class Chess extends BoardGame {
+
+	@Override
+	public void initializeBoard() {
+		System.out.println("Intializing chess board");
+	}
+
+	@Override
+	public void startGame() {
+		System.out.println("Starting the game of chess");
+	}
+
+	@Override
+	public void endGame() {
+		System.out.println("Ending the game of chess");
+	}
+}
+
+
+
+
+### 120
+package in.blogspot.randomcompiler.template.method.pattern.api;
+
+public abstract class BoardGame {
+	public abstract void initializeBoard();
+	
+	public abstract void startGame();
+	
+	public abstract void endGame();
+	
+	public void play() {
+		initializeBoard();
+		startGame();
+		endGame();
+	}
+
+}
+
+
+
+###
+package in.blogspot.randomcompiler.template.method.pattern.impl;
+
+import in.blogspot.randomcompiler.template.method.pattern.api.BoardGame;
+
+public class SnakesAndLadders extends BoardGame {
+
+	@Override
+	public void initializeBoard() {
+		System.out.println("Intializing snakes and ladders board");
+	}
+
+	@Override
+	public void startGame() {
+		System.out.println("Starting the game of snakes and ladders");
+	}
+
+	@Override
+	public void endGame() {
+		System.out.println("Ending the game of snakes and ladders");
+	}
+}
+
+
+
+
+
+
+
+
+
+### 121
+package com.sarandis;
+
+public abstract class DataProcessor {
+
+	public void processMethod() {
+		capRemoval();
+		oilReplace();
+		cleanMess();
+	}
+	
+	
+	
+	
+	public  abstract void capRemoval();
+	public  abstract void cleanMess();
+
+
+
+
+	public void oilReplace() {
+		System.out.println("Now change the oil");
+	}
+	
+	
+}
+
+
+
+
+###
+package com.sarandis;
+
+public class Car extends DataProcessor {
+	
+	
+	@Override
+	public void capRemoval() {
+		System.out.println("Please remove the oil cap of the CAR");
+	}
+	
+	
+	@Override
+	public void cleanMess() {
+		System.out.println("Please now clean the mess you have created in the CAR");
+	}
+
+}
+
+
+### 122
+package com.sarandis;
+
+public abstract class DataProcessor {
+
+	public void processMethod() {
+		capRemoval();
+		oilReplace();
+		cleanMess();
+	}
+	
+	
+	
+	
+	public  abstract void capRemoval();
+	public  abstract void cleanMess();
+
+
+
+
+	public void oilReplace() {
+		System.out.println("Now change the oil");
+	}
+	
+	
+}
+
+
+###
+package com.sarandis;
+
+public class Truck extends DataProcessor {
+	
+	
+	@Override
+	public void capRemoval() {
+		System.out.println("Please remove the oil cap of the Truck");
+	}
+	
+	
+	@Override
+	public void cleanMess() {
+		System.out.println("Please now clean the mess you have created in the Truck");
+	}
+}
+
+
+
+
+
+
+### 123
+/**
+ * The MIT License
+ */
+package com.iluwatar.templatemethod;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * StealingMethod defines skeleton for the algorithm.
+ */
+public abstract class StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(StealingMethod.class);
+
+  protected abstract String pickTarget();
+
+  protected abstract void confuseTarget(String target);
+
+  protected abstract void stealTheItem(String target);
+
+  /* Metodo Template  */
+  public void steal() {
+    String target = pickTarget();
+    LOGGER.info("The target has been chosen as {}.", target);
+    confuseTarget(target);
+    stealTheItem(target);
+  }
+}
+
+
+
+
+###
+/**
+ * The MIT License
+ */
+package com.iluwatar.templatemethod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * HitAndRunMethod implementation of {@link StealingMethod}.
+ */
+public class HitAndRunMethod extends StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(HitAndRunMethod.class);
+
+  @Override
+  protected String pickTarget() {
+    return "old goblin woman";
+  }
+
+  @Override
+  protected void confuseTarget(String target) {
+    LOGGER.info("Approach the {} from behind.", target);
+  }
+
+  @Override
+  protected void stealTheItem(String target) {
+    LOGGER.info("Grab the handbag and run away fast!");
+  }
+}
+
+
+
+
+
+### 124
+/**
+ * The MIT License
+ */
+package com.iluwatar.templatemethod;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * StealingMethod defines skeleton for the algorithm.
+ */
+public abstract class StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(StealingMethod.class);
+
+  protected abstract String pickTarget();
+
+  protected abstract void confuseTarget(String target);
+
+  protected abstract void stealTheItem(String target);
+
+  /* Metodo Template  */
+  public void steal() {
+    String target = pickTarget();
+    LOGGER.info("The target has been chosen as {}.", target);
+    confuseTarget(target);
+    stealTheItem(target);
+  }
+}
+
+
+###
+/**
+ * The MIT License
+ */
+package com.iluwatar.templatemethod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/** 
+ * SubtleMethod implementation of {@link StealingMethod}.
+ */
+public class SubtleMethod extends StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SubtleMethod.class);
+
+  @Override
+  protected String pickTarget() {
+    return "shop keeper";
+  }
+
+  @Override
+  protected void confuseTarget(String target) {
+    LOGGER.info("Approach the {} with tears running and hug him!", target);
+  }
+
+  @Override
+  protected void stealTheItem(String target) {
+    LOGGER.info("While in close contact grab the {}'s wallet.", target);
+  }
+}
+
+
+
+
+
+
+### 125
+package com.runnablepatterns.templatemethodpattern;
+
+/**
+ * 
+ * @author Carlos Marin
+ * Runnable Patterns (runnablepatterns.com)
+ * 
+ * Class to handle payable persons.
+ * It will contain the payment process algorithm. 
+ */
+public abstract class PayablePerson {
+	
+	/**
+	 * Variables to store payment details
+	 */
+	private double salaryAmount = 0;
+	private double deductionAmount = 0;
+
+	/**
+	 * Template Method.
+	 * This method contains the algorithm steps and structure. It is final so the subclasses can't change it.
+	 */
+	public final void processPayment() {
+		// call specific steps to process the payment
+		getSalary();
+		getDeduction();
+		sendPayment();
+		notifyAccountant();
+		sendPaymentCopy();
+	}
+	
+	/**
+	 * This method has to be implemented by subclasses.
+	 * It calculates the salary.
+	 */
+	abstract void getSalary();
+	
+	/**
+	 * This method has to be implemented by subclasses.
+	 * It calculates the deduction.
+	 */
+	abstract void getDeduction();
+	
+	/**
+	 * This method has to be implemented by subclasses
+	 * It sends the money.
+	 */
+	abstract void sendPayment();
+	
+	/**
+	 * This method is used by all subclasses.
+	 */
+	final void notifyAccountant() {
+		System.out.println("Sending notification to Accountant Department.");
+	}
+	
+	/**
+	 * This method is a hook. As you can see, it has the default implementation.
+	 * Subclasses can then override this
+	 */
+	void sendPaymentCopy() {
+		System.out.println("No copy needed by default.");
+	}
+
+	/**
+	 * Gets the salary
+	 * @return the salary
+	 */
+	public double getSalaryAmount() {
+		return salaryAmount;
+	}
+
+	/**
+	 * Set the salary
+	 * @param salaryAmount
+	 */
+	public void setSalaryAmount(double salaryAmount) {
+		this.salaryAmount = salaryAmount;
+	}
+
+	/**
+	 * Gets the deduction
+	 * @return the deduction
+	 */
+	public double getDeductionAmount() {
+		return deductionAmount;
+	}
+
+	/**
+	 * Sets the deduction
+	 * @param deductionAmount
+	 */
+	public void setDeductionAmount(double deductionAmount) {
+		this.deductionAmount = deductionAmount;
+	}
+}
+
+
+
+
+
+###
+package com.runnablepatterns.templatemethodpattern;
+
+/**
+ * 
+ * @author Carlos Marin
+ * Runnable Patterns (runnablepatterns.com)
+ * 
+ * Class to handle consultant payment.
+ *  
+ */
+public class Consultant extends PayablePerson {
+
+	@Override
+	void getSalary() {
+		setSalaryAmount(1800);
+		System.out.println("Calculating hourly salary.");
+	}
+
+	@Override
+	void getDeduction() {
+		setDeductionAmount(getSalaryAmount()*0.05);
+		System.out.println(String.format("5%s Deduction of $%s is: $%s.", "%", getSalaryAmount(), getDeductionAmount()));
+	}
+
+	@Override
+	void sendPayment() {
+		System.out.println("Printing check.");
+	}
+	
+	@Override
+	void sendPaymentCopy() {
+		System.out.println("Sending payment copy via email.");
+	}
+
+}
+
+
+
+
+### 126
+package com.runnablepatterns.templatemethodpattern;
+
+/**
+ * 
+ * @author Carlos Marin
+ * Runnable Patterns (runnablepatterns.com)
+ * 
+ * Class to handle payable persons.
+ * It will contain the payment process algorithm. 
+ */
+public abstract class PayablePerson {
+	
+	/**
+	 * Variables to store payment details
+	 */
+	private double salaryAmount = 0;
+	private double deductionAmount = 0;
+
+	/**
+	 * Template Method.
+	 * This method contains the algorithm steps and structure. It is final so the subclasses can't change it.
+	 */
+	public final void processPayment() {
+		// call specific steps to process the payment
+		getSalary();
+		getDeduction();
+		sendPayment();
+		notifyAccountant();
+		sendPaymentCopy();
+	}
+	
+	/**
+	 * This method has to be implemented by subclasses.
+	 * It calculates the salary.
+	 */
+	abstract void getSalary();
+	
+	/**
+	 * This method has to be implemented by subclasses.
+	 * It calculates the deduction.
+	 */
+	abstract void getDeduction();
+	
+	/**
+	 * This method has to be implemented by subclasses
+	 * It sends the money.
+	 */
+	abstract void sendPayment();
+	
+	/**
+	 * This method is used by all subclasses.
+	 */
+	final void notifyAccountant() {
+		System.out.println("Sending notification to Accountant Department.");
+	}
+	
+	/**
+	 * This method is a hook. As you can see, it has the default implementation.
+	 * Subclasses can then override this
+	 */
+	void sendPaymentCopy() {
+		System.out.println("No copy needed by default.");
+	}
+
+	/**
+	 * Gets the salary
+	 * @return the salary
+	 */
+	public double getSalaryAmount() {
+		return salaryAmount;
+	}
+
+	/**
+	 * Set the salary
+	 * @param salaryAmount
+	 */
+	public void setSalaryAmount(double salaryAmount) {
+		this.salaryAmount = salaryAmount;
+	}
+
+	/**
+	 * Gets the deduction
+	 * @return the deduction
+	 */
+	public double getDeductionAmount() {
+		return deductionAmount;
+	}
+
+	/**
+	 * Sets the deduction
+	 * @param deductionAmount
+	 */
+	public void setDeductionAmount(double deductionAmount) {
+		this.deductionAmount = deductionAmount;
+	}
+}
+
+
+
+
+
+
+
+###
+package com.runnablepatterns.templatemethodpattern;
+
+/**
+ * 
+ * @author Carlos Marin
+ * Runnable Patterns (runnablepatterns.com)
+ * 
+ * Class to handle employee payment.
+ *  
+ */
+public class Employee extends PayablePerson {
+
+	@Override
+	void getSalary() {
+		setSalaryAmount(1500);
+		System.out.println("Calculating base salary.");
+	}
+
+	@Override
+	void getDeduction() {
+		setDeductionAmount(getSalaryAmount()*0.11);
+		System.out.println(String.format("11%s Deduction of $%s is: $%s.", "%", getSalaryAmount(), getDeductionAmount()));
+	}
+
+	@Override
+	void sendPayment() {
+		System.out.println("Transfering payment to account.");
+	}
+
+}
+
+##### 126 шаблонов готово

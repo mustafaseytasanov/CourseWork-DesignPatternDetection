@@ -1,0 +1,3532 @@
+### 1
+package com.hit.singleton;
+
+/**
+ * author:Charies Gavin
+ * date:2017/9/16,21:56
+ * https:github.com/guobinhit
+ * description:经典单例模式（延迟实例化）
+ */
+public class Singleton {
+    private static Singleton uniqueInstance;
+
+    /**
+     * 私有化构造函数
+     */
+    private Singleton() {
+    }
+
+    /**
+     * 提供获取实例的公共静态方法
+     *
+     * @return Singleton
+     */
+    public static Singleton getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Singleton();
+        }
+        return new Singleton();
+    }
+}
+
+
+### 2
+package com.hit.singleton;
+
+/**
+ * author:Charies Gavin
+ * date:2017/9/16,22:17
+ * https:github.com/guobinhit
+ * description:单例模式（多重检查加锁，可用于多线程）
+ */
+public class SingletonDoubleCheck {
+    /**
+     * volatile 关键字确保当 uniqueInstance 变量被初始化为 SingletonDoubleCheck 实例时，
+     * 多个线程正确地处理 uniqueInstance 变量
+     */
+    private volatile static SingletonDoubleCheck uniqueInstance;
+
+    /**
+     * 私有化构造方法
+     */
+    private SingletonDoubleCheck() {
+    }
+
+    /**
+     * 提供获取实例的公共静态方法。
+     * 检查实例时，如果不存在，就进入同步块，同步块的锁为 SingletonDoubleCheck.class
+     *
+     * @return SingletonDoubleCheck
+     */
+    public static SingletonDoubleCheck getInstance() {
+        /**
+         * 注意：只有第一次才彻底执行这里的代码
+         */
+        if (uniqueInstance == null) {
+            synchronized (SingletonDoubleCheck.class) {
+                /**
+                 * 进入同步块后，再检查一次，如果仍是 null，则创建实例
+                 */
+                if (uniqueInstance == null) {
+                    uniqueInstance = new SingletonDoubleCheck();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
+}
+
+
+### 3
+package com.hit.singleton;
+
+/**
+ * author:Charies Gavin
+ * date:2017/9/16,22:09
+ * https:github.com/guobinhit
+ * description:单例模式（增加 synchronized 同步关键字，可用于多线程）
+ */
+public class SingletonSynchronized {
+    private static SingletonSynchronized uniqueInstance;
+
+    /**
+     * 私有化构造函数
+     */
+    private SingletonSynchronized() {
+    }
+
+    /**
+     * 提供获取实例的公共静态同步方法。
+     * 通过增加 synchronized 关键字到 getInstance() 方法中，
+     * 我们迫使每个线程在进入这个方法之前，都要先等候别的线程离开该方法。
+     * 也就是说，不会有两个线程同时进入这个方法。
+     *
+     * @return SingletonSynchronized
+     */
+    public static synchronized SingletonSynchronized getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new SingletonSynchronized();
+        }
+        return uniqueInstance;
+    }
+}
+
+
+
+### 4
+package com.hit.singleton;
+
+/**
+ * author:Charies Gavin
+ * date:2017/9/16,22:04
+ * https://github.com/guobinhit
+ * description:单例模式（急切实例化）
+ */
+public class SingletonVariant {
+    private static SingletonVariant uniqueInstance = new SingletonVariant();
+
+    /**
+     * 私有化构造函数
+     */
+    private SingletonVariant() {
+    }
+
+    /**
+     * 提供获取实例的公共静态方法
+     *
+     * @return SingletonVariant
+     */
+    public static SingletonVariant getInstance() {
+        return uniqueInstance;
+    }
+}
+
+
+
+### 5
+package com.hundredwordsgof.singleton;
+
+/**
+ * Singleton clas_s implements singleton pattern. Only one object can be
+ * instantiated.
+ * 
+ */
+public class Singleton {
+
+  /**
+   * Holds reference to single instance.
+   */
+  private static Singleton INSTANCE;
+
+  /**
+   * Overrides public Constructor.
+   */
+  private Singleton() {
+  }
+
+  /**
+   * Creates the instance if it does not yet exist(lazy instantiation).
+   * 
+   * @return a reference to the single instance.
+   */
+  public static Singleton getInstance() {
+    if (INSTANCE == null) {
+      INSTANCE = new Singleton();
+    }
+    return INSTANCE;
+  }
+}
+
+
+
+
+### 6
+package singleton;
+
+public class Singleton {
+	
+	private static Integer instanceCount;
+	
+	private Singleton(){
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		instanceCount++;
+	}
+	
+	public static Singleton getInstance() {
+		return new Singleton();
+	}
+	
+	public String getName(){
+		return "Highlander";
+	}
+	
+	public static int getInstanceCount(){
+		return instanceCount;
+	}
+
+}
+
+
+### 7
+package io.innofang.singleton.example.java;
+
+/**
+ * Created by Inno Fang on 2017/8/12.
+ */
+public class NotThreadSafeSingleton {
+
+    private static NotThreadSafeSingleton instance;
+
+    private NotThreadSafeSingleton() {}
+
+    public static NotThreadSafeSingleton getInstance() {
+        if (null == instance) {
+            instance = new NotThreadSafeSingleton();
+        }
+        return instance;
+    }
+
+}
+
+### 8
+package io.innofang.singleton.example.java;
+
+/**
+ * Created by InnF on 2017/2/18.
+ */
+public class Singleton {
+
+    private static Singleton instance = new Singleton();
+
+    private Singleton(){}
+
+    public static Singleton getInstance(){
+        return instance;
+    }
+
+}
+
+### 9
+package io.innofang.singleton.example.java;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by Inno Fang on 2017/8/12.
+ */
+public class SingletonManager {
+    private static Map<String, Object> objectMap = new HashMap<>();
+
+    private SingletonManager() {
+    }
+
+    public static void registerService(String key, Object instance) {
+        if (!objectMap.containsKey(key)) {
+            objectMap.put(key, instance);
+        }
+    }
+
+    public static Object getService(String key) {
+        return objectMap.get(key);
+    }
+}
+
+### 10
+package io.innofang.singleton.example.java;
+
+/**
+ * Created by Inno Fang on 2017/8/12.
+ */
+public class ThreadSafeDoubleCheckSingleton {
+
+    private static volatile ThreadSafeDoubleCheckSingleton instance;
+
+    private ThreadSafeDoubleCheckSingleton() {}
+
+    public static ThreadSafeDoubleCheckSingleton getInstance() {
+        if (null == instance) {
+            synchronized (ThreadSafeDoubleCheckSingleton.class) {
+                if (null == instance) {
+                    instance = new ThreadSafeDoubleCheckSingleton();
+                }
+            }
+        }
+        return instance;
+    }
+
+}
+
+
+### 11
+package io.innofang.singleton.example.java;
+
+/**
+ * Created by Inno Fang on 2017/8/12.
+ */
+public class ThreadSafeStaticInnerClassSingleton {
+
+    private ThreadSafeStaticInnerClassSingleton() {}
+
+    private static class Holder {
+        private static ThreadSafeStaticInnerClassSingleton instance = new ThreadSafeStaticInnerClassSingleton();
+    }
+
+    public static ThreadSafeStaticInnerClassSingleton getInstance() {
+        return Holder.instance;
+    }
+}
+
+### 12
+package io.innofang.singleton.example.java;
+
+/**
+ * Created by Inno Fang on 2017/8/12.
+ */
+public class ThreadSafeSynchronizedSingleton {
+
+    private static ThreadSafeSynchronizedSingleton instance;
+
+    private ThreadSafeSynchronizedSingleton() {}
+
+    public static synchronized ThreadSafeSynchronizedSingleton getInstance() {
+        if (null == instance) {
+            instance = new ThreadSafeSynchronizedSingleton();
+        }
+        return instance;
+    }
+
+}
+
+
+
+### 13
+package universe;
+
+public class Universe {
+    private static Universe instance;
+
+    private String name;
+    private int numberOfGalaxies;
+
+    private Universe(String name, int numberOfGalaxies) {
+        this.name = name;
+        this.numberOfGalaxies = numberOfGalaxies;
+    }
+
+    public static Universe getInstance(String name, int numberOfGalaxies) {
+        if(instance == null) {
+            instance = new Universe(name, numberOfGalaxies);
+        }
+        return instance;
+    }
+
+
+
+ //  normal getters
+    public String getName() {
+        return this.name;
+    }
+
+    public int getNumberOfGalaxies() {
+        return this.numberOfGalaxies;
+    }
+
+//    normal setter
+    public void setName(String aNewName) {
+        this.name = aNewName;
+    }
+
+}
+
+
+### 14
+/**
+ * 
+ */
+package com.moztrodev.tuto.designpatterns.singleton;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+/**
+ * @author DANIEL
+ *
+ */
+public class DataSource {
+
+	private static DataSource instance = null;
+	private static String filePathConnectionDB = "/db_connection.properties";
+	private String jdbcDriver;
+	private String url;
+	private String user;
+	private String pass;
+	
+	private DataSource(){
+		initDataSource();
+	}
+	
+	public static DataSource getInstance(){
+		if(instance == null)
+			instance = new DataSource();
+		return instance;
+	}
+	
+	private void initData_Source(){
+		Properties properties = getPropertiesConnection();
+		
+		setJdbcDriver(properties.getProperty("driver"));
+		setUrl(properties.getProperty("url"));
+		setUser(properties.getProperty("user"));
+		setPass(properties.getProperty("pass"));
+	}
+
+	private Properties getPropertiesConnection(){
+		Properties properties = new Properties();
+		
+		try{
+			properties.load(getClass().getResourceAsStream(getFilePathConnectionDB()));
+		}catch(IOException e){
+			e.printStackTrace();
+		}catch(NullPointerException e){
+			e.printStackTrace();
+		}
+		
+		return properties;
+	}
+	
+	public Connection getConnection(){
+		Connection conn = null;
+		
+		try {
+			Class.forName(getJdbcDriver()).newInstance();
+			conn = DriverManager.getConnection(getUrl(), getUser(), getPass());
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return conn;
+	}
+	
+	public static String getFilePathConnectionDB() {
+		return filePathConnectionDB;
+	}
+
+	public static void setFilePathConnectionDB(String filePathConnectionDB) {
+		DataSource.filePathConnectionDB = filePathConnectionDB;
+	}
+
+	public String getJdbcDriver() {
+		return jdbcDriver;
+	}
+
+	public void setJdbcDriver(String jdbcDriver) {
+		this.jdbcDriver = jdbcDriver;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+}
+
+
+### 15
+package com.javatechie.singleton_design_pattern;
+
+public class DoubleCheckingLazySingleton {
+
+	private DoubleCheckingLazySingleton() {
+	}
+
+	private static DoubleCheckingLazySingleton instance;
+
+	public static DoubleCheckingLazySingleton getInstance() {
+		if (instance == null) {
+			synchronized (DoubleCheckingLazySingleton.class) {
+				if (instance == null) {
+					instance = new DoubleCheckingLazySingleton();
+				}
+			}
+
+		}
+		return instance;
+	}
+}
+
+### 16
+package com.javatechie.singleton_design_pattern;
+
+public class EagerSingleton {
+
+	private EagerSingleton() {
+	}
+
+	private static final EagerSingleton instance = new EagerSingleton();
+
+	public static EagerSingleton getInstance() {
+		return instance;
+	}
+
+}
+
+### 17
+package com.javatechie.singleton_design_pattern;
+
+public class LazySingleton {
+
+	private LazySingleton() {
+	}
+
+	private static LazySingleton instance;
+
+	public static synchronized LazySingleton getInstance() {
+		if (instance == null) {
+			return instance = new LazySingleton();//2 object by 2 thread
+		} else {
+			return instance;
+		}
+	}
+
+}
+
+
+### 18
+package com.javatechie.singleton_design_pattern;
+
+public class LazzyInnerClassSingleton {
+
+	private LazzyInnerClassSingleton() {
+
+	}
+
+	private static class SingletonHelper {
+		private static final LazzyInnerClassSingleton instance = new LazzyInnerClassSingleton();
+	}
+
+	public static LazzyInnerClassSingleton getInstance() {
+		return SingletonHelper.instance;
+	}
+
+}
+
+
+### 19
+package secondChapter.interview2;
+
+/**
+ * a bad solution 1：只适用于单线程环境
+ */
+public class Singleton1 {
+
+	/* 1.私有化构造函数
+	 * 2.声明静态单例对象
+	 * 3.编写创建单例的方法
+	 */
+	private Singleton1(){}
+	
+	private static Singleton1 instance;
+
+	public static Singleton1 getInstance(){
+		if(instance == null)
+			instance = new Singleton1();
+		return instance;
+	}
+}
+
+### 20
+package secondChapter.interview2;
+
+/**
+ * a bad solution 2: 虽然在多线程环境中能工作，但效率不高
+ */
+public class Singleton2 {
+
+	/*
+	 * 1.私有化构造函数
+	 * 2.创建静态成员对象
+	 * 3.编写创建方法，加锁获取对象
+	 */
+	private Singleton2(){}
+	
+	private static Singleton2 instance;
+
+	private static Object obj = new Object();
+	
+	public static Singleton2 getInstance(){
+		
+		synchronized(obj){
+			if(instance == null)
+				instance = new Singleton2();
+		}
+		return instance;
+	}
+	
+}
+
+### 21
+package secondChapter.interview2;
+
+/**
+ * feasible solution: 双重检查锁定 + volatile 
+ */
+public class Singleton3 {
+
+	/*
+	 * 1.私有化构造函数
+	 * 2.声明静态对象 ,需要用 volatile修饰，具体解释看解析文件
+	 * 3.编写创建对象方法
+	 */
+	private Singleton3(){};
+	
+	private static volatile Singleton3 instance;
+	private static Object obj = new Object();
+	
+	public static Singleton3 getInstance(){
+		if(instance == null)
+			synchronized(obj){
+				if(instance == null)
+					instance = new Singleton3();
+			}
+		return instance;
+	}
+}
+
+### 22
+package secondChapter.interview2;
+
+/**
+ * Recommended solution： 利用静态构造函数 
+ */
+public class Singleton4 {
+	
+	private Singleton4(){}
+	
+	private static Singleton4 instance = new Singleton4();
+	
+	public static Singleton4 getInstance(){
+		return instance;
+	}
+}
+
+### 23
+package secondChapter.interview2;
+
+/**
+ * strongly recommended solution: 基于类初始化的解决方案
+ *
+ */
+public class Singleton5 {
+	
+	private static class Nested{
+		public static Singleton5 Instance = new Singleton5(); 
+	}
+	
+	public static Singleton5 getInstance(){
+		return Nested.Instance;
+	}
+
+}
+
+
+
+### 24
+public class Singleton {
+    private static  Singleton instance;
+    private Singleton(){}
+    public static Singleton getInstance(){
+        if (instance == null){
+            instance = new Singleton();
+            System.out.println("Creating new instance");
+        }
+        return instance;
+    }
+    public void Showmessage(){
+        System.out.println("Created Object");
+    }
+}
+
+
+### 25
+package com.java9s.tutorials.designpattern.singleton;
+
+public class Satellite {
+	//A static field to hold the instance. But we do not need it if you do not use Lazy initialization
+	private static Satellite _instance;
+	
+	//Always close the access to constructors	
+	private Satellite(){}
+	
+	private static class SateliteHelper{
+		private static final Satellite _innerInstance = new Satellite();
+	}
+	
+	//All the classes should use this method to get the instances.
+	public static  Satellite getSatellite(){
+		return SateliteHelper._innerInstance;
+	}
+	
+	//Use this method for lazy initialization but recommended to use the helper class way
+	public static Satellite getLazySatellite(){
+		if(_instance == null){
+			_instance = new Satellite();
+		}
+		return _instance;
+	}
+}
+
+### 26
+package com.swathisprasad.singleton;
+
+public class EagerlyInitializedSingleton {
+
+    /** private constructor to prevent others from instantiating this class */
+    private EagerlyInitializedSingleton() {}
+
+    /** Create an instance of the class at the time of class loading */
+    private static final EagerlyInitializedSingleton instance = new EagerlyInitializedSingleton();
+
+    /** Provide a global point of access to the instance */
+    public static EagerlyInitializedSingleton getInstance() {
+        return instance;
+    }
+
+}
+
+
+### 27
+package com.swathisprasad.singleton;
+
+
+public class EagerlyInitializedStaticBlockSingleton {
+
+    private static EagerlyInitializedStaticBlockSingleton instance;
+
+    /** Don't let anyone else instantiate this class */
+    private EagerlyInitializedStaticBlockSingleton() {}
+
+    /** Create the one-and-only instance in a static block */
+    static {
+        try {
+            instance = new EagerlyInitializedStaticBlockSingleton();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /** Provide a public method to get the instance that we created */
+    public static EagerlyInitializedStaticBlockSingleton getInstance() {
+        return instance;
+    }
+}
+
+
+### 28
+package com.swathisprasad.singleton;
+
+public class LazilyInitializedDoubleCheckedLockingSingleton {
+
+    private static volatile LazilyInitializedDoubleCheckedLockingSingleton instance;
+
+    /** private constructor to prevent others from instantiating this class */
+    private LazilyInitializedDoubleCheckedLockingSingleton() {}
+
+    /** Initialize the singleton lazily in a synchronized block */
+    public static LazilyInitializedDoubleCheckedLockingSingleton getInstance() {
+        if(instance == null) {
+            synchronized (LazilyInitializedDoubleCheckedLockingSingleton.class) {
+                // double-check
+                if(instance == null) {
+                    instance = new LazilyInitializedDoubleCheckedLockingSingleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+
+
+### 29
+package com.swathisprasad.singleton;
+
+public class LazilyInitializedInnerClassSingleton {
+
+    /** private constructor to prevent others from instantiating this class */
+    private LazilyInitializedInnerClassSingleton() {}
+
+    /** This inner class is loaded only after getInstance() is called for the first time. */
+    private static class InnerSingletonInitializer {
+        private static final LazilyInitializedInnerClassSingleton INSTANCE = new LazilyInitializedInnerClassSingleton();
+    }
+
+    public static LazilyInitializedInnerClassSingleton getInstance() {
+        return InnerSingletonInitializer.INSTANCE;
+    }
+}
+
+### 30
+package com.swathisprasad.singleton;
+
+public class LazilyInitializedSingleton {
+
+    private static LazilyInitializedSingleton instance;
+
+    /** Don't let anyone else instantiate this class */
+    private LazilyInitializedSingleton() {}
+
+    /** Create the instance lazily when it is accessed for the first time */
+    public static synchronized LazilyInitializedSingleton getInstance() {
+        if(instance == null) {
+            instance = new LazilyInitializedSingleton();
+        }
+        return instance;
+    }
+
+}
+
+### 31
+package com.swathisprasad.singleton;
+
+public class ProtectionAgainstReflectionSingleton {
+
+    /** private constructor to prevent others from instantiating this class */
+    private ProtectionAgainstReflectionSingleton() {
+        // protect against instantiation via reflection
+        if(instance != null) {
+            throw new IllegalStateException("Singleton already initialized");
+        }
+    }
+
+    /** Create an instance of the class at the time of class loading */
+    private static final ProtectionAgainstReflectionSingleton instance = new ProtectionAgainstReflectionSingleton();
+
+    /** Provide a global point of access to the instance */
+    public static ProtectionAgainstReflectionSingleton getInstance() {
+        return instance;
+    }
+}
+
+### 32
+package com.swathisprasad.singleton;
+
+import java.io.Serializable;
+
+public class SerializableSingleton implements Serializable {
+
+    private static final long serialVersionUID = -6265755052204900542L;
+
+    private static SerializableSingleton instance;
+
+    private SerializableSingleton() {}
+
+    public static synchronized SerializableSingleton getInstance() {
+        if(instance == null) {
+            instance = new SerializableSingleton();
+        }
+        return instance;
+    }
+}
+
+### 33
+package com.swathisprasad.singleton;
+
+import java.io.Serializable;
+
+public class SerializableWithReadResolveSingleton implements Serializable {
+
+    private static final long serialVersionUID = 1911904003687931976L;
+
+    private static SerializableWithReadResolveSingleton instance;
+
+    private SerializableWithReadResolveSingleton() {}
+
+    protected Object readResolve() {
+        return instance;
+    }
+
+    public static synchronized SerializableWithReadResolveSingleton getInstance() {
+        if(instance == null) {
+            instance = new SerializableWithReadResolveSingleton();
+        }
+        return instance;
+    }
+
+}
+
+
+### 34
+package com.swathisprasad.singleton;
+
+public class Singleton {
+
+    /** private constructor to prevent others from instantiating this class */
+    private Singleton() {}
+
+    /** Create an instance of the class at the time of class loading */
+    private static Singleton instance = new Singleton();
+
+    /** Provide a global point of access to the instance */
+    public static Singleton getInstance() {
+        return instance;
+    }
+}
+
+### 35
+package com.design.pattern.singleton;
+
+import java.io.Serializable;
+
+public class LogManager implements Serializable {
+
+	private static final long serialVersionUID = 8823030873610926300L;
+
+	private static volatile LogManager self;
+	
+	protected LogManager() {
+		System.out.println("Log manager was created!");
+	}
+	
+	public static LogManager getLogManager() {
+		
+		if(self == null) {
+			synchronized (LogManager.class) {
+				if(self == null) {
+					self = new LogManager();
+				}
+			}
+		}
+		return self;
+	}
+}
+
+
+
+
+### 36
+package com._520.singleton;
+
+import javax.swing.*;
+
+/**
+ *   饿汉式
+ *  类加载到内存后，就实例化一个单例
+ *  缺点：不管用到与否，类装载时就完成实例化
+ */
+public class HungrySingleton {
+    private static HungrySingleton INSTENCE = new HungrySingleton();
+
+//    static {
+//        INSTENCE = new HungrySingleton();
+//    }
+
+    private HungrySingleton(){}
+
+    public static HungrySingleton getInstence(){
+        return INSTENCE;
+    }
+
+
+
+}
+
+
+### 37
+package com._520.singleton;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 懒汉式
+ * 虽然达到了按需初始化的目的，但却带来线程不安全的问题
+ */
+public class LazySingleton1 {
+
+    private static LazySingleton1 INSTENCE = null;
+
+    private LazySingleton1(){}
+
+    public static LazySingleton1 getInstence(){
+
+        if (INSTENCE == null){
+
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            INSTENCE = new LazySingleton1();
+        }
+
+        return INSTENCE;
+    }
+
+
+
+}
+
+### 38
+package com._520.singleton;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 懒汉式
+ * 虽然达到了按需初始化的目的，但却带来线程不安全的问题
+ * 可以通过synchronized解决，但也带来效率下降
+ */
+public class LazySingleton2 {
+
+    private static LazySingleton2 INSTENCE = null;
+
+    private LazySingleton2(){}
+
+    public synchronized static LazySingleton2 getInstence(){
+
+        if (INSTENCE == null){
+
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            INSTENCE = new LazySingleton2();
+        }
+
+        return INSTENCE;
+    }
+
+
+
+}
+
+### 39
+package com._520.singleton;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 懒汉式
+ * 虽然达到了按需初始化的目的，但却带来线程不安全的问题
+ * 可以通过synchronized解决，但也带来效率下降
+ */
+public class LazySingleton3 {
+
+    private static LazySingleton3 INSTENCE = null;
+
+    private LazySingleton3(){}
+
+    public static LazySingleton3 getInstence(){
+
+        if (INSTENCE == null){
+            // 可能会有多个线程在这里等着
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // 减少同步代码块
+            synchronized (LazySingleton3.class){
+                INSTENCE = new LazySingleton3();
+            }
+        }
+
+        return INSTENCE;
+    }
+
+
+
+}
+
+### 40
+package com._520.singleton;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 懒汉式
+ * 虽然达到了按需初始化的目的，但却带来线程不安全的问题
+ * 可以通过synchronized解决，但也带来效率下降
+ */
+public class LazySingleton4 {
+
+    private static LazySingleton4 INSTENCE = null;
+
+    private LazySingleton4(){}
+
+    public static LazySingleton4 getInstence(){
+
+        if (INSTENCE == null){
+
+            // 减少同步代码块
+            synchronized (LazySingleton4.class){
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (INSTENCE == null)   // 双重检查
+                INSTENCE = new LazySingleton4();
+            }
+        }
+
+        return INSTENCE;
+    }
+
+
+
+}
+
+### 41
+package com._520.singleton;
+
+/**
+ * 静态内部类
+ * 加载外部类时不会加载内部类，这样可以实现懒加载
+ */
+public class StaticInternalClass {
+
+    private StaticInternalClass(){}
+
+    private static class Internal{
+        private static StaticInternalClass INSTENCE = new StaticInternalClass();
+    }
+
+    public static StaticInternalClass getInstence(){
+        return Internal.INSTENCE;
+    }
+
+
+
+}
+
+
+### 42
+package com.lg.LazySingletonPattern;
+
+//静态内部类饿汉式
+public class LazyInnerClassSingleton {
+
+    private LazyInnerClassSingleton(){
+        if(LazyHolder.lazy!=null){//防止反射攻击
+            throw new RuntimeException("不允许创建多个实例");
+        }
+    }
+
+    private static class LazyHolder{
+        private static final LazyInnerClassSingleton lazy = new LazyInnerClassSingleton();
+    }
+
+
+    public static final LazyInnerClassSingleton getInstace(){
+        return LazyHolder.lazy;
+    }
+
+    //防止序列化攻击
+    private Object readResolve(){
+        return LazyHolder.lazy;
+    }
+
+}
+
+### 43
+package com.lg.LazySingletonPattern;
+
+//静态内部类饿汉式
+public class LazyInnerClassSingleton {
+
+    private LazyInnerClassSingleton(){
+        if(LazyHolder.lazy!=null){//防止反射攻击
+            throw new RuntimeException("不允许创建多个实例");
+        }
+    }
+
+    private static class LazyHolder{
+        private static final LazyInnerClassSingleton lazy = new LazyInnerClassSingleton();
+    }
+
+
+    public static final LazyInnerClassSingleton getInstace(){
+        return LazyHolder.lazy;
+    }
+
+    //防止序列化攻击
+    private Object readResolve(){
+        return LazyHolder.lazy;
+    }
+
+}
+
+### 44
+package com.lg.LazySingletonPattern;
+
+//简单懒汉式
+public class LazySimpleSingleton {
+
+    private LazySimpleSingleton(){}
+
+
+    private static LazySimpleSingleton lazy = null;
+
+    //存在线程安全隐患
+    public static LazySimpleSingleton getInstance(){
+
+        if(lazy==null){
+            lazy = new LazySimpleSingleton();
+        }
+        return lazy;
+    }
+
+}
+
+
+### 45
+package com.lg.RegisterSingletonPattern;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+//注册式单例之容器缓存单例
+public class ContainerSingleton {
+
+    private ContainerSingleton(){}
+
+    private static Map<String, Object> ioc = new ConcurrentHashMap<>();
+
+    public static Object getBean(String className){
+
+        synchronized (ioc) {
+            if(!ioc.containsKey(className)){
+                Object object = null;
+                try {
+                    object = Class.forName(className).newInstance();
+                    ioc.put(className, object);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return object;
+            }else{
+                return ioc.get(className);
+            }
+        }
+
+    }
+
+}
+
+
+### 46
+package com.lg.hungrySingletonPattern;
+
+public class HungrySingleton {
+
+    //1.私有构造
+    private HungrySingleton(){}
+
+    //2.提供全局访问点
+    private static final HungrySingleton hungrySingleton = new HungrySingleton();
+
+
+    public static HungrySingleton getInstance(){
+        return hungrySingleton;
+    }
+
+
+}
+
+### 47
+package com.lg.hungrySingletonPattern;
+
+public class HungrySingletonV2 {
+
+    //1.私有构造
+    private HungrySingletonV2(){}
+
+    //2.提供全局访问点
+    private static final HungrySingletonV2 hungrySingleton2;
+
+    static {
+        hungrySingleton2 = new HungrySingletonV2();
+    }
+
+    public static HungrySingletonV2 getInstance(){
+        return hungrySingleton2;
+    }
+
+
+}
+
+
+
+### 48
+public class Singleton {
+
+    //generate
+    private static Singleton ourInstance = new Singleton();
+
+    private Singleton() {
+    }
+
+    public static Singleton getInstance() {
+        return ourInstance;
+    }
+
+
+    //with stream
+    //Поле обязательно должно быть объявлено volatile, чтобы двойная проверка
+    //блокировки сработала как надо.
+    private static volatile Singleton instance;
+    public String value;
+
+    private Singleton(String value) {
+        this.value = value;
+    }
+
+    public static Singleton getInstance(String value) {
+        // Тезника, которую мы здесь применяем называется
+        // «блокировка с двойной проверкой» (Double-Checked Locking).
+        // Она применяется, чтобы предотвратить создание нескольких объектов-одиночек,
+        // если метод будет вызван из нескольких потоков одновременно.
+        //
+        // Хотя переменная `result` вполне оправданно кажется здесь лишней, она
+        // помогает избежать подводных камней реализации DCL в Java.
+        //
+        // Больше об этой проблеме можно почитать здесь:
+        // https://refactoring.guru/ru/java-dcl-issue
+        Singleton result = instance;
+        if (result != null) {
+            return result;
+        }
+        synchronized (Singleton.class) {
+            if (instance == null) {
+                instance = new Singleton(value);
+            }
+            return instance;
+        }
+    }
+}
+
+### 49
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+/**
+ * @author
+ * @datetime
+ */
+public class Emperor {
+
+    //定义最多能产生的实例数量
+    private static int maxNumOfEmperor = 2;
+    //每个皇帝都有名字，使用一个ArrayList来容纳，每个对象的私有属性
+    private static ArrayList nameList=new ArrayList();
+    //定义一个列表，容纳所有的皇帝实例
+    private static ArrayList emperorList=new ArrayList();
+    //当前皇帝序列号
+    private static int countNumOfEmperor =0;
+    //产生所有的对象
+    static{
+        for(int i=0;i<maxNumOfEmperor;i++){
+            emperorList.add(new Emperor("皇"+(i+1)+"帝"));
+        }
+    }
+    private Emperor(){
+        //世俗和道德约束你，目的就是不产生第二个皇帝
+    }
+    //传入皇帝名称，建立一个皇帝对象
+    private Emperor(String name){
+        nameList.add(name);
+    }
+    //随机获得一个皇帝对象
+    public static Emperor getInstance(){
+        Random random = new Random();
+        //随机拉出一个皇帝，只要是个精神领袖就成
+        countNumOfEmperor = random.nextInt(maxNumOfEmperor);
+        return (Emperor) emperorList.get(countNumOfEmperor);
+    }
+    //皇帝发话了
+    public static void say(){
+        System.out.println(nameList.get(countNumOfEmperor));
+    }
+
+}
+
+### 50
+package com.example.demo;
+
+/**
+ * 单例实体对象
+ * 饿汉式单例模式
+ * @pathName：Singleton
+ * @author：ZhangWei
+ */
+public class Singleton {
+
+    //创建单例对象
+    public static final Singleton SINGLETON = new Singleton();
+
+    /**
+     * 限制产生多个对象
+     */
+    private Singleton() {
+    }
+
+    /**
+     * 获取单例对象
+     *
+     * @return
+     */
+    public static Singleton getSingleton() {
+        return SINGLETON;
+    }
+
+}
+
+### 51
+package com.example.demo;
+
+/**
+ * 单例实体对象
+ * 懒汉式单例模式
+ * @pathName：SingletonLan
+ * @author：ZhangWei
+ */
+public class SingletonLan {
+
+    //创建单例对象
+    public static SingletonLan singletonLan = null;
+
+    /**
+     * 限制参数多个对象
+     */
+    public SingletonLan() {
+
+    }
+
+    /**
+     * 获取单例对象
+     * synchronized：避免多线程使用时创建多个对象
+     * 例如线程A走到了“new SingletonLan()”，线程B走到了“singletonLan == null”，这时线程B的条件结果是成立的
+     * 这种情况就会产生线程A生产了一个对象，线程B也生产了一个对象，在内存中就会出现两个对象
+     * @return
+     */
+    public static synchronized SingletonLan getSingletonLan() {
+        if (singletonLan == null)
+            singletonLan = new SingletonLan();
+        return singletonLan;
+    }
+
+}
+
+### 52
+import com.sun.org.apache.regexp.internal.RE;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+
+/**
+ * Created by Ricsko on 2017. 05. 04..
+ */
+public class Singleton {
+    /*
+    final metódussal a legegyszerübb a szálkezelés maitt nem lesz lassú
+     */
+    private  final static Singleton INSTANCE = new Singleton();
+
+    String[] scabble= {"a","b","c","a","c","d","e","g"};
+    private LinkedList<String> letterList = new LinkedList<>(Arrays.asList(scabble));
+    private String cica = "szia";
+
+    private Singleton(){}
+
+    public static Singleton getInstance(){
+        return INSTANCE;
+    }
+
+    public LinkedList<String> getLetterList(){
+        return INSTANCE.letterList;
+    }
+
+    public LinkedList<String > getTitles(int howmanytitles){
+        LinkedList<String > titles = new LinkedList<>();
+
+        for(int i = 0; i <= howmanytitles;i++){
+            titles.add(INSTANCE.letterList.remove(0));
+        }
+        return titles;
+    }
+
+    public void doNameChange(String name){
+        INSTANCE.cica = name;
+    }
+
+    public String toString(){
+        return cica;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException();
+    }
+
+    public Object readResolve(){
+        return INSTANCE;
+    }
+}
+
+### 53
+package com.inetsoft.singleton;
+/**
+ * @Description: 双重检查加锁单例: 解决饿汉式的多线程问题和效率问题 
+ * @Warning: 双重检查加锁模式需要 JDK1.5 或以上才能完全支持 volatile 的单例
+ * @Author DreamLi
+ * @Package SingletonPattern  --  com.inetsoft.singleton.DoubleCheckLockSingleton
+ * @Date: 2017年12月6日 上午8:32:08
+ * @Version: 1.0.0
+ */
+public class DoubleCheckLockSingleton {
+	private static volatile DoubleCheckLockSingleton singleton;
+
+	private DoubleCheckLockSingleton() {}
+
+	public static DoubleCheckLockSingleton getInstance() {
+		if(singleton == null) {
+			synchronized (DoubleCheckLockSingleton.class) {
+				if(singleton == null) {
+					singleton = new DoubleCheckLockSingleton();
+				}
+			}
+		}
+
+		return singleton;
+	}
+	
+	
+	
+}
+
+### 54
+package com.inetsoft.singleton;
+
+/**
+ * @Description: 饿汉式单例 
+ * @Warning: 在多线程的情况下不一定真正的单例
+ * @Author DreamLi
+ * @Package SingletonPattern  --  com.inetsoft.singleton.HungrySingleton
+ * @Date: 2017年12月6日 上午8:23:12
+ * @Version: 1.0.0
+ */
+public class HungrySingleton {
+	
+	private HungrySingleton() {}
+
+	private static HungrySingleton hungrySingleton;
+	
+	public static HungrySingleton getInstance() {
+		if(hungrySingleton == null) {
+			hungrySingleton = new HungrySingleton();
+		}
+		
+		return hungrySingleton;
+	}
+}
+
+### 55
+package com.inetsoft.singleton;
+/**
+ * @Description: 懒汉式单例: 为解决饿汉式单例存在多线程问题，也可以使用懒汉式单例 
+ * @Warning: 懒汉式单例虽然可以避免饿汉式单例的多线程问题， 但是在类加载的时候就初始化对象,因此将导致项目启动较慢，
+ * 		而且，这个对象可能一直不被使用，将导致内存占用
+ * @Author DreamLi
+ * @Package SingletonPattern  --  com.inetsoft.singleton.LazySingleton
+ * @Date: 2017年12月6日 上午8:28:03
+ * @Version: 1.0.0
+ */
+public class LazySingleton {
+	private static LazySingleton lazySingleton = new LazySingleton();
+
+	private LazySingleton() {
+	}
+	
+	public static LazySingleton getInstance() {
+		return lazySingleton;
+	}
+	
+}
+
+### 56
+package com.inetsoft.singleton;
+
+/**
+ * @Description: 同步饿汉式单例:  为了解决饿汉式单例的多线程问题，可以将 getInstance 方法进行同步;
+ * @Warning: 该模式虽然可以避免多线程问题,但是每次获取类实例都在经历同步，若频繁的获取类实例将导致效率低下
+ * @Author DreamLi
+ * @Package SingletonPattern  --  com.inetsoft.singleton.SyncHungrySingleton
+ * @Date: 2017年12月6日 上午8:25:22
+ * @Version: 1.0.0
+ */
+public class SyncHungrySingleton {
+	private SyncHungrySingleton() {}
+
+	private static SyncHungrySingleton syncHungrySingleton;
+	
+	public synchronized static SyncHungrySingleton getInstance() {
+		if(syncHungrySingleton == null) {
+			syncHungrySingleton = new SyncHungrySingleton();
+		}
+		
+		return syncHungrySingleton;
+	}
+}
+
+
+
+### 57
+package com.globallogic.implementations;
+
+public class EagerInitializedSingleton {
+
+    //create an object of SingleObject
+    private static final EagerInitializedSingleton instance = new EagerInitializedSingleton();
+
+    //make the constructor private so that this class cannot be
+    //instantiated
+    private EagerInitializedSingleton(){}
+
+    //Get the only object available
+    public static EagerInitializedSingleton getInstance(){
+        return instance;
+    }
+
+    public void showMessage(){
+        System.out.println("Hello from EagerInitializedSingleton!");
+    }
+}
+
+
+### 58
+package com.globallogic.implementations;
+
+public class LazyInitializedSingleton {
+
+    private static LazyInitializedSingleton instance;
+
+    private LazyInitializedSingleton(){}
+
+    public static LazyInitializedSingleton getInstance(){
+        if(instance == null){
+            instance = new LazyInitializedSingleton();
+        }
+        return instance;
+    }
+
+    public void showMessage(){
+        System.out.println("Hello from LazyInitializedSingleton!");
+    }
+}
+
+### 59
+package com.globallogic.implementations;
+
+public class StaticBlockSingleton {
+
+    private static StaticBlockSingleton instance;
+
+    private StaticBlockSingleton(){}
+
+    //static block initialization for exception handling
+    static{
+        try{
+            instance = new StaticBlockSingleton();
+        }catch(Exception e){
+            throw new RuntimeException("Exception occured in creating singleton instance");
+        }
+    }
+
+    public static StaticBlockSingleton getInstance(){
+        return instance;
+    }
+
+    public void showMessage(){
+        System.out.println("Hello from StaticBlockSingleton!");
+    }
+}
+
+### 60
+package com.globallogic.implementations;
+
+public class ThreadSafeSingleton {
+
+    private static ThreadSafeSingleton instance;
+
+    private ThreadSafeSingleton(){}
+
+
+    public static ThreadSafeSingleton getInstanceUsingDoubleLocking(){
+        if(instance == null){
+            synchronized (ThreadSafeSingleton.class) {
+                if(instance == null){
+                    instance = new ThreadSafeSingleton();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void showMessage(){
+        System.out.println("Hello from ThreadSafeSingleton!");
+    }
+
+}
+
+
+
+### 61
+package com.levent.scd.configuration;
+
+import java.io.FileInputStream;
+import java.util.Properties;
+
+/*
+ * A simple Configuration Manager clas_s based on Gang-Of-Four Singleton Design Pattern.
+ * 
+ * Levent Divilioglu - March, 2018
+ */
+public class ConfigManager {
+	
+	private static final ConfigManager instance = new ConfigManager();
+	
+	// Resource Directory - Log file also will be here
+	public final String RESOURCE_DIRECTORY;
+	public final String LOG4J_PROPERTIES;			// You can wrap LOG4J properties file within this class
+	
+	// Database Config Parameters
+	public final String DB_HOST;
+	public final String DB_PORT;
+	public final String DB_DB_NAME;
+	public final String DB_USER;
+	public final String DB_PASSWORD;
+	
+	
+	private ConfigManager() {
+		Config config = new Config(Config.CONFIG_FILE_NAME);
+		
+		// RESOURCE AND LOG
+		RESOURCE_DIRECTORY					= Config.RESOURCE_DIR;
+		LOG4J_PROPERTIES					= RESOURCE_DIRECTORY + "/log4j.properties";	// log4j will be in the resource folder
+		
+		// Database Config Parameters
+		DB_HOST						= config.getProperty("db.host");
+		DB_PORT						= config.getProperty("db.port");
+		DB_DB_NAME					= config.getProperty("db.db_name");
+		DB_USER						= config.getProperty("db.user");
+		DB_PASSWORD					= config.getProperty("db.password");
+	}
+	
+	public static ConfigManager config() {
+		return instance;
+	}
+	
+	/*
+	 * Reads the properties file in the base directory.
+	 * 
+	 * If an environmental variable is defined, then the properties file
+	 * will be expected in the value of the environmental variable. Otherwise,
+	 * properties file will be expected to be in the base directory.
+	 * 
+	 * If you are going to use a tool like maven, it should also be the
+	 * src/main/resources
+	 * folder.
+	 * 
+	 * Levent Divilioglu - March, 2018
+	 * 
+	 */
+	private static class Config {
+		
+		private static final String 			CONFIG_FILE_NAME = "main_config.properties";
+		private static final String 			RESOURCE_DIR;
+		private Properties 						configFile;
+		
+		static {
+			String envVal = System.getenv("DEMO_ENV");
+			System.out.print("\tRESOURCE_DIR SET TO: ");
+			if(envVal == null) {
+				RESOURCE_DIR = ".";
+				System.out.print("\tDefault Value = Working dir of jar\n");
+			} else {
+				RESOURCE_DIR = envVal;
+				System.out.print("\tEnvironment Parameter = " + RESOURCE_DIR + "\n");
+			}
+			System.out.printf("\n");
+		}
+
+		private Config(String configFileName) {
+			configFile = new java.util.Properties();
+
+			try (FileInputStream fileInputStream = new FileInputStream(RESOURCE_DIR + "//" + configFileName)) {
+				configFile.load(fileInputStream);
+			} catch (Exception eta) {
+				System.out.println("\tError;");
+				System.out.println("\t******");
+				System.out.println("\tCannot find \"" + configFileName +  "\" in \"" + RESOURCE_DIR + "\"");
+				System.out.println("\tExiting program.");
+				System.exit(1);
+			}
+		}
+
+		private String getProperty(String key) {
+			return this.configFile.getProperty(key);
+		}
+	}
+
+}
+
+
+### 62
+package com.example.singletonpractice.ContainerSingleton;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by W on 2018/12/15.
+ */
+
+public class SingletonManager {
+    private static Map<String,Object>objectMap = new HashMap<String, Object>();
+
+    private SingletonManager(){}
+    public static void registerService(String key,Object instance){
+        if (objectMap.containsKey(key)){
+            objectMap.put(key,instance);
+        }
+    }
+    public static Object getService(String key){
+        return objectMap.get(key);
+    }
+
+}
+
+
+### 63
+package com.example.singletonpractice.DoubleCheckLock;
+
+import android.util.Log;
+
+/**
+ * Created by W on 2018/12/14.
+ */
+
+public class Singleton {
+    private String TAG = "Singleton";
+    private static Singleton sIngleton = null;
+    private Singleton(){
+
+    }
+    public void doSomething(){
+        Log.d(TAG, "doSomething: doSomething");
+    }
+    public static Singleton getInstance(){
+        if (sIngleton == null){
+            synchronized (Singleton.class){
+                if (sIngleton == null){
+                    sIngleton = new Singleton();
+                }
+            }
+        }
+        return sIngleton;
+    }
+}
+
+
+### 64
+package com.example.singletonpractice.StaticInnerSingleton;
+
+/**
+ * Created by W on 2018/12/15.
+ */
+
+public class Singleton {
+    private  Singleton(){}
+    public static Singleton getInstance(){
+        return SingletonHolder.sInstance;
+    }
+
+    /**
+     * 静态内部类
+     */
+    private static class SingletoonHolder{
+        private static final Singleton sInstance = new Singleton();
+    }
+
+}
+
+### 65
+package com.example.singletonpractice.lanhan;
+
+/**
+ * Created by W on 2018/12/14.
+ */
+
+public class Singleton {
+    private static Singleton instance;
+
+    private Singleton(){}
+
+    public static synchronized Singleton getInstance(){
+        if (instance == null){
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+}
+
+
+
+
+### 66
+package edu.qtech.singleton;
+
+public class Singleton {
+    private static Singleton singleton;
+    private Singleton(){}
+    
+    public static Singleton getInstance(){
+   	 if(singleton == null){
+   		 singleton = new Singleton();
+   	 }
+   	 return singleton;
+    }
+    //ÆäËû·½·¨
+}
+
+### 67
+package edu.qtech.singleton;
+
+import java.util.ArrayList;
+
+public class SingletonPool {
+	//创建实例的个数
+    private static int maxNumOfSingleton = 2;
+    //实例列表
+    private static ArrayList<People>  peopleList = new ArrayList<People>();
+    //实例
+	private People people;
+	
+    public SingletonPool(){
+    	System.out.println("对象池一共有n个对象：n="+maxNumOfSingleton);
+    	for(int i = 0; i < maxNumOfSingleton; i++){
+    		 people = new People(i+1+"");
+    		 peopleList.add(people);
+    	}
+    }
+    public People getInstance(){
+    	
+    	for(int i = 0;i < maxNumOfSingleton; i ++){
+    		People p = peopleList.get(i);
+    		if(!p.isBuzy()){
+    			System.out.println("获取到实例对象："+p.getName());
+    			return p.getInstance();
+    		}
+    	}
+    	System.out.println("对象池已空，无法获取到实例对象");
+    	return people;
+    }
+}
+
+### 68
+package edu.qtech.singleton;
+
+public class Singleton_1 {
+	 private static Singleton_1 singleton;
+    private Singleton_1(){}
+    //synchronized迫使每个线程在进入这个方法之前，要先等候别的线程离开该方法。
+    //也就是说，不会有两个线程可以同时进入这个方法。
+    //但这样耗费不较大。
+    public static synchronized Singleton_1 getInstance(){
+   	 if(singleton == null){
+   		 singleton = new Singleton_1();
+   	 }
+   	 return singleton;
+    }
+    //其他方法
+}
+
+### 69
+package edu.qtech.singleton;
+
+public class Singleton_2 {
+	 private static Singleton_2 singleton = new Singleton_2() ;
+    private Singleton_2(){}
+    
+    public static  Singleton_2 getInstance(){
+   	 return singleton;
+    }
+    //ÆäËû·½·¨
+}
+
+### 70
+package edu.qtech.singleton;
+
+/**
+ * 此方式仅适用于 jdk 1.4以后的版本
+ * @author dxq
+ *
+ */
+public class Singleton_3 {
+	
+	 private volatile static Singleton_3 singleton;
+	 
+     private Singleton_3(){}
+     
+     public static  Singleton_3 getInstance(){
+    	 if(singleton == null){
+    		 synchronized (Singleton_3.class){
+    			 if(singleton == null){
+    				  singleton = new Singleton_3();
+    			 }
+    		 }
+    	 }
+    	 return singleton;
+     }
+     //其他方法
+}
+
+
+
+
+### 71
+public class Singleton {
+	private volatile static Singleton uniqueInstance;
+	
+	private Singleton(){
+		
+	}
+	
+	public static Singleton getInstance(){
+		if(uniqueInstance == null){
+			synchronized (Singleton.class) {
+				if(uniqueInstance == null){
+					uniqueInstance = new Singleton();
+				}
+			}
+		}
+		return uniqueInstance;
+	}
+}
+
+### 72
+public class King {
+
+	public String name;
+	
+	private static King unserKoenig;
+	
+	private King() {
+	
+	}
+	
+	public static King getInstance() {
+		if (unserKoenig == null)
+		{
+			unserKoenig = new King();
+		}
+	
+		return unserKoenig;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String attack() {
+		return name + " befiehlt : Wir greifen an!";
+	}
+	
+	public String defend() {
+		return name + " befiehlt: Wir ziehen uns zurück!";
+	}
+	
+}
+
+
+
+### 73
+public class Singleton {
+    private volatile static Singleton instance;
+
+    private Singleton() {
+    }
+
+    public static  Singleton getInstance() {
+        if (instance == null) {
+            synchronized(Singleton.class) {
+             if(instance == null) {
+                 instance = new Singleton();
+             }
+            }
+        }
+        return instance;
+    }
+
+    public void setMachine(){
+        System.out.println("This machine one!");
+    }
+}
+
+
+
+
+### 74
+/**
+ * Piggy bank singleton clas_s is used to put money into the piggy bank,
+ * and then take the money whenever needed, by breaking the piggy bank.
+ * <p>
+ * This singleton clas_s makes use of "double-checked locking" to
+ * ensure that there is no issue caused during multi-threading.
+ */
+public class PiggyBankSingleton {
+    /*  The volatile keyword ensures that multiple threads
+        handle the singleInstance variable correctly when it
+        is being initialized to the Singleton instance.  */
+    private volatile static PiggyBankSingleton singleInstance;
+    private Integer money = 0;
+
+    /**
+     * Private constructor to make sure that a new instance is
+     * not created more than once.
+     */
+    private PiggyBankSingleton() {
+    }
+
+    /**
+     * Unique instance.
+     *
+     * @return PiggyBankSingleton instance.
+     */
+    public static PiggyBankSingleton getInstance() {
+        // Making use of "double-checked locking"
+        if (singleInstance == null) {
+            synchronized (PiggyBankSingleton.class) {
+                if (singleInstance == null) {
+                    singleInstance = new PiggyBankSingleton();
+                }
+            }
+        }
+        return singleInstance;
+    }
+
+    /**
+     * Break the piggy bank and take the money.
+     *
+     * @return Any or no amount present in the piggy bank.
+     */
+    Integer breakAndTakeMoney() {
+        if (money != 0) {
+            int amount = money;
+            money = 0;
+            return amount;
+        } else {
+            return money;
+        }
+    }
+
+    /**
+     * Add money to the piggy bank.
+     *
+     * @param money Amount of money to be added.
+     */
+    void addMoney(Integer money) throws NegativeMoneyException {
+        if (money < 0)
+            throw new NegativeMoneyException();
+
+        this.money += money;
+    }
+}
+
+
+
+### 75
+/**
+ * ClassName HungrySafe
+ * Package PACKAGE_NAME
+ * Description
+ *
+ * @author gmb1995@outlook.com
+ * @date 2019-08-29 22:48
+ */
+public class HungrySafe {
+    private static HungrySafe hungrySafe = new HungrySafe();
+
+    private HungrySafe() {
+    }
+
+    public static HungrySafe getInstance() {
+        return hungrySafe;
+    }
+}
+
+### 76
+/**
+ * ClassName LazySafe
+ * Package PACKAGE_NAME
+ * Description
+ *
+ * @author gmb1995@outlook.com
+ * @date 2019-08-29 22:40
+ */
+public class LazySafe {
+    private volatile static LazySafe lazySafe;
+
+    private LazySafe() {
+    }
+
+    public static LazySafe getInstance() {
+        if (lazySafe == null) {
+            synchronized (LazySafe.class) {
+                if (lazySafe == null) {
+                    lazySafe = new LazySafe();
+                }
+            }
+        }
+        return lazySafe;
+    }
+}
+
+### 77
+import java.util.concurrent.*;
+
+/**
+ * ClassName LazyUnSafe
+ * Package PACKAGE_NAME
+ * Description
+ *
+ * @author gmb1995@outlook.com
+ * @date 2019-08-29 21:50
+ */
+public class LazyUnSafe {
+
+    private static LazyUnSafe lazyUnSafe;
+
+    private LazyUnSafe() {
+    }
+
+    public static LazyUnSafe getInstance() {
+        if (lazyUnSafe == null) {
+            lazyUnSafe = new LazyUnSafe();
+        }
+        return lazyUnSafe;
+    }
+
+}
+
+
+
+
+### 78
+package edu.qtech.singleton;
+
+public class Singleton {
+    private static Singleton singleton;
+    private Singleton(){}
+    
+    public static Singleton getInstance(){
+   	 if(singleton == null){
+   		 singleton = new Singleton();
+   	 }
+   	 return singleton;
+    }
+    //ÆäËû·½·¨
+}
+
+
+### 79
+package edu.qtech.singleton;
+
+public class Singleton_1 {
+	 private static Singleton_1 singleton;
+    private Singleton_1(){}
+    //synchronized迫使每个线程在进入这个方法之前，要先等候别的线程离开该方法。
+    //也就是说，不会有两个线程可以同时进入这个方法。
+    //但这样耗费不较大。
+    public static synchronized Singleton_1 getInstance(){
+   	 if(singleton == null){
+   		 singleton = new Singleton_1();
+   	 }
+   	 return singleton;
+    }
+    //其他方法
+}
+
+### 80
+package edu.qtech.singleton;
+
+public class Singleton_2 {
+	 private static Singleton_2 singleton = new Singleton_2() ;
+    private Singleton_2(){}
+    
+    public static  Singleton_2 getInstance(){
+   	 return singleton;
+    }
+    //ÆäËû·½·¨
+}
+
+###  81
+package edu.qtech.singleton;
+
+/**
+ * 此方式仅适用于 jdk 1.4以后的版本
+ * @author dxq
+ *
+ */
+public class Singleton_3 {
+	
+	 private volatile static Singleton_3 singleton;
+	 
+     private Singleton_3(){}
+     
+     public static  Singleton_3 getInstance(){
+    	 if(singleton == null){
+    		 synchronized (Singleton_3.class){
+    			 if(singleton == null){
+    				  singleton = new Singleton_3();
+    			 }
+    		 }
+    	 }
+    	 return singleton;
+     }
+     //其他方法
+}
+
+
+
+
+### 82
+package singleton;
+
+public class SingleObject {
+	//创建一个SingleObject 的对象
+	private static SingleObject instance=new SingleObject();
+	//构造函数为private ，这样该类就不能被实例化
+	private SingleObject(){}
+	//获取唯一可用对象
+	public static SingleObject getInstance(){
+		return instance;
+	}
+	public void message() {
+		System.out.println("Hello World");
+	}
+}
+
+
+
+
+
+### 83
+package com.damianvaz.singletonpattern.model;
+
+
+public class Database {
+
+	private static Database instance = new Database();
+
+	private Database() {
+
+	}
+
+	public static Database getInstance() {
+		return instance;
+	}
+
+
+
+	/*
+	 * Add whatever methods you like to your singleton class.
+	 */
+	public void connect() {
+		System.out.println("Connected to Database");
+	}
+
+	public void disconnect() {
+		System.out.println("Disconnected from Database");
+	}
+
+}
+
+### 84
+package com.company;
+
+public class ChocolateBoiler {
+
+    private boolean empty;
+    private boolean boiled;
+
+    private static ChocolateBoiler uniqueInstance;
+
+    private ChocolateBoiler() {
+        empty = true;
+        boiled = false;
+    }
+
+    public synchronized static ChocolateBoiler getInstance() {
+        if(uniqueInstance == null) {
+            uniqueInstance = new ChocolateBoiler();
+        }
+        return uniqueInstance;
+    }
+
+    void fill() {
+        if(isEmpty()) {
+            empty = false;
+            boiled = false;
+            // Заполнение нагревателя молочно-шоколадной смесью
+        }
+    }
+
+    void boil() {
+        if(!isEmpty() && !isBoiled()) {
+            // Довести содержимое до кипения
+            boiled = true;
+        }
+    }
+
+    void drain() {
+        if (!isEmpty() && isBoiled()) {
+            // Слить нагретое молоко и шоколад
+            empty = true;
+        }
+    }
+
+    private boolean isEmpty() {
+        return empty;
+    }
+
+    private boolean isBoiled() {
+        return boiled;
+    }
+}
+
+
+
+
+### 85
+package singleton2;
+
+public class Logger {
+
+	private static Logger log;
+	private String value;
+	
+	private Logger(){}
+	
+	public static synchronized Logger getInstance(){
+		if(log==null)
+			log=new Logger();
+		return log;
+	}
+	
+	public void log(String msg){
+		System.out.println(msg);
+	}
+	
+	public void setValue(String value){
+		this.value=value;
+	}
+	
+	public String getValue(){
+		return value;
+	}
+	
+}
+
+
+
+
+
+### 86
+package singlettonpattern;
+
+
+public class Singletton {
+
+public static Singletton instance = new Singletton() ;
+
+    public Singletton() {
+    }
+
+    public static Singletton geSingletton(){
+        return instance;
+    }
+    
+    public void showMessage(){
+        System.out.println("HARDWAREANDRO.COM");
+    }
+
+
+    
+}
+
+
+
+
+### 87
+package com.example.singleton;
+
+public class Shape {
+	
+	private static Shape object = new Shape();
+	
+	private Shape() {}
+	
+	public static Shape getInstanceObject() {
+		return object;
+	}
+	
+	public void showMessage() {
+		System.out.println("Hello-World");
+	}
+}
+
+
+
+
+### 88
+package singleton;
+
+public class Person {
+	String name;
+	int age;
+	
+	private static Person instance;
+	
+	private Person() {
+	} 
+	
+	public static Person getInstance() {
+		if(instance == null) {
+		instance = new Person();
+		}
+		return instance;
+	}
+	
+	public void display() {
+		System.out.println("Name: " + name + " age: " + age);
+	}
+}
+
+
+
+
+
+### 89
+/*  The singleton pattern is a design pattern that restricts the instantiation of a clas_s to one object. 
+This is useful when exactly one object is needed to coordinate actions across the system."
+https://www.hackerrank.com/challenges/java-singleton/problem  */
+
+public class Singleton {
+
+	//Make a static variable of Singleton because, 
+	//for static variables, memory allocation happens only once. 
+	//This variable is the access point.
+	private static Singleton instance = null;
+	protected String message;
+	//We make the constructor private so, there is only one instance of the class.
+	private Singleton() {}
+
+	public static Singleton getInstance() {
+		//Check if there is no instance of the object
+		if(instance==null) {
+			//If there is no previous instance, we  instantiate  the class. 
+			instance= new Singleton();
+		}		
+		return instance;
+	}
+
+
+
+
+}
+
+
+
+
+### 90
+package com.ce.chocolate;
+
+/**
+ * @author Ruoyu Chen
+ * Created on 8/17/2018
+ */
+public class ChocolateBoiler {
+    private boolean empty;
+    private boolean boiled;
+    private static ChocolateBoiler uniqueInstance;
+
+    private ChocolateBoiler() {
+        empty = true;
+        boiled = false;
+    }
+
+    public static ChocolateBoiler getInstance() {
+        if (uniqueInstance == null) {
+            System.out.println("Creating unique instance of Chocolate Boiler");
+            uniqueInstance = new ChocolateBoiler();
+        }
+        System.out.println("Returning instance of Chocolate Boiler");
+        return uniqueInstance;
+    }
+
+    public void fill() {
+        if (isEmpty()) {
+            empty = false;
+            boiled = false;
+            // fill the boiler with a milk/chocolate mixture
+        }
+    }
+
+    public void drain() {
+        if (!isEmpty() && isBoiled()) {
+            // drain the boiled milk and chocolate
+            empty = true;
+        }
+    }
+
+    public void boil() {
+        if (!isEmpty() && !isBoiled()) {
+            // bring the contents to a boil
+            boiled = true;
+        }
+    }
+
+    public boolean isEmpty() {
+        return empty;
+    }
+
+    public boolean isBoiled() {
+        return boiled;
+    }
+}
+
+
+
+### 91
+package com.ce.clas_sic;
+
+/**
+ * @author Ruoyu Chen
+ * Created on 8/17/2018
+ */
+
+// NOTE: This is not thread safe!
+
+public class Singleton {
+    private static Singleton uniqueInstance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Singleton();
+        }
+        return uniqueInstance;
+    }
+
+    // other useful methods here
+    public String getDescription() {
+        return "I'm a classic Singleton!";
+    }
+}
+
+
+### 92
+package com.ce.doubleCheckedLocking;
+
+/**
+ * @author Ruoyu Chen
+ * Created on 8/17/2018
+ */
+public class Singleton {
+    private volatile static Singleton uniqueInstance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (uniqueInstance == null) {
+            synchronized (Singleton.class) {
+                if (uniqueInstance == null) {
+                    uniqueInstance = new Singleton();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
+}
+
+
+### 93
+package com.ce.eager;
+
+/**
+ * @author Ruoyu Chen
+ * Created on 8/17/2018
+ */
+public class Singleton {
+    private static Singleton uniqueInstance = new Singleton();
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        return uniqueInstance;
+    }
+
+    // other useful methods here
+    public String getDescription() {
+        return "I'm a staatically initialized Singleton!";
+    }
+}
+
+  
+
+
+### 94
+package com.ce.subclas_s;
+
+/**
+ * @author Ruoyu Chen
+ * Created on 8/17/2018
+ */
+public class Singleton {
+    protected static Singleton uniqueInstance;
+
+    // other useful instance variables here
+
+    protected Singleton() {}
+
+    public static synchronized Singleton getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Singleton();
+        }
+        return uniqueInstance;
+    }
+
+    // other useful methods here
+
+}
+
+
+### 95
+package com.ce.threadSafe;
+
+/**
+ * @author Ruoyu Chen
+ * Created on 8/17/2018
+ */
+public class Singleton {
+    private static Singleton uniqueInstance;
+
+    // other useful instance variables here
+
+    private Singleton() {}
+
+    public static synchronized Singleton getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Singleton();
+        }
+        return uniqueInstance;
+    }
+
+    // other useful methods here
+    public String getDescription() {
+        return "I'm a thread safe Singleton!";
+    }
+}
+
+
+
+### 96
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Emperor {
+
+    private  static  int maxNumOfEmperor=2;
+    private  static ArrayList<String> nameList=new ArrayList<String>();
+    private static  ArrayList<Emperor> emperorArrayList=new ArrayList<Emperor>();
+    private static  int countNumOfEmperor =0;
+    static {
+        for (int i= 0;i<maxNumOfEmperor;i++){
+            emperorArrayList.add(new Emperor("皇"+(i+1)+"帝"));
+        }
+    }
+
+    private  Emperor (String name){
+            nameList.add(name);
+    }
+    public static Emperor getInstance(){
+        Random random=new Random();
+        countNumOfEmperor=random.nextInt(maxNumOfEmperor);
+        return emperorArrayList.get(countNumOfEmperor);
+    }
+    public static void say(){
+        System.out.println(nameList.get(countNumOfEmperor));
+    }
+}
+
+
+
+
+### 97
+package singleton;
+
+public class Cinema {
+	private String name;
+	
+	private static Cinema instance;
+	
+	//1 method of ensuring thrad safety is to eagerly instantiate the instance
+	//private static Cinema instance = new Cinema("cinema");
+	
+	private Cinema(String name){
+		this.name = name;
+	}
+	
+	//1 method of ensuring thread safety is to synchronise the method but this has a performance hit
+ 
+	public static Cinema getInstance(String name){
+		if(instance == null){
+			instance = new Cinema(name);
+		}
+		return instance;
+	}
+	
+	//1 method of ensuring thread safety is to do the below
+	/*private static volatile Cinema instance;
+	public static Cinema getInstance2(String name){
+		if(instance == null){
+			synchronized(Cinema.class){
+				if(instance == null){
+					instance = new Cinema(name);
+				}
+			}
+		}
+		return instance;
+	}*/
+	
+	public String getName(){
+		return name;
+	}
+	
+}
+
+
+
+
+### 98
+package singleton.pattern;
+
+public class Log {
+	
+	private static Log log = null;
+	private static int id;
+	
+	private Log() {
+	}
+	
+	public static synchronized Log getLog() {
+		if (log == null) {
+			log = new Log();
+		}
+		return log;
+	}
+	public void displayId() {
+		System.out.println(id);
+	}
+	
+}
+
+
+
+
+### 99
+/**
+ *
+ */
+package singleton.sample;
+
+/**
+ * <p>
+ * Singletonクラス
+ * </p>
+ * <ul>
+ * <li>指定したクラスのインスタンスが絶対に1個しか存在しないことを保証したい
+ * <li>インスタンスが1個しか存在しないことをプログラム上で表現したい
+ * </ul>
+ * 唯一無二の存在であるため、サブクラス（継承）ができないよう制限を設ける
+ * @author frashell
+ *
+ */
+public final class Singleton {
+//public class Singleton {
+	private final static Singleton UNIQUE_OBJECT = new Singleton();
+	private Singleton() {
+		System.out.println("One instance created.");
+	}
+	public final static Singleton getInstance() {
+		return UNIQUE_OBJECT;
+	}
+
+}
+
+
+### 100
+/**
+ *
+ */
+package singleton.sample;
+
+/**
+ * SubSingletonクラス
+ *
+ * 継承できないこと示すエラーがどのように検出されるのか確認する
+ * @author rashell
+ *
+ */
+public class SubSingleton extends Singleton {
+
+	private final static SubSingleton SINGLE_OBJECT = new SubSingleton();
+
+	public SubSingleton() {
+		System.out.println("One instance created.");
+	}
+
+}
+
+
+
+
+### 101
+package com.michael.singletonpattern;
+
+/**
+ * 普通的单例模式
+ * 
+ * */
+public class SingletonCommon {
+
+	private static SingletonCommon uniqueInstance;
+	
+	private SingletonCommon(){}
+	
+	public static SingletonCommon getInstance() {
+		if(uniqueInstance == null)
+		{
+			uniqueInstance = new SingletonCommon();
+		}
+		return uniqueInstance;
+	}
+	
+	//下面你还可以添加其他的有用的方法
+	
+	/**
+	 * 获取单例信息,如果内存地址一样就说明，是同一个对象
+	 * 
+	 * */
+	public String getSingletonInfo() {
+		return uniqueInstance.toString();
+	}
+}
+
+### 102
+package com.michael.singletonpattern;
+
+
+/**
+ * 双重检查加锁 double-checked locking
+ * 
+ * SingletonSynchronized方法效率不高，因为每次访问都需要同步。
+ * 我们可以利用双重检查加锁，首先检查是否已经创建了实例，如果还没有创建，才进行同步
+ * 这样一来就只有第一次会同步。这样就可以提高效率。
+ * 
+ * 需要使用volatile关键字,这个关键字确保当uniqueInstance变量被初始化成SingletonDoubleLocking实例时，
+ * 多个线程正确地处理uniqueInstance变量。
+ * 
+ * 需要注意的是：双重检查加锁不适用于1.4及更早版本的Java
+ * 
+ * */
+public class SingletonDoubleLocking {
+
+	private volatile static SingletonDoubleLocking uniqueInstance;
+	
+	private SingletonDoubleLocking(){}
+	
+	public static SingletonDoubleLocking getInstance() {
+		if(uniqueInstance == null)
+		{
+			synchronized (SingletonDoubleLocking.class) 
+			{
+				if(uniqueInstance == null)
+				{
+					uniqueInstance = new SingletonDoubleLocking();
+				}
+			}
+		}
+		return uniqueInstance;
+	}
+	
+	
+	
+	//下面你还可以添加其他的有用的方法
+	
+	/**
+	 * 获取单例信息,如果内存地址一样就说明，是同一个对象
+	 * 
+	 * */
+	public String getSingletonInfo() {
+		return uniqueInstance.toString();
+	}
+}
+
+### 103
+package com.michael.singletonpattern;
+
+
+/**
+ * 急切创建实例
+ * 
+ * 这种做法依赖于虚拟机加载这个类的时候马上就创建唯一的单例。
+ * 所以说就不存在有多个实例的问题了。
+ * 
+ * */
+public class SingletonEagerly {
+
+	private static SingletonEagerly uniqueInstance = new SingletonEagerly();//虚拟机加载这个类的时候，这个类就已经被创建
+	
+	private SingletonEagerly(){}
+	
+	public static SingletonEagerly getInstance() {
+		return uniqueInstance;//不需要判断是否为null，直接返回就可以了
+	}
+	
+	//下面你还可以添加其他的有用的方法
+	
+	/**
+	 * 获取单例信息,如果内存地址一样就说明，是同一个对象
+	 * 
+	 * */
+	public String getSingletonInfo() {
+		return uniqueInstance.toString();
+	}
+}
+
+### 104
+package com.michael.singletonpattern;
+
+
+/**
+ * 同步确保不会因为可能由于多个线程同时访问到
+ * if(uniqueInstance == null)
+ * 而造成，可能生成不止一个实例的情况
+ * synchronized关键字是用来迫使每个线程在进入这个方法之前，需要等其它线程先离开该方法
+ * 也就是说确保了不会有两个线程同时进入这个方法，这样就杜绝了可能产生多个实例的可能
+ * 
+ * 但是这样做会降低性能。同步一个方法可能会造成持续执行效率下降100倍，所以不能把这个方法用在频繁运行的地方
+ * 如果你确保程序可以接受这个问题，那就没什么关系。
+ * 
+ * 与普通的单例模式相比就多了一个synchronized而已
+ * */
+public class SingletonSynchronized {
+
+	private static SingletonSynchronized uniqueInstance;
+	
+	private SingletonSynchronized(){}
+	
+	public static synchronized SingletonSynchronized getInstance() {
+		if(uniqueInstance == null)
+		{
+			uniqueInstance = new SingletonSynchronized();
+		}
+		return uniqueInstance;
+	}
+	
+	
+	
+	//下面你还可以添加其他的有用的方法
+	
+	/**
+	 * 获取单例信息,如果内存地址一样就说明，是同一个对象
+	 * 
+	 * */
+	public String getSingletonInfo() {
+		return uniqueInstance.toString();
+	}
+}
+
+
+
+### 105
+public class SharedUtilities {
+    private static SharedUtilities instance;
+
+    private SharedUtilities(){}
+
+    public static SharedUtilities getInstance(){
+        if(instance == null){
+            instance = new SharedUtilities();
+        }
+        return instance;
+    }
+    public void showMessage(){
+        System.out.println("Hello World");
+    }
+}
+
+
+
+
+### 106
+package com.mvalho.study.pattern.singleton.model;
+
+public class SingleObject {
+	private static SingleObject instance = new SingleObject();
+	
+	private SingleObject() {}
+	
+	public static SingleObject getInstance() {
+		return instance;
+	}
+	
+	public void showMessage() {
+		System.out.println("Hello World!");
+	}
+}
+
+
+
+### 107
+package com.how2code.designpattern.singleton.entity;
+
+public class PrnterSpooler {
+	
+	private static PrnterSpooler spooler = new PrnterSpooler();
+	
+	private PrnterSpooler() {}
+	
+	public static PrnterSpooler getInstance() {
+		return spooler;
+	}
+	
+	public void sayHello() {
+		System.out.println("Hello!");
+	}
+
+}
+
+
+
+### 108
+package com.singleton.main;
+
+public class SingleParent {
+
+	private String str = "";
+	
+	private static volatile SingleParent singleParentObj = null;
+	
+	public String getStr() {
+		return str;
+	}
+
+	public void setStr(String str) {
+		this.str = str;
+	}
+
+	protected SingleParent(){
+		
+	}
+	
+	public static SingleParent getSingleParentObject(){
+		
+		if(singleParentObj == null){
+			singleParentObj = new SingleParent();
+		}
+		return singleParentObj;
+	}
+}
+
+
+
+### 109
+package com.dcl.test;
+
+
+/**
+ * 双重检验锁单例模式
+ * @author dcl
+ *
+ * double checked locking pattern
+ * 这个是比较复杂又隐含的方式
+ */
+public class SingletonDoubleTest {
+
+	private volatile static SingletonDoubleTest instance; // 生命成  volatile
+	private SingletonDoubleTest(){}
+
+	
+	public static SingletonDoubleTest getInstance(){
+		if(instance == null){                                //single checked
+			synchronized (SingletonDoubleTest.class) {
+				if(instance == null){                        //double checked
+					instance = new SingletonDoubleTest();
+				}
+			}
+		}
+		return instance;
+	}  
+}
+
+
+
+### 110
+package com.dcl.test;
+
+/**
+ * 饿汉式单例模式
+ * @author dcl
+ *
+ */
+public class SingletonHungryTest {
+
+	//类加载时初始化
+	private static final SingletonHungryTest instance = new SingletonHungryTest();
+	
+	private SingletonHungryTest(){}
+
+
+
+	
+	public static SingletonHungryTest getInstance(){
+		
+		return instance;
+	}
+
+}
+
+### 111
+package com.dcl.test;
+/**
+ * 懒汉式线程安全单例模式
+ * @author dcl
+ *
+ * 线程安全但是不高效
+ */
+public class SingletonLazyTest {
+
+	private static SingletonLazyTest instance;
+	
+	private SingletonLazyTest(){}
+
+	public static synchronized SingletonLazyTest getInstance(){
+		
+		if(instance == null){
+			instance = new SingletonLazyTest();
+		}
+		return instance;
+	}
+}
+
+### 112
+package com.dcl.test;
+
+/**
+ * 静态内部类方式单例模式
+ * @author dcl
+ *
+ */
+public class singletonStaticClassTest {
+
+	private static class SingletonHolder{
+		
+		private static final singletonStaticClassTest INSTANCE = new singletonStaticClassTest();
+	}
+	
+	private singletonStaticClassTest(){}
+	
+	public static final singletonStaticClassTest getInstance(){
+		
+		return SingletonHolder.INSTANCE;
+	}
+
+	
+}
+
+
+
+### 113
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+
+public class Singleton {
+
+    private static  Singleton firstInstance = null;
+
+    String[] scrabbleLetters = {"a", "a", "a", "a", "a", "a", "a", "a", "a",
+            "b", "b", "c", "c", "d", "d", "d", "d", "e", "e", "e", "e", "e",
+            "e", "e", "e", "e", "e", "e", "e", "f", "f", "g", "g", "g", "h",
+            "h", "i", "i", "i", "i", "i", "i", "i", "i", "i", "j", "k", "l",
+            "l", "l", "l", "m", "m", "n", "n", "n", "n", "n", "n", "o", "o",
+            "o", "o", "o", "o", "o", "o", "p", "p", "q", "r", "r", "r", "r",
+            "r", "r", "s", "s", "s", "s", "t", "t", "t", "t", "t", "t", "u",
+            "u", "u", "u", "v", "v", "w", "w", "x", "y", "y", "z",};
+
+    //a linked list which adds the contents of the String array scrabbleLetters
+    private LinkedList<String> letterList = new LinkedList<String>(Arrays.asList(scrabbleLetters));
+
+    static boolean firstThread = true;
+
+    private Singleton(){}
+
+    public static Singleton getinstance(){
+        if(firstInstance == null){
+
+            if (firstThread){
+                firstThread = false;
+
+                Thread.currentThread();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            synchronized (Singleton.class){
+                if(firstInstance == null) {
+                    // If the instance isn't needed it isn't created
+                    // This is known as lazy instantiation
+
+                    firstInstance = new Singleton();
+
+                    Collections.shuffle(firstInstance.letterList);
+                }
+            }
+
+        }
+
+        return firstInstance;
+    }
+
+    public LinkedList<String> getLetterList(){
+        return firstInstance.letterList;
+    }
+    public LinkedList<String> getTiles(int howManyTiles){
+        LinkedList<String> tilesToSend = new LinkedList<String>();
+
+        for(int i =0; i <= howManyTiles; i ++){
+            tilesToSend.add(firstInstance.letterList.remove(0));
+        }
+
+        return tilesToSend;
+    }
+}
+
+
+
+### 114
+package com.company;
+
+public class EmailSingleton {
+    private static EmailSingleton INSTANCE = new EmailSingleton();
+
+    protected EmailSingleton(){
+
+    }
+
+    public static EmailSingleton getInstance(){
+        return INSTANCE;
+    }
+    public void sendMessage(String Type){
+        System.out.println("<email>" + Type);
+    }
+}
+
+
+
+### 115
+public class TicketMaker {
+    private int ticket = 1000;
+    private static TicketMaker singleton = new TicketMaker();       
+    private TicketMaker() {                                         
+    }                                                               
+    public static TicketMaker getInstance() {                       
+        return singleton;                                           
+    }                                                               
+    public synchronized int getNextTicketNumber() {                 
+        return ticket++;
+    }
+}
+
+
+### 116
+public class Triple {
+    public static Triple[] triple = new Triple[]{ new Triple(0), new Triple(1), new Triple(2), };
+    private int id;
+    private Triple(int id) {                                 
+        System.out.println("The instance " + id + " is created.");
+        this.id = id;
+    }
+    public static Triple getInstance(int id) {
+        return triple[id];
+    }
+    public String toString() {
+        return "[Triple id=" + id + "]";
+    }
+}
+
+
+### 117
+public class Singleton {
+    private static Singleton singleton = null;
+    private Singleton() {
+        System.out.println("ѓCѓ“ѓXѓ^ѓ“ѓX‚рђ¶ђ¬‚µ‚Ь‚µ‚ЅЃB");
+        slowdown();                             
+    }
+    public static Singleton getInstance() {
+        if (singleton == null) {
+            singleton = new Singleton();
+        }
+        return singleton;
+    }
+    private void slowdown() {                   
+        try {                                   
+            Thread.sleep(1000);                 
+        } catch (InterruptedException e) {      
+        }                                       
+    }                                           
+}
+
+
+### 118
+public class Singleton {
+    private static Singleton singleton = null;
+    private Singleton() {
+        System.out.println("ѓCѓ“ѓXѓ^ѓ“ѓX‚рђ¶ђ¬‚µ‚Ь‚µ‚ЅЃB");
+        slowdown();                             
+    }
+    public static synchronized Singleton getInstance() {
+        if (singleton == null) {
+            singleton = new Singleton();
+        }
+        return singleton;
+    }
+    private void slowdown() {                   
+        try {                                   
+            Thread.sleep(1000);                 
+        } catch (InterruptedException e) {      
+        }                                       
+    }                                           
+}
+
+
+
+
+### 119
+public class Singleton {
+    private static Singleton singleton = null;
+    private Singleton() {
+        System.out.println("ѓCѓ“ѓXѓ^ѓ“ѓX‚рђ¶ђ¬‚µ‚Ь‚µ‚ЅЃB");
+    }
+    public static Singleton getInstance() {
+        if (singleton == null) {
+            singleton = new Singleton();
+        }
+        return singleton;
+    }
+}
+
+
+### 120
+public class Singleton {
+    private static Singleton singleton = new Singleton();
+    private Singleton() {                                 
+        System.out.println("ѓCѓ“ѓXѓ^ѓ“ѓX‚рђ¶ђ¬‚µ‚Ь‚µ‚ЅЃB");
+    }
+    public static Singleton getInstance() {
+        return singleton;
+    }
+}
+
+#####

@@ -1,0 +1,9141 @@
+### 1
+public abstract class AbstractDisplay { // ’ЉЏЫѓNѓ‰ѓXAbstractDisplay
+    public abstract void open();        // ѓTѓuѓNѓ‰ѓX‚ЙЋА‘•‚р‚Ь‚©‚№‚й’ЉЏЫѓЃѓ\ѓbѓh(1) open
+    public abstract void print();       // ѓTѓuѓNѓ‰ѓX‚ЙЋА‘•‚р‚Ь‚©‚№‚й’ЉЏЫѓЃѓ\ѓbѓh(2) print
+    public abstract void close();       // ѓTѓuѓNѓ‰ѓX‚ЙЋА‘•‚р‚Ь‚©‚№‚й’ЉЏЫѓЃѓ\ѓbѓh(3) close
+    public final void display() {       // ‚±‚М’ЉЏЫѓNѓ‰ѓX‚ЕЋА‘•‚µ‚Д‚ў‚йѓЃѓ\ѓbѓhdisplay
+        open();                             // ‚Ь‚ёopen‚µ‚ДЃc
+        for (int i = 0; i < 5; i++) {       // 5‰сprint‚рЊJ‚и•Ф‚µ‚ДЃc
+            print();                    
+        }
+        close();                            // ЃcЌЕЊг‚Йclose‚·‚йЃB‚±‚к‚ЄdisplayѓЃѓ\ѓbѓh‚ЕЋА‘•‚і‚к‚Д‚ў‚й“а—eЃB
+    }
+}
+
+public class CharDisplay extends AbstractDisplay {  // CharDisplay‚НЃAAbstractDisplay‚МѓTѓuѓNѓ‰ѓXЃB
+    private char ch;                                // •\Ћ¦‚·‚Ч‚«•¶ЋљЃB
+    public CharDisplay(char ch) {                   // ѓRѓ“ѓXѓgѓ‰ѓNѓ^‚Е“n‚і‚к‚Ѕ•¶Ћљch‚рЃA
+        this.ch = ch;                               // ѓtѓBЃ[ѓ‹ѓh‚Й‹L‰Ї‚µ‚Д‚Ё‚­ЃB
+    }
+    @Override
+    public void open() {                            // ѓXЃ[ѓpЃ[ѓNѓ‰ѓX‚Е‚Н’ЉЏЫѓЃѓ\ѓbѓh‚ѕ‚Б‚ЅЃB‚±‚±‚ЕѓIЃ[ѓoЃ[ѓ‰ѓCѓh‚µ‚ДЋА‘•ЃB
+        System.out.print("<<");                     // ЉJЋn•¶Ћљ—с‚Ж‚µ‚Д"<<"‚р•\Ћ¦‚·‚йЃB
+    }
+    @Override
+    public void print() {                           // printѓЃѓ\ѓbѓh‚а‚±‚±‚ЕЋА‘•‚·‚йЃB‚±‚к‚Єdisplay‚©‚зЊJ‚и•Ф‚µ‚ДЊД‚СЏo‚і‚к‚йЃB
+        System.out.print(ch);                       // ѓtѓBЃ[ѓ‹ѓh‚Й‹L‰Ї‚µ‚Д‚Ё‚ў‚Ѕ•¶Ћљ‚р1ЊВ•\Ћ¦‚·‚йЃB
+    }
+    @Override
+    public void close() {                           // closeѓЃѓ\ѓbѓh‚а‚±‚±‚ЕЋА‘•ЃB
+        System.out.println(">>");                   // ЏI—№•¶Ћљ—с">>"‚р•\Ћ¦ЃB
+    }
+}
+
+
+
+### 2
+public abstract class AbstractDisplay { // ’ЉЏЫѓNѓ‰ѓXAbstractDisplay
+    public abstract void open();        // ѓTѓuѓNѓ‰ѓX‚ЙЋА‘•‚р‚Ь‚©‚№‚й’ЉЏЫѓЃѓ\ѓbѓh(1) open
+    public abstract void print();       // ѓTѓuѓNѓ‰ѓX‚ЙЋА‘•‚р‚Ь‚©‚№‚й’ЉЏЫѓЃѓ\ѓbѓh(2) print
+    public abstract void close();       // ѓTѓuѓNѓ‰ѓX‚ЙЋА‘•‚р‚Ь‚©‚№‚й’ЉЏЫѓЃѓ\ѓbѓh(3) close
+    public final void display() {       // ‚±‚М’ЉЏЫѓNѓ‰ѓX‚ЕЋА‘•‚µ‚Д‚ў‚йѓЃѓ\ѓbѓhdisplay
+        open();                             // ‚Ь‚ёopen‚µ‚ДЃc
+        for (int i = 0; i < 5; i++) {       // 5‰сprint‚рЊJ‚и•Ф‚µ‚ДЃc
+            print();                    
+        }
+        close();                            // ЃcЌЕЊг‚Йclose‚·‚йЃB‚±‚к‚ЄdisplayѓЃѓ\ѓbѓh‚ЕЋА‘•‚і‚к‚Д‚ў‚й“а—eЃB
+    }
+}
+
+
+public class StringDisplay extends AbstractDisplay {    // StringDisplay‚аЃAAbstractDisplay‚МѓTѓuѓNѓ‰ѓXЃB
+    private String string;                              // •\Ћ¦‚·‚й‚Ч‚«•¶Ћљ—сЃB
+    private int width;                                  // ѓoѓCѓg’P€К‚ЕЊvЋZ‚µ‚Ѕ•¶Ћљ—с‚МЃu•ќЃvЃB
+    public StringDisplay(String string) {               // ѓRѓ“ѓXѓgѓ‰ѓNѓ^‚Е“n‚і‚к‚Ѕ•¶Ћљ—сstring‚рЃA
+        this.string = string;                           // ѓtѓBЃ[ѓ‹ѓh‚Й‹L‰ЇЃB
+        this.width = string.getBytes().length;          // ‚»‚к‚©‚зѓoѓCѓg’P€К‚М•ќ‚аѓtѓBЃ[ѓ‹ѓh‚Й‹L‰Ї‚µ‚Д‚Ё‚ў‚ДЃAЊг‚ЕЋg‚¤ЃB
+    }
+    @Override
+    public void open() {                                // ѓIЃ[ѓoЃ[ѓ‰ѓCѓh‚µ‚Д’и‹`‚·‚йopenѓЃѓ\ѓbѓhЃB
+        printLine();                                    // ‚±‚МѓNѓ‰ѓX‚МѓЃѓ\ѓbѓhprintLine‚Еђь‚р€ш‚ў‚Д‚ў‚йЃB
+    }
+    @Override
+    public void print() {                               // printѓЃѓ\ѓbѓh‚НЃA
+        System.out.println("|" + string + "|");         // ѓtѓBЃ[ѓ‹ѓh‚Й‹L‰Ї‚µ‚Д‚Ё‚ў‚Ѕ•¶Ћљ—с‚М‘OЊг‚Й"|"‚р‚В‚Ї‚Д•\Ћ¦ЃB
+    }
+    @Override
+    public void close() {                               // closeѓЃѓ\ѓbѓh‚НЃA
+        printLine();                                    // open‚Ж“Ї‚¶‚­printLineѓЃѓ\ѓbѓh‚Еђь‚р€ш‚ў‚Д‚ў‚йЃB
+    }
+    private void printLine() {                          // open‚Жclose‚©‚зЊД‚О‚к‚йprintLineѓЃѓ\ѓbѓh‚ѕЃBprivate‚И‚М‚ЕЃA‚±‚МѓNѓ‰ѓX‚М’†‚ѕ‚Ї‚ЕЋg‚н‚к‚йЃB
+        System.out.print("+");                          // g‚МЉp‚р•\Њ»‚·‚й"+"ѓ}Ѓ[ѓN‚р•\Ћ¦ЃB
+        for (int i = 0; i < width; i++) {               // widthЊВ‚М"-"‚р•\Ћ¦‚µ‚ДЃA
+            System.out.print("-");                      // gђь‚Ж‚µ‚Д—p‚ў‚йЃB
+        }
+        System.out.println("+");                        // g‚МЉp‚р•\Њ»‚·‚й"+"ѓ}Ѓ[ѓN‚р•\Ћ¦ЃB
+    }
+}
+
+
+### 3
+package com.java9s.tutorials.designpattern.template;
+
+public abstract class AccountCreator {
+	public void verifyApplicationDetails(){
+		System.out.println("Verify Account details");
+	}
+	
+	public void verifyIdentificationDetails(){
+		System.out.println("Verify the Identification Details");
+	}
+	
+	public void receivePayment(int payment){
+		System.out.println("PaymentReceived");
+	}
+	
+	public abstract void generateAccountNumber();
+	
+	public void sendATMCard(){
+		System.out.println("ATM Card dispatched");
+	}
+	
+	public void sendATMPin(){
+		System.out.println("ATM Pin dispatched");
+	}
+	
+	public void createAccount(){
+		this.verifyApplicationDetails();
+		this.verifyIdentificationDetails();
+		this.receivePayment(10);
+		this.generateAccountNumber();
+		this.sendATMCard();
+		this.sendATMPin();
+	}
+}
+
+package com.java9s.tutorials.designpattern.template;
+
+public class BusinessAccountCreator extends AccountCreator{
+
+	@Override
+	public void generateAccountNumber() {
+		System.out.println("Business Account number generated");
+	}
+	
+}
+
+
+### 4
+package com.java9s.tutorials.designpattern.template;
+
+public abstract class AccountCreator {
+	public void verifyApplicationDetails(){
+		System.out.println("Verify Account details");
+	}
+	
+	public void verifyIdentificationDetails(){
+		System.out.println("Verify the Identification Details");
+	}
+	
+	public void receivePayment(int payment){
+		System.out.println("PaymentReceived");
+	}
+	
+	public abstract void generateAccountNumber();
+	
+	public void sendATMCard(){
+		System.out.println("ATM Card dispatched");
+	}
+	
+	public void sendATMPin(){
+		System.out.println("ATM Pin dispatched");
+	}
+	
+	public void createAccount(){
+		this.verifyApplicationDetails();
+		this.verifyIdentificationDetails();
+		this.receivePayment(10);
+		this.generateAccountNumber();
+		this.sendATMCard();
+		this.sendATMPin();
+	}
+}
+
+
+package com.java9s.tutorials.designpattern.template;
+
+public class PrivateAccountCreator extends AccountCreator{
+
+	@Override
+	public void generateAccountNumber() {
+		System.out.println("Private Account Number generated");
+	}
+	
+}
+
+
+
+### 5
+abstract class C{
+    void templateMetod(){
+        System.out.println("1");
+        difference();
+        System.out.println("3");
+        difference2();
+        System.out.println();
+    }
+    abstract void difference();
+    abstract void difference2();
+}
+
+class A extends C{
+
+    @Override
+    void difference() {
+        System.out.println("2");
+    }
+
+    @Override
+    void difference2() {
+        System.out.println("5");
+    }
+}
+
+
+### 6
+abstract class C{
+    void templateMetod(){
+        System.out.println("1");
+        difference();
+        System.out.println("3");
+        difference2();
+        System.out.println();
+    }
+    abstract void difference();
+    abstract void difference2();
+}
+
+class B extends C{
+
+    @Override
+    void difference() {
+        System.out.println("4");
+    }
+
+    @Override
+    void difference2() {
+
+    }
+}
+
+
+
+
+
+### 7
+package headfirst.templatemethod.barista;
+
+/**
+ * Created by yoyojyv on 2014. 3. 3..
+ */
+public abstract class CaffeineBeverage {
+
+    final void prepareRecipe() {
+        boilWater();        // 물을 끓인다.                              -> 동일
+        brew();             // 뜨거운 물을 이용하여 커피 또는 홍차를 우려낸다.
+        pourInCup();        // 만들어진 음료를 컵에 따른다.                  -> 동일
+        addCondiments();    // 각 음료에 맞는 첨가물을 추출한다.
+    }
+
+    abstract void brew();               // 각각 다른 방식으로 처리. 서브 클래스에서 구현.
+
+    abstract void addCondiments();      // 각각 다른 방식으로 처리. 서브 클래스에서 구현.
+
+    void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+
+}
+
+package headfirst.templatemethod.barista;
+
+/**
+ * Created by yoyojyv on 2014. 3. 3..
+ */
+public class Coffee extends CaffeineBeverage {
+
+    @Override
+    void brew() {
+        System.out.println("Dripping Coffee through filter");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Sugar and Milk");
+    }
+
+
+}
+
+
+
+### 8
+package headfirst.templatemethod.barista;
+
+/**
+ * Created by yoyojyv on 2014. 3. 3..
+ */
+public abstract class CaffeineBeverageWithHook {
+
+    void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        if (customerWantsCondiments()) { // 손님이 첨가물을 넣어달라고 했을 때만, addCondiments() 를 호출
+            addCondiments();
+        }
+    }
+
+    abstract void brew();
+
+    abstract void addCondiments();
+
+    void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+
+    /**
+     * 별 내용이 없는 기본 메소드를 구현해 놓음.
+     *
+     * 이 메소드는 서브클래스에서 필요에 따라 오버라이드 할 수 있는 메소드. 후크임
+     * @return
+     */
+    boolean customerWantsCondiments() {
+        return true;
+    }
+
+}
+
+
+
+
+package headfirst.templatemethod.barista;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Created by yoyojyv on 2014. 3. 3..
+ */
+public class CoffeeWithHook extends CaffeineBeverageWithHook {
+
+    @Override
+    void brew() {
+        System.out.println("Dripping Coffee through filter");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Sugar and Milk");
+    }
+
+    /**
+     * 후크를 오버라이드해서 원하는 기능을 집어넣음
+     * @return
+     */
+    @Override
+    boolean customerWantsCondiments() {
+        // 첨가물을 넣을지 말지를 손님한테 물어보고, 손님이 입력한 내용에 따라 true 혹은 false 리턴
+        String answer = getUserInput();
+        if (answer.toLowerCase().startsWith("y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 손님에게 우유와 설탕을 넣을지를 무어보고, 명령행을 통해서 결과를 입력받음
+     *
+     * @return
+     */
+    private String getUserInput() {
+        String answer = null;
+
+        System.out.print("Would you like milk and sugar with your coffee (y/n)? ");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            answer = in.readLine();
+        } catch (IOException ioe) {
+            System.err.println("IO error trying to read your answer");
+        }
+        if (answer == null) {
+            return "no";
+        }
+        return answer;
+    }
+}
+
+### 9
+package headfirst.templatemethod.barista;
+
+/**
+ * Created by yoyojyv on 2014. 3. 3..
+ */
+public abstract class CaffeineBeverage {
+
+    final void prepareRecipe() {
+        boilWater();        // 물을 끓인다.                              -> 동일
+        brew();             // 뜨거운 물을 이용하여 커피 또는 홍차를 우려낸다.
+        pourInCup();        // 만들어진 음료를 컵에 따른다.                  -> 동일
+        addCondiments();    // 각 음료에 맞는 첨가물을 추출한다.
+    }
+
+    abstract void brew();               // 각각 다른 방식으로 처리. 서브 클래스에서 구현.
+
+    abstract void addCondiments();      // 각각 다른 방식으로 처리. 서브 클래스에서 구현.
+
+    void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+
+}
+
+
+package headfirst.templatemethod.barista;
+
+/**
+ * Created by yoyojyv on 2014. 3. 3..
+ */
+public class Tea extends CaffeineBeverage {
+
+    @Override
+    void brew() {
+        System.out.println("Steeping the tea");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Lemon");
+    }
+
+}
+
+
+### 10
+package headfirst.templatemethod.barista;
+
+/**
+ * Created by yoyojyv on 2014. 3. 3..
+ */
+public abstract class CaffeineBeverageWithHook {
+
+    void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        if (customerWantsCondiments()) { // 손님이 첨가물을 넣어달라고 했을 때만, addCondiments() 를 호출
+            addCondiments();
+        }
+    }
+
+    abstract void brew();
+
+    abstract void addCondiments();
+
+    void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+
+    /**
+     * 별 내용이 없는 기본 메소드를 구현해 놓음.
+     *
+     * 이 메소드는 서브클래스에서 필요에 따라 오버라이드 할 수 있는 메소드. 후크임
+     * @return
+     */
+    boolean customerWantsCondiments() {
+        return true;
+    }
+
+}
+
+
+
+package headfirst.templatemethod.barista;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ * Created by yoyojyv on 2014. 3. 3..
+ */
+public class TeaWithHook extends CaffeineBeverageWithHook {
+
+    @Override
+    void brew() {
+        System.out.println("Steeping the tea");
+
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Lemon");
+    }
+
+    @Override
+    boolean customerWantsCondiments() {
+        String answer = getUserInput();
+
+        if (answer.toLowerCase().startsWith("y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private String getUserInput() {
+        // get the user's response
+        String answer = null;
+
+        System.out.print("Would you like lemon with your tea (y/n)? ");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            answer = in.readLine();
+        } catch (IOException ioe) {
+            System.err.println("IO error trying to read your answer");
+        }
+        if (answer == null) {
+            return "no";
+        }
+        return answer;
+    }
+}
+
+
+
+
+
+### 11
+package com.ojh.www.templatemethodpattern;
+
+/**
+ * Created by JaeHwan Oh on 2016-05-27.
+ */
+public abstract class CaffeineBeverage {
+
+    final String prepareRecipe() {
+        String recipe =
+        boilWater()
+        +"\n"+
+        brew()
+        +"\n"+
+        pourInCup()
+        +"\n";
+        if(customerWantsCondiments()) {
+            recipe+=addCondiments();
+        }
+
+        return recipe;
+    }
+
+    abstract String brew();
+
+    abstract String addCondiments();
+
+    String boilWater() {
+        return "물 끓이는 중";
+    }
+
+    String pourInCup() {
+        return "컵에 따르는 중";
+    }
+
+    //hook
+    boolean customerWantsCondiments() {
+        return true;
+    }
+}
+
+package com.ojh.www.templatemethodpattern;
+
+/**
+ * Created by JaeHwan Oh on 2016-05-27.
+ */
+public class Coffee extends CaffeineBeverage {
+    @Override
+    String brew() {
+        return "필터로 커피를 우려내는 중";
+    }
+
+    @Override
+    String addCondiments() {
+        return "설탕과 커피를 추가하는 중";
+    }
+
+    @Override
+    boolean customerWantsCondiments() {
+
+        return super.customerWantsCondiments();
+    }
+}
+
+
+
+### 12
+package com.ojh.www.templatemethodpattern;
+
+/**
+ * Created by JaeHwan Oh on 2016-05-27.
+ */
+public abstract class CaffeineBeverage {
+
+    final String prepareRecipe() {
+        String recipe =
+        boilWater()
+        +"\n"+
+        brew()
+        +"\n"+
+        pourInCup()
+        +"\n";
+        if(customerWantsCondiments()) {
+            recipe+=addCondiments();
+        }
+
+        return recipe;
+    }
+
+    abstract String brew();
+
+    abstract String addCondiments();
+
+    String boilWater() {
+        return "물 끓이는 중";
+    }
+
+    String pourInCup() {
+        return "컵에 따르는 중";
+    }
+
+    //hook
+    boolean customerWantsCondiments() {
+        return true;
+    }
+}
+
+
+
+package com.ojh.www.templatemethodpattern;
+
+/**
+ * Created by JaeHwan Oh on 2016-05-27.
+ */
+public class LemonTea extends CaffeineBeverage {
+    @Override
+    String brew() {
+        return "차를 우려내는 중";
+    }
+
+    @Override
+    String addCondiments() {
+        return "레몬을 추가하는 중";
+    }
+}
+
+
+
+### 13
+package com.ojh.www.templatemethodpattern;
+
+/**
+ * Created by JaeHwan Oh on 2016-05-27.
+ */
+public abstract class CaffeineBeverage {
+
+    final String prepareRecipe() {
+        String recipe =
+        boilWater()
+        +"\n"+
+        brew()
+        +"\n"+
+        pourInCup()
+        +"\n";
+        if(customerWantsCondiments()) {
+            recipe+=addCondiments();
+        }
+
+        return recipe;
+    }
+
+    abstract String brew();
+
+    abstract String addCondiments();
+
+    String boilWater() {
+        return "물 끓이는 중";
+    }
+
+    String pourInCup() {
+        return "컵에 따르는 중";
+    }
+
+    //hook
+    boolean customerWantsCondiments() {
+        return true;
+    }
+}
+
+package com.ojh.www.templatemethodpattern;
+
+/**
+ * Created by JaeHwan Oh on 2016-05-27.
+ */
+public class Tea extends CaffeineBeverage {
+    @Override
+    String brew() {
+        return "차를 우려내는 중";
+    }
+
+    @Override
+    String addCondiments() {
+        return "레몬을 추가하는 중";
+    }
+
+    @Override
+    boolean customerWantsCondiments() {
+        return false;
+    }
+}
+
+
+
+
+### 14
+package cleaning;
+
+public abstract class Cleaning {
+
+    public abstract void procedeFurniture();
+
+    public abstract void procedeTableware();
+
+    public abstract void procedeThings();
+
+    public abstract void procedeClothes();
+
+    public abstract void procedeCatsTray();
+
+    public abstract void procedeWashThingsPot();
+
+    public abstract void procedeUnderWardrobe();
+
+    public abstract void procedeWindowSill();
+
+    public abstract void fixBrokenThings();
+
+    public abstract void procedeWashBowl();
+
+    public abstract void procedeToiletBowl();
+
+    public void procedeCarpets() {
+        System.out.println("Vacuum all carpets");
+    }
+
+    public void procedeParquetFloor() {
+        System.out.println("Wash parquet floor with water and mop");
+    }
+
+    public void procedeTileFloor() {
+        System.out.println("Wash tile floor with water and mop");
+    }
+
+}
+
+package cleaning;
+
+public class CleaningBathroom extends Cleaning {
+
+    public CleaningBathroom() {
+        System.out.println("\nStarting cleaning Bathroom...");
+
+    }
+
+    @Override
+    public void procedeFurniture() {
+
+    }
+
+    @Override
+    public void procedeTableware() {
+
+    }
+
+    @Override
+    public void procedeThings() {
+        System.out.println("Bathroom: Up all shampoos");
+    }
+
+    @Override
+    public void procedeClothes() {
+        System.out.println("Bathroom: Up the shower cap");
+    }
+
+    @Override
+    public void procedeCatsTray() {
+
+    }
+
+    @Override
+    public void procedeWashThingsPot() {
+        System.out.println("Bathroom: Wash-machine with linen is ON");
+    }
+
+    @Override
+    public void procedeUnderWardrobe() {
+
+    }
+
+    @Override
+    public void procedeWindowSill() {
+
+    }
+
+    @Override
+    public void fixBrokenThings() {
+
+    }
+
+    @Override
+    public void procedeWashBowl() {
+        System.out.println("Bathroom: water cleaning washbowl with Sanox");
+
+    }
+
+    @Override
+    public void procedeToiletBowl() {
+
+    }
+
+
+    // Переопределяем два метода из вышестоящего класса, которые не нужно запускать, – делаем их пустыми
+
+    @Override
+    public void procedeCarpets() {
+
+    }
+
+    @Override
+    public void procedeParquetFloor() {
+
+    }
+}
+
+
+### 15
+package cleaning;
+
+public abstract class Cleaning {
+
+    public abstract void procedeFurniture();
+
+    public abstract void procedeTableware();
+
+    public abstract void procedeThings();
+
+    public abstract void procedeClothes();
+
+    public abstract void procedeCatsTray();
+
+    public abstract void procedeWashThingsPot();
+
+    public abstract void procedeUnderWardrobe();
+
+    public abstract void procedeWindowSill();
+
+    public abstract void fixBrokenThings();
+
+    public abstract void procedeWashBowl();
+
+    public abstract void procedeToiletBowl();
+
+    public void procedeCarpets() {
+        System.out.println("Vacuum all carpets");
+    }
+
+    public void procedeParquetFloor() {
+        System.out.println("Wash parquet floor with water and mop");
+    }
+
+    public void procedeTileFloor() {
+        System.out.println("Wash tile floor with water and mop");
+    }
+
+}
+
+
+
+
+package cleaning;
+
+public class CleaningBedroom extends Cleaning {
+
+    public CleaningBedroom() {
+        System.out.println("\nStarting cleaning Bedroom...");
+    }
+
+    @Override
+    public void procedeFurniture() {
+        System.out.println("Bedroom: Up the tabourets, pillows and lamps");
+    }
+
+    @Override
+    public void procedeTableware() {
+
+    }
+
+    @Override
+    public void procedeThings() {
+        System.out.println("Bedroom: Up and out slippers");
+    }
+
+    @Override
+    public void procedeClothes() {
+        System.out.println("Bedroom: Up and out clothes");
+    }
+
+    @Override
+    public void procedeCatsTray() {
+
+    }
+
+    @Override
+    public void procedeWashThingsPot() {
+
+    }
+
+    @Override
+    public void procedeUnderWardrobe() {
+
+    }
+
+    @Override
+    public void procedeWindowSill() {
+        System.out.println("Bedroom: Ordering something between flowers");
+    }
+
+    @Override
+    public void fixBrokenThings() {
+        System.out.println("Bedroom: Closing boxes under bed");
+    }
+
+    @Override
+    public void procedeWashBowl() {
+
+    }
+
+    @Override
+    public void procedeToiletBowl() {
+
+    }
+
+    // Переопределяем два метода из вышестоящего класса, которые не нужно запускать, – делаем их пустыми
+
+    @Override
+    public void procedeCarpets() {
+
+    }
+
+    @Override
+    public void procedeTileFloor() {
+
+    }
+}
+
+
+### 16
+package cleaning;
+
+public abstract class Cleaning {
+
+    public abstract void procedeFurniture();
+
+    public abstract void procedeTableware();
+
+    public abstract void procedeThings();
+
+    public abstract void procedeClothes();
+
+    public abstract void procedeCatsTray();
+
+    public abstract void procedeWashThingsPot();
+
+    public abstract void procedeUnderWardrobe();
+
+    public abstract void procedeWindowSill();
+
+    public abstract void fixBrokenThings();
+
+    public abstract void procedeWashBowl();
+
+    public abstract void procedeToiletBowl();
+
+    public void procedeCarpets() {
+        System.out.println("Vacuum all carpets");
+    }
+
+    public void procedeParquetFloor() {
+        System.out.println("Wash parquet floor with water and mop");
+    }
+
+    public void procedeTileFloor() {
+        System.out.println("Wash tile floor with water and mop");
+    }
+
+}
+
+
+
+
+package cleaning;
+
+public class CleaningCorridor extends Cleaning {
+
+    public CleaningCorridor() {
+        System.out.println("\nStarting cleaning Corridor...");
+    }
+
+    @Override
+    public void procedeFurniture() {
+        System.out.println("Corridor: Up and out slippers");
+    }
+
+    @Override
+    public void procedeTableware() {
+
+    }
+
+    @Override
+    public void procedeThings() {
+
+    }
+
+    @Override
+    public void procedeClothes() {
+
+    }
+
+    @Override
+    public void procedeCatsTray() {
+
+    }
+
+    @Override
+    public void procedeWashThingsPot() {
+
+    }
+
+    @Override
+    public void procedeUnderWardrobe() {
+
+    }
+
+    @Override
+    public void procedeWindowSill() {
+
+    }
+
+    @Override
+    public void fixBrokenThings() {
+
+    }
+
+    @Override
+    public void procedeWashBowl() {
+
+    }
+
+    @Override
+    public void procedeToiletBowl() {
+
+    }
+
+    // Переопределяем два метода из вышестоящего класса, которые не нужно запускать, – делаем их пустыми
+
+    @Override
+    public void procedeCarpets() {
+
+    }
+
+    @Override
+    public void procedeParquetFloor() {
+
+    }
+}
+
+
+### 17
+package cleaning;
+
+public abstract class Cleaning {
+
+    public abstract void procedeFurniture();
+
+    public abstract void procedeTableware();
+
+    public abstract void procedeThings();
+
+    public abstract void procedeClothes();
+
+    public abstract void procedeCatsTray();
+
+    public abstract void procedeWashThingsPot();
+
+    public abstract void procedeUnderWardrobe();
+
+    public abstract void procedeWindowSill();
+
+    public abstract void fixBrokenThings();
+
+    public abstract void procedeWashBowl();
+
+    public abstract void procedeToiletBowl();
+
+    public void procedeCarpets() {
+        System.out.println("Vacuum all carpets");
+    }
+
+    public void procedeParquetFloor() {
+        System.out.println("Wash parquet floor with water and mop");
+    }
+
+    public void procedeTileFloor() {
+        System.out.println("Wash tile floor with water and mop");
+    }
+
+}
+
+
+
+package cleaning;
+
+public class CleaningKidsRoom extends Cleaning {
+
+    public CleaningKidsRoom() {
+        System.out.println("\nStarting cleaning KidsRoom...");
+    }
+
+    @Override
+    public void procedeFurniture() {
+        System.out.println("KidsRoom: Up the boxes from bed");
+    }
+
+    @Override
+    public void procedeTableware() {
+
+    }
+
+    @Override
+    public void procedeThings() {
+        System.out.println("KidsRoom: Up and out everything");
+    }
+
+    @Override
+    public void procedeClothes() {
+        System.out.println("KidsRoom: Up and out clothes");
+    }
+
+    @Override
+    public void procedeCatsTray() {
+
+    }
+
+    @Override
+    public void procedeWashThingsPot() {
+
+    }
+
+    @Override
+    public void procedeUnderWardrobe() {
+        System.out.println("KidsRoom: Finding small tous under wardrobs");
+    }
+
+    @Override
+    public void procedeWindowSill() {
+        System.out.println("KidsRoom: Ordering something between chaos");
+    }
+
+    @Override
+    public void fixBrokenThings() {
+        System.out.println("KidsRoom: Throw to recycle bin everything not recognized");
+    }
+
+    @Override
+    public void procedeWashBowl() {
+
+    }
+
+    @Override
+    public void procedeToiletBowl() {
+
+    }
+
+    // Переопределяем два метода из вышестоящего класса, которые не нужно запускать, – делаем их пустыми
+
+    @Override
+    public void procedeCarpets() {
+
+    }
+
+    @Override
+    public void procedeTileFloor() {
+
+    }
+}
+
+
+
+### 18
+package cleaning;
+
+public abstract class Cleaning {
+
+    public abstract void procedeFurniture();
+
+    public abstract void procedeTableware();
+
+    public abstract void procedeThings();
+
+    public abstract void procedeClothes();
+
+    public abstract void procedeCatsTray();
+
+    public abstract void procedeWashThingsPot();
+
+    public abstract void procedeUnderWardrobe();
+
+    public abstract void procedeWindowSill();
+
+    public abstract void fixBrokenThings();
+
+    public abstract void procedeWashBowl();
+
+    public abstract void procedeToiletBowl();
+
+    public void procedeCarpets() {
+        System.out.println("Vacuum all carpets");
+    }
+
+    public void procedeParquetFloor() {
+        System.out.println("Wash parquet floor with water and mop");
+    }
+
+    public void procedeTileFloor() {
+        System.out.println("Wash tile floor with water and mop");
+    }
+
+}
+
+
+
+
+package cleaning;
+
+public class CleaningKitchenHall extends Cleaning {
+
+    public CleaningKitchenHall() {
+        System.out.println("\nStarting cleaning KitchenHall...");
+    }
+
+    @Override
+    public void procedeFurniture() {
+        System.out.println("KitchenHall: Up all tabourets");
+    }
+
+    @Override
+    public void procedeTableware() {
+        System.out.println("KitchenHall: Set tableware to wash-machine");
+    }
+
+    @Override
+    public void procedeThings() {
+        System.out.println("KitchenHall: Set tableware to wash-machine");
+    }
+
+    @Override
+    public void procedeClothes() {
+        System.out.println("KitchenHall: Set clothes to wardrobe");
+
+    }
+
+    @Override
+    public void procedeCatsTray() {
+
+    }
+
+    @Override
+    public void procedeWashThingsPot() {
+        System.out.println("KitchenHall: Set washThingsPot to windowSill");
+    }
+
+    @Override
+    public void procedeUnderWardrobe() {
+        System.out.println("KitchenHall: Closing wardrobe");
+    }
+
+    @Override
+    public void procedeWindowSill() {
+        System.out.println("KitchenHall: Ordering something between flowers etc");
+    }
+
+    @Override
+    public void fixBrokenThings() {
+        System.out.println("KitchenHall: Hiding broken things to sideboard");
+    }
+
+    @Override
+    public void procedeWashBowl() {
+        System.out.println("KitchenHall: Water cleaning washbowl with Fairy");
+    }
+
+    @Override
+    public void procedeToiletBowl() {
+
+    }
+
+}
+
+
+
+### 19
+package cleaning;
+
+public abstract class Cleaning {
+
+    public abstract void procedeFurniture();
+
+    public abstract void procedeTableware();
+
+    public abstract void procedeThings();
+
+    public abstract void procedeClothes();
+
+    public abstract void procedeCatsTray();
+
+    public abstract void procedeWashThingsPot();
+
+    public abstract void procedeUnderWardrobe();
+
+    public abstract void procedeWindowSill();
+
+    public abstract void fixBrokenThings();
+
+    public abstract void procedeWashBowl();
+
+    public abstract void procedeToiletBowl();
+
+    public void procedeCarpets() {
+        System.out.println("Vacuum all carpets");
+    }
+
+    public void procedeParquetFloor() {
+        System.out.println("Wash parquet floor with water and mop");
+    }
+
+    public void procedeTileFloor() {
+        System.out.println("Wash tile floor with water and mop");
+    }
+
+}
+
+
+
+package cleaning;
+
+public class CleaningRestroom extends Cleaning {
+
+    public CleaningRestroom() {
+        System.out.println("\nStarting cleaning Restroom...");
+    }
+
+    @Override
+    public void procedeFurniture() {
+
+    }
+
+    @Override
+    public void procedeTableware() {
+
+    }
+
+    @Override
+    public void procedeThings() {
+        System.out.println("Restroom: Up all toilet paper");
+    }
+
+    @Override
+    public void procedeClothes() {
+
+    }
+
+    @Override
+    public void procedeCatsTray() {
+        System.out.println("Restroom: Cleaning both cats trays");
+    }
+
+    @Override
+    public void procedeWashThingsPot() {
+
+    }
+
+    @Override
+    public void procedeUnderWardrobe() {
+
+    }
+
+    @Override
+    public void procedeWindowSill() {
+
+    }
+
+    @Override
+    public void fixBrokenThings() {
+        System.out.println("Restroom: Screwing up ToiletBowl Knob");
+    }
+
+    @Override
+    public void procedeWashBowl() {
+
+    }
+
+    @Override
+    public void procedeToiletBowl() {
+        System.out.println("Restroom: Water cleaning toiletbowl with Sanox");
+    }
+
+    // Переопределяем два метода из вышестоящего класса, которые не нужно запускать, – делаем их пустыми
+
+    @Override
+    public void procedeCarpets() {
+
+    }
+
+    @Override
+    public void procedeParquetFloor() {
+
+    }
+}
+
+### 20
+public abstract class TemplateMethod {
+	protected abstract void process1();
+
+	protected abstract void process2();
+
+	protected abstract void process3();
+
+	public final void mainProcess() {
+		process1();
+		for (int i = 0; i < 5; i++) {
+			process2();
+		}
+		process3();
+	}
+}
+
+
+
+public class SquareDisplay extends TemplateMethod {
+
+	@Override
+	protected void process1() {
+		System.out.println("START □");
+	}
+
+	@Override
+	protected void process2() {
+		System.out.println("■");
+	}
+
+	@Override
+	protected void process3() {
+		System.out.println("□ END");
+	}
+}
+
+
+
+### 21
+public class StarDisplay extends TemplateMethod {
+
+	@Override
+	protected void process1() {
+		System.out.println("START ☆");
+	}
+
+	@Override
+	protected void process2() {
+		System.out.println("★");
+	}
+
+	@Override
+	protected void process3() {
+		System.out.println("☆ END");
+	}
+}
+
+public abstract class TemplateMethod {
+	protected abstract void process1();
+
+	protected abstract void process2();
+
+	protected abstract void process3();
+
+	public final void mainProcess() {
+		process1();
+		for (int i = 0; i < 5; i++) {
+			process2();
+		}
+		process3();
+	}
+}
+
+### 22
+package base.classes;
+
+/**
+ * The base.classes.Animal class describes the
+ * base class of the application.
+ *
+ * @author Waswa Olunga
+ */
+
+public abstract class Animal {
+
+	public void animalSpeaks(){
+		System.out.println("The " + animalType() + " " + animalSound());
+	}
+	
+	public abstract String animalType();
+
+	public abstract String animalSound();
+}
+
+package sub.classes;
+
+import base.classes.Animal;
+
+/**
+ * The Cat class describes the class for the Cat object.
+ * @author Waswa Olunga
+ */
+
+public class Cat extends Animal {
+
+	@Override
+	public String animalType(){
+		return "cat";
+	}
+	
+	@Override
+	public String animalSound(){
+		return "meows!";
+	}
+}
+
+
+### 23
+package base.classes;
+
+/**
+ * The base.classes.Animal class describes the
+ * base class of the application.
+ *
+ * @author Waswa Olunga
+ */
+
+public abstract class Animal {
+
+	public void animalSpeaks(){
+		System.out.println("The " + animalType() + " " + animalSound());
+	}
+	
+	public abstract String animalType();
+
+	public abstract String animalSound();
+}
+
+package sub.classes;
+
+import base.classes.Animal;
+
+/**
+ * The Dog class describes the class for the Dog object.
+ * @author Waswa Olunga
+ */
+
+public class Dog extends Animal {
+
+	@Override
+	public String animalType(){
+		return "dog";
+	}
+
+	@Override
+	public String animalSound(){
+		return "woofs!";
+	}
+}
+
+
+### 24
+package base.classes;
+
+/**
+ * The base.classes.Animal class describes the
+ * base class of the application.
+ *
+ * @author Waswa Olunga
+ */
+
+public abstract class Animal {
+
+	public void animalSpeaks(){
+		System.out.println("The " + animalType() + " " + animalSound());
+	}
+	
+	public abstract String animalType();
+
+	public abstract String animalSound();
+}
+
+
+package sub.classes;
+
+import base.classes.Animal;
+
+/**
+ * The Owl class describes the class for the Owl object.
+ * @author Waswa Olunga
+ */
+
+public class Owl extends Animal {
+
+	@Override
+	public String animalType(){
+		return "owl";
+	}
+
+	@Override
+	public String animalSound(){
+		return "hoots!";
+	}
+}
+
+
+
+
+### 25
+package template;
+
+/**
+ * Parent class containing the Template Method for making
+ * Upma using different ingredients, but using similar
+ * steps for the preparation.
+ */
+public abstract class UpmaTemplateMethodClass {
+
+    /**
+     * Template Method to prepare any presently
+     * available type of Upma.
+     */
+    public final void prepareUpma() {
+        // Step-by-step process.
+        collectIngredients();
+        if (shouldRoastMainIngredient()) {
+            roastMainIngredient();
+        }
+        fryIngredientsInOil();
+        marinateInWater();
+        waitTillPrepared();
+        serveUpma();
+    }
+
+    /**
+     * Collect respective ingredients based
+     * on the type of Upma to be prepared.
+     */
+    protected abstract void collectIngredients();
+
+    /**
+     * Roast the main ingredient.
+     */
+    private void roastMainIngredient() {
+        System.out.println("Roasting the main ingredient.");
+    }
+
+    /**
+     * Frying the ingredients in oil.
+     */
+    private void fryIngredientsInOil() {
+        System.out.println("Frying the ingredients in oil.");
+    }
+
+    /**
+     * Marinating the fried ingredients.
+     */
+    private void marinateInWater() {
+        System.out.println("Marinating the fried ingredients.");
+    }
+
+    /**
+     * Wait till the Upma is properly cooked before serving.
+     */
+    private void waitTillPrepared() {
+        System.out.println("Waiting till the Upma is prepared.");
+    }
+
+    /**
+     * Server the prepared Upma.
+     */
+    private void serveUpma() {
+        System.out.println("Serving the yummy Upma.");
+    }
+
+    /**
+     * Creating a hook to make roasting of main ingredient
+     * optional.
+     *
+     * @return boolean to choose if the main ingredient is to be roasted.
+     */
+    public boolean shouldRoastMainIngredient() {
+        return true;
+    }
+}
+
+
+
+
+package template;
+
+/**
+ * Class for Upma to be made using rice flour.
+ */
+public class RiceFlourUpma extends UpmaTemplateMethodClass {
+    boolean roastMainIngredient = false;
+
+    @Override
+    protected void collectIngredients() {
+        System.out.println("Collecting ingredients: Rice flour and other spices.");
+    }
+
+    @Override
+    public boolean shouldRoastMainIngredient() {
+        return roastMainIngredient;
+    }
+
+    /**
+     * Deciding whether the main ingredient needs to be roased or not.
+     * @param roastMainIngredient (Should or shouldn't)
+     */
+    public void setRoastMainIngredient(boolean roastMainIngredient) {
+        this.roastMainIngredient = roastMainIngredient;
+    }
+}
+
+
+### 26
+package template;
+
+/**
+ * Class for Upma to be made using vermicelli.
+ */
+public class SemiyaUpma extends UpmaTemplateMethodClass {
+    boolean roastMainIngredient = true;
+
+    @Override
+
+    protected void collectIngredients() {
+        System.out.println("Collecting ingredients: Vermicelli and other spices.");
+    }
+
+    @Override
+    public boolean shouldRoastMainIngredient() {
+        return roastMainIngredient;
+    }
+
+    /**
+     * Deciding whether the main ingredient needs to be roased or not.
+     *
+     * @param roastMainIngredient (Should or shouldn't)
+     */
+    public void setRoastMainIngredient(boolean roastMainIngredient) {
+        this.roastMainIngredient = roastMainIngredient;
+    }
+}
+
+package template;
+
+/**
+ * Parent class containing the Template Method for making
+ * Upma using different ingredients, but using similar
+ * steps for the preparation.
+ */
+public abstract class UpmaTemplateMethodClass {
+
+    /**
+     * Template Method to prepare any presently
+     * available type of Upma.
+     */
+    public final void prepareUpma() {
+        // Step-by-step process.
+        collectIngredients();
+        if (shouldRoastMainIngredient()) {
+            roastMainIngredient();
+        }
+        fryIngredientsInOil();
+        marinateInWater();
+        waitTillPrepared();
+        serveUpma();
+    }
+
+    /**
+     * Collect respective ingredients based
+     * on the type of Upma to be prepared.
+     */
+    protected abstract void collectIngredients();
+
+    /**
+     * Roast the main ingredient.
+     */
+    private void roastMainIngredient() {
+        System.out.println("Roasting the main ingredient.");
+    }
+
+    /**
+     * Frying the ingredients in oil.
+     */
+    private void fryIngredientsInOil() {
+        System.out.println("Frying the ingredients in oil.");
+    }
+
+    /**
+     * Marinating the fried ingredients.
+     */
+    private void marinateInWater() {
+        System.out.println("Marinating the fried ingredients.");
+    }
+
+    /**
+     * Wait till the Upma is properly cooked before serving.
+     */
+    private void waitTillPrepared() {
+        System.out.println("Waiting till the Upma is prepared.");
+    }
+
+    /**
+     * Server the prepared Upma.
+     */
+    private void serveUpma() {
+        System.out.println("Serving the yummy Upma.");
+    }
+
+    /**
+     * Creating a hook to make roasting of main ingredient
+     * optional.
+     *
+     * @return boolean to choose if the main ingredient is to be roasted.
+     */
+    public boolean shouldRoastMainIngredient() {
+        return true;
+    }
+}
+
+
+
+
+
+### 27
+package com.yb;
+
+public abstract class HummerModel {
+    public abstract void start();
+    public abstract void stop();
+    public abstract void alarm();
+    public abstract void enginrBoom();
+    public  void run(){
+        this.start();
+        this.enginrBoom();
+        this.alarm();
+        this.stop();
+    }
+}
+
+
+package com.yb;
+
+public class HummrtH1Model extends HummerModel {
+   @Override
+    public  void start(){
+        System.out.println("悍马H1发动...!");
+    }
+    @Override
+    public  void stop(){
+        System.out.println("悍马H1停车...!");
+    }
+    @Override
+    public  void alarm(){
+        System.out.println("悍马H1鸣笛...!");
+    }
+    @Override
+    public  void enginrBoom(){
+        System.out.println("悍马H1引擎声音是这样的...!");
+
+    }
+    @Override
+    public  void run(){
+       this.start();
+       this.enginrBoom();
+       this.alarm();
+       this.stop();
+    }
+}
+
+
+
+### 28
+package com.yb;
+
+public abstract class HummerModel {
+    public abstract void start();
+    public abstract void stop();
+    public abstract void alarm();
+    public abstract void enginrBoom();
+    public  void run(){
+        this.start();
+        this.enginrBoom();
+        this.alarm();
+        this.stop();
+    }
+}
+
+
+
+package com.yb;
+
+public class HummrtH2Model extends HummerModel {
+   @Override
+    public  void start(){
+        System.out.println("悍马H2发动...!");
+    }
+    @Override
+    public  void stop(){
+        System.out.println("悍马H2停车...!");
+    }
+    @Override
+    public  void alarm(){
+        System.out.println("悍马H2鸣笛...!");
+    }
+    @Override
+    public  void enginrBoom(){
+        System.out.println("悍马H2引擎声音是这样的...!");
+
+    }
+    @Override
+    public  void run(){
+       this.start();
+       this.enginrBoom();
+       this.alarm();
+       this.stop();
+    }
+}
+
+
+
+
+
+### 29
+package com.example.templatemethodpattern;
+
+import android.util.Log;
+
+/**
+ * Created by W on 2018/12/19.
+ */
+
+public abstract class AbstractComputer {
+    private static String TAG = "AbatractComputer";
+
+    protected void powerOn(){
+        Log.d(TAG, "powerOn: 开启电源");
+    }
+    protected void checkHardware(){
+        Log.d(TAG, "checkHardware: 硬件检查");
+    }
+    protected void loadOS(){
+        Log.d(TAG, "loadOS: 载入操作系统");
+    }
+    protected void login(){
+        Log.d(TAG, "login: 进入系统");
+    }
+    /**
+     * 启动计算机方法，步骤固定为开启电源，系统检查，加载操作系统，用户登录。该方法为final，防止算法框架被复写。
+     */
+    public final void startUp(){
+        Log.d(TAG, "startUp: ----关机 START----");
+        powerOn();
+        checkHardware();
+        loadOS();
+        login();
+    }
+}
+
+package com.example.templatemethodpattern;
+
+import android.util.Log;
+
+/**
+ * Created by W on 2018/12/19.
+ */
+
+public class CoderComputer extends AbstractComputer {
+    private static String TAG = "CoderComputer";
+
+    @Override
+    protected void login(){
+        Log.d(TAG, "login: 程序员只需进行用户和密码验证就可以了");
+    }
+}
+
+
+
+### 30
+package com.example.templatemethodpattern;
+
+import android.util.Log;
+
+/**
+ * Created by W on 2018/12/19.
+ */
+
+public abstract class AbstractComputer {
+    private static String TAG = "AbatractComputer";
+
+    protected void powerOn(){
+        Log.d(TAG, "powerOn: 开启电源");
+    }
+    protected void checkHardware(){
+        Log.d(TAG, "checkHardware: 硬件检查");
+    }
+    protected void loadOS(){
+        Log.d(TAG, "loadOS: 载入操作系统");
+    }
+    protected void login(){
+        Log.d(TAG, "login: 进入系统");
+    }
+    /**
+     * 启动计算机方法，步骤固定为开启电源，系统检查，加载操作系统，用户登录。该方法为final，防止算法框架被复写。
+     */
+    public final void startUp(){
+        Log.d(TAG, "startUp: ----关机 START----");
+        powerOn();
+        checkHardware();
+        loadOS();
+        login();
+    }
+}
+
+
+
+package com.example.templatemethodpattern;
+
+import android.util.Log;
+
+/**
+ * Created by W on 2018/12/19.
+ */
+
+public class MilitaryComputer extends AbstractComputer {
+    private static String TAG = "MilitaryComputer";
+    @Override
+    protected void checkHardware(){
+        super.checkHardware();
+        Log.d(TAG, "checkHardware: 检查硬件防火墙");
+    }
+    @Override
+    protected void login(){
+        Log.d(TAG, "login: 进行指纹识别等复杂用户验证");
+    }
+}
+
+
+
+
+
+### 31
+package com.company;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public abstract class Template {
+    private static String text;
+    private static String cipher;
+    private static String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    private static char[] ArrayText;
+    private static char[] ArrayCipher;
+    private static char[] ArrayAlphabet = alphabet.toCharArray();
+    private static char[] ArrayEncryption;
+
+    public void methodTemplate(){
+        init();
+        ArrayEncryption = crypt(text,alphabet,ArrayAlphabet);
+        checkSuitability();
+        getCipher();
+        saveTextInFile();
+
+    }
+
+    public static void init(){
+        System.out.print("Input the Text:");
+        Scanner in = new Scanner(System.in);
+        text = in.nextLine();
+        System.out.println();
+
+    }
+
+    public static void getCipher(){
+        ArrayText = text.toCharArray();
+        ArrayCipher = text.toCharArray();
+        for (int i = 0; i < ArrayText.length; i++){
+            for (int j = 0; j < ArrayAlphabet.length;j++){
+                if (ArrayText[i] == ArrayAlphabet[j]){
+                    ArrayCipher[i] = ArrayEncryption[j];
+                }
+            }
+        }
+
+        cipher = String.valueOf(ArrayCipher);
+        System.out.println("Text: " + text);
+        System.out.println("Cipher: " + cipher);
+    }
+
+    public static void checkSuitability(){
+        System.out.print("Enc: ");
+        for (int i = 0; i < ArrayEncryption.length;i++){
+            System.out.print("["+(i)+"]:"+ArrayEncryption[i] + " ");
+        }
+        System.out.println();
+        System.out.print("Alp: ");
+        for (int i = 0; i < ArrayAlphabet.length;i++){
+            System.out.print("["+(i)+"]:" + ArrayAlphabet[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void saveTextInFile(){
+        try(FileWriter fileWriter = new FileWriter("file.txt",true)) {
+            fileWriter.write("Text: " + text + "\n");
+            fileWriter.write("Cipher: " + cipher + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public abstract char[] crypt(String text, String alphabet, char[] ArrayAlphabet);
+}
+
+
+
+
+
+package com.company;
+
+import java.util.Scanner;
+
+public class Caesar extends Template {
+
+    @Override
+    public char[] crypt(String text, String alphabet, char[]ArrayAlphabet) {
+        char[] ArrayEncryption = alphabet.toCharArray();
+
+        System.out.print("Input the Shift: ");
+        Scanner in = new Scanner(System.in);
+        int shift = in.nextInt();
+        System.out.println();
+
+        while (shift > ArrayAlphabet.length){
+            shift = shift - ArrayAlphabet.length;
+        }
+
+        while (shift < 0){
+            shift = ArrayAlphabet.length + shift;
+        }
+
+        for (int i = 0; i < ArrayEncryption.length; i++){
+            if (shift == ArrayEncryption.length){
+                shift = 0;
+            }
+            ArrayEncryption[shift] = ArrayAlphabet[i];
+            shift++;
+        }
+        return ArrayEncryption ;
+    }
+}
+
+
+
+### 32
+package com.company;
+
+import java.util.Scanner;
+
+public class Key extends Template {
+
+    @Override
+    public char[] crypt(String text, String alphabet, char[] ArrayAlphabet) {
+        System.out.print("Input the Key: ");
+        Scanner in = new Scanner(System.in);
+        String key = in.nextLine();
+
+        char[] ArrayKey = key.toCharArray();
+        char[] ArrayEncryption = alphabet.toCharArray();
+
+        int count = ArrayKey.length;
+
+        for (int i = 0; i < ArrayKey.length; i++) {
+            ArrayEncryption[i] = ArrayKey[i];
+        }
+
+        for (int i = 0; i < ArrayAlphabet.length; i++) {
+            boolean test = true;
+            for (int j = 0; j < ArrayKey.length; j++) {
+                if (ArrayAlphabet[i] == ArrayKey[j]) {
+                    test = false;
+                    count--;
+                    break;
+                }
+            }
+            if (test) {
+                ArrayEncryption[i + count] = ArrayAlphabet[i];
+            }
+        }
+        return ArrayEncryption;
+    }
+}
+
+
+
+package com.company;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public abstract class Template {
+    private static String text;
+    private static String cipher;
+    private static String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    private static char[] ArrayText;
+    private static char[] ArrayCipher;
+    private static char[] ArrayAlphabet = alphabet.toCharArray();
+    private static char[] ArrayEncryption;
+
+    public void methodTemplate(){
+        init();
+        ArrayEncryption = crypt(text,alphabet,ArrayAlphabet);
+        checkSuitability();
+        getCipher();
+        saveTextInFile();
+
+    }
+
+    public static void init(){
+        System.out.print("Input the Text:");
+        Scanner in = new Scanner(System.in);
+        text = in.nextLine();
+        System.out.println();
+
+    }
+
+    public static void getCipher(){
+        ArrayText = text.toCharArray();
+        ArrayCipher = text.toCharArray();
+        for (int i = 0; i < ArrayText.length; i++){
+            for (int j = 0; j < ArrayAlphabet.length;j++){
+                if (ArrayText[i] == ArrayAlphabet[j]){
+                    ArrayCipher[i] = ArrayEncryption[j];
+                }
+            }
+        }
+
+        cipher = String.valueOf(ArrayCipher);
+        System.out.println("Text: " + text);
+        System.out.println("Cipher: " + cipher);
+    }
+
+    public static void checkSuitability(){
+        System.out.print("Enc: ");
+        for (int i = 0; i < ArrayEncryption.length;i++){
+            System.out.print("["+(i)+"]:"+ArrayEncryption[i] + " ");
+        }
+        System.out.println();
+        System.out.print("Alp: ");
+        for (int i = 0; i < ArrayAlphabet.length;i++){
+            System.out.print("["+(i)+"]:" + ArrayAlphabet[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void saveTextInFile(){
+        try(FileWriter fileWriter = new FileWriter("file.txt",true)) {
+            fileWriter.write("Text: " + text + "\n");
+            fileWriter.write("Cipher: " + cipher + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public abstract char[] crypt(String text, String alphabet, char[] ArrayAlphabet);
+}
+
+
+
+
+
+
+### 33
+package com.jy;
+
+public abstract class AbstractSort {
+	/**
+	 * 将数组按照有小到大的顺序排列
+	 * 
+	 * @param array
+	 */
+	protected abstract void sort(int[] array);
+
+	/**
+	 * 打印数组
+	 * 
+	 * @param array
+	 */
+	public void showSortResult(int[] array) {
+		// 先对数组进行排序
+		this.sort(array);
+
+		// 打印排序后的数组
+		System.out.print("排序后的数组：");
+		for (int i : array) {
+			System.out.printf("%3s", i);
+		}
+	}
+}
+
+package com.jy;
+
+public class ConcretSort extends AbstractSort {
+
+	@Override
+	protected void sort(int[] array) {
+		// 冒泡排序
+		for (int i = 0; i < array.length; i++) {
+			for (int j = i; j < array.length; j++) {
+				if (array[i] > array[j]) {
+					int temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+			}
+		}
+	}
+
+}
+
+
+
+
+
+### 34
+public abstract class CaffineBeverage {
+    final void prepareRecipe(){
+        boilWater();
+        brew();
+        pourInCup();
+        if(customerWantsCondiments()) {
+            addCondiments();
+        }
+    }
+
+    public boolean customerWantsCondiments() {
+        return true;
+    }
+
+    private void pourInCup() {
+        System.out.println("pouring in cup");
+    }
+
+    public abstract void brew();
+
+    private void boilWater() {
+        System.out.println("boiling water");
+    }
+
+    public abstract void addCondiments();
+
+}
+
+public class Coffee extends CaffineBeverage {
+    @Override
+    public void brew() {
+        System.out.println("Dripping coffee through filter");
+    }
+
+    @Override
+    public void addCondiments() {
+        System.out.println("adding sugar and milk");
+    }
+
+    @Override
+    public boolean customerWantsCondiments(){
+        return false;
+    }
+}
+
+### 35
+package com.company;
+
+abstract class CaffeineBaverage {
+
+    final void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCap();
+        if(customersWantsCondiments()) {
+            addCondiments();
+        }
+    }
+
+    abstract void brew();
+
+    abstract void addCondiments();
+
+    final void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    final void pourInCap() {
+        System.out.println("Pouring into cup");
+    }
+
+    boolean customersWantsCondiments() {
+        return true;
+    }
+}
+
+package com.company;
+
+class Coffee extends CaffeineBaverage {
+    @Override
+    void brew() {
+        System.out.println("Dripping Coffee through filter");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Sugar and Milk");
+    }
+}
+
+
+
+### 36
+package com.company;
+
+abstract class CaffeineBaverage {
+
+    final void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCap();
+        if(customersWantsCondiments()) {
+            addCondiments();
+        }
+    }
+
+    abstract void brew();
+
+    abstract void addCondiments();
+
+    final void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    final void pourInCap() {
+        System.out.println("Pouring into cup");
+    }
+
+    boolean customersWantsCondiments() {
+        return true;
+    }
+}
+
+
+package com.company;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Tea extends CaffeineBaverage {
+    @Override
+    void brew() {
+        System.out.println("Steeping the tea");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Lemon");
+    }
+
+    @Override
+    boolean customersWantsCondiments() {
+        String answer = getUserInput();
+        return answer.toLowerCase().startsWith("y");
+    }
+
+    private String getUserInput() {
+        String answer = null;
+        System.out.println("Would you like lemon with your tea (y/n)?");
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            answer = in.readLine();
+        } catch (IOException e) {
+            System.err.println("IO error trying to read your answer");
+        }
+        if (answer == null) {
+            return "no";
+        }
+        return answer;
+    }
+}
+
+
+
+
+
+
+### 37
+package pizzaVoorbeeld;
+
+public abstract class Pizza {
+
+	public Pizza() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	//template method
+	public final void maakPizza(){
+		maakBodem();
+		if(klantWiltVlees()){
+			voegVleesToe();
+			System.out.println("");
+		}
+		if(klantWiltKaas()){
+			voegKaasToe();
+			System.out.println("");
+		}
+		if(klantWiltGroenten()){
+			voegGroenteToe();
+			System.out.println("");
+		}
+		doePizzaInOven();
+		System.out.println("");
+	}
+	
+	public void maakBodem(){
+		System.out.println("De pizza bodem is gemaakt.");
+	}
+	
+	public void doePizzaInOven() {
+		System.out.println("De pizza is in de oven.");
+	}
+
+	public boolean klantWiltVlees() {
+		return true;
+	}
+	
+	public boolean klantWiltKaas() {
+		return true;
+	}
+	
+	public boolean klantWiltGroenten() {
+		return true;
+	}
+	
+	public abstract void voegVleesToe();
+	public abstract void voegKaasToe();
+	public abstract void voegGroenteToe();
+}
+
+
+
+
+package pizzaVoorbeeld;
+
+public class EenPizza extends Pizza{
+	
+	String[] vlees = {"Ham", "Salami", "Kip"};
+	String[] groenten = {"Ui", "Tomaat", "Ananas"};
+	String[] kaas = {"Provolone", "Mozzarella"};
+	
+	public EenPizza() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void voegVleesToe() {
+		System.out.print("Vlees toevoegen: ");
+		for(String v : vlees){
+			System.out.print(v+ " ");
+		}
+		
+	}
+
+	@Override
+	public void voegKaasToe() {
+		System.out.print("Kaas toevoegen: ");
+		for(String k : kaas){
+			System.out.print(k + " ");
+		}
+	}
+
+	@Override
+	public void voegGroenteToe() {
+		System.out.print("Groenten toevoegen: ");
+		for(String groente : groenten){
+			System.out.print(groente + " ");
+		}
+	}
+
+}
+
+
+
+### 38
+package pizzaVoorbeeld;
+
+public class GroentePizza extends Pizza{
+
+	String[] groenten = {"Ui", "Tomaat", "Champignon", "Spinazie", "Ananas"};
+	String[] kaas = {"Provolone", "Mozzarella"};
+	
+	public GroentePizza() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void voegVleesToe() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void voegKaasToe() {
+		System.out.print("Kaas toevoegen: ");
+		for(String k : kaas){
+			System.out.print(k + " ");
+		}
+	}
+
+	@Override
+	public void voegGroenteToe() {
+		System.out.print("Groenten toevoegen: ");
+		for(String groente : groenten){
+			System.out.print(groente + " ");
+		}
+		
+	}
+	
+	@Override
+	public boolean klantWiltVlees() {
+		return false;
+	}
+
+}
+
+
+
+package pizzaVoorbeeld;
+
+public abstract class Pizza {
+
+	public Pizza() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	//template method
+	public final void maakPizza(){
+		maakBodem();
+		if(klantWiltVlees()){
+			voegVleesToe();
+			System.out.println("");
+		}
+		if(klantWiltKaas()){
+			voegKaasToe();
+			System.out.println("");
+		}
+		if(klantWiltGroenten()){
+			voegGroenteToe();
+			System.out.println("");
+		}
+		doePizzaInOven();
+		System.out.println("");
+	}
+	
+	public void maakBodem(){
+		System.out.println("De pizza bodem is gemaakt.");
+	}
+	
+	public void doePizzaInOven() {
+		System.out.println("De pizza is in de oven.");
+	}
+
+	public boolean klantWiltVlees() {
+		return true;
+	}
+	
+	public boolean klantWiltKaas() {
+		return true;
+	}
+	
+	public boolean klantWiltGroenten() {
+		return true;
+	}
+	
+	public abstract void voegVleesToe();
+	public abstract void voegKaasToe();
+	public abstract void voegGroenteToe();
+}
+
+
+
+
+
+
+### 39
+package com.company;
+
+import com.company.Utils.MinutesHelper;
+
+abstract public class SellingTemplate {
+
+    final double getFinalCarPrice(int basePrice, int duration, int numberOfDays, int commercialType) {
+        return calculateCarPrice(basePrice) +
+                calculateInsurancePrice(basePrice) +
+                calculateMarketingPrice(duration, numberOfDays, commercialType);
+    }
+
+    abstract double calculateCarPrice(int basePrice);
+
+    double calculateMarketingPrice(int duration, int numberOfDays, int commercialType) {
+        return commercialType * MinutesHelper.getDurationInMinutes(duration) * numberOfDays;
+    }
+
+    double calculateInsurancePrice(int basePrice) {
+        return 0;
+    }
+
+
+
+}
+
+
+package com.company;
+
+import com.company.Utils.Consts;
+
+public class SkodaOctavia extends SellingTemplate {
+
+    private static final int DAMAGE = 500;
+
+    @Override
+    double calculateCarPrice(int basePrice) {
+        return basePrice + basePrice * Consts.LUXURY_EQUIPMENT_PRICE - DAMAGE;
+    }
+
+    @Override
+    double calculateInsurancePrice(int basePrice) {
+        return basePrice * Consts.ENSURANCE_PRICE;
+    }
+}
+
+
+
+### 40
+package com.company;
+
+import com.company.Utils.MinutesHelper;
+
+abstract public class SellingTemplate {
+
+    final double getFinalCarPrice(int basePrice, int duration, int numberOfDays, int commercialType) {
+        return calculateCarPrice(basePrice) +
+                calculateInsurancePrice(basePrice) +
+                calculateMarketingPrice(duration, numberOfDays, commercialType);
+    }
+
+    abstract double calculateCarPrice(int basePrice);
+
+    double calculateMarketingPrice(int duration, int numberOfDays, int commercialType) {
+        return commercialType * MinutesHelper.getDurationInMinutes(duration) * numberOfDays;
+    }
+
+    double calculateInsurancePrice(int basePrice) {
+        return 0;
+    }
+
+
+
+}
+
+
+
+
+
+package com.company;
+
+import com.company.Utils.Consts;
+
+public class VwPassat extends SellingTemplate {
+
+    @Override
+    double calculateCarPrice(int basePrice) {
+        return basePrice * Consts.STANDART_EQUIPMENT_PRICE;
+    }
+}
+
+
+
+
+
+
+### 41
+public abstract class HummerModel {
+
+	/**
+	 * 首先这个模型要能够被发动起来，别管是手摇发动，还是电力发动，反正
+	 * 是要能够发动起来
+	 */
+	protected abstract void start();
+	
+	/**
+	 * 能发动，还要能停下来
+	 */
+	protected abstract void stop();
+	/**
+	 * 喇叭会出声
+	 */
+	protected abstract void alarm();
+	/**
+	 * 引擎会轰隆隆地响
+	 */
+	protected abstract void engineBoom();
+	/**
+	 * 汽车开始跑动
+	 */
+	public void run() {
+		this.start();
+		this.engineBoom();
+		if(this.isAlarm()) {
+			this.alarm();
+		}
+		this.stop();
+	}
+	
+	//钩子方法，当有需要改变模板方法调用顺序或有哪些方法不需要每次都调用的时候使用此方法
+	protected boolean isAlarm() {
+		return true;
+	}
+}
+
+
+public class HummerH1Model extends HummerModel{
+
+	//不要喇叭
+	private boolean alarmFlag = false;
+	
+	@Override
+	public void start() {
+		System.out.println("悍马H1发动");
+	}
+
+	@Override
+	public void stop() {
+		System.out.println("悍马H1停车");
+	}
+
+	@Override
+	public void alarm() {
+		System.out.println("悍马H1鸣笛");
+	}
+
+	@Override
+	public void engineBoom() {
+		System.out.println("悍马H1引擎声音是这样的");
+	}
+	
+	@Override
+	protected boolean isAlarm() {
+		// TODO Auto-generated method stub
+		return this.alarmFlag;
+	}
+	
+	public void setAlarm(boolean isAlarm) {
+		this.alarmFlag = isAlarm;
+	}
+
+}
+
+
+### 42
+public class HummerH2Model extends HummerModel{
+
+	@Override
+	public void start() {
+		System.out.println("悍马H2发动");
+	}
+
+	@Override
+	public void stop() {
+		System.out.println("悍马H2停车");
+	}
+
+	@Override
+	public void alarm() {
+		System.out.println("悍马H2鸣笛");
+	}
+
+	@Override
+	public void engineBoom() {
+		System.out.println("悍马H2引擎声音是这样的");
+	}
+
+}
+
+public abstract class HummerModel {
+
+	/**
+	 * 首先这个模型要能够被发动起来，别管是手摇发动，还是电力发动，反正
+	 * 是要能够发动起来
+	 */
+	protected abstract void start();
+	
+	/**
+	 * 能发动，还要能停下来
+	 */
+	protected abstract void stop();
+	/**
+	 * 喇叭会出声
+	 */
+	protected abstract void alarm();
+	/**
+	 * 引擎会轰隆隆地响
+	 */
+	protected abstract void engineBoom();
+	/**
+	 * 汽车开始跑动
+	 */
+	public void run() {
+		this.start();
+		this.engineBoom();
+		if(this.isAlarm()) {
+			this.alarm();
+		}
+		this.stop();
+	}
+	
+	//钩子方法，当有需要改变模板方法调用顺序或有哪些方法不需要每次都调用的时候使用此方法
+	protected boolean isAlarm() {
+		return true;
+	}
+}
+
+
+
+
+
+
+### 43
+package com.pattern;
+
+/**
+ * 抽象-模块方法模式核心
+ */
+public abstract class AbstractPage {
+    public abstract void makeHeader();//组装页面头部
+    public abstract void makeBody();//组装页面body
+    public abstract void makeFooter();//组装页脚
+
+    public void make(){
+        makeHeader();//组装头
+        makeBody();//组装身
+        makeFooter();//组装脚
+    }
+}
+
+
+package com.pattern;
+
+/**
+ * 页面1
+ */
+public class Page1 extends AbstractPage{
+    @Override
+    public void makeHeader() {
+        System.out.println("页面1，写头");
+    }
+
+    @Override
+    public void makeBody() {
+        System.out.println("页面1，写身");
+    }
+
+    @Override
+    public void makeFooter() {
+        System.out.println("页面1，写脚");
+    }
+}
+
+
+
+### 44
+package com.pattern;
+
+/**
+ * 抽象-模块方法模式核心
+ */
+public abstract class AbstractPage {
+    public abstract void makeHeader();//组装页面头部
+    public abstract void makeBody();//组装页面body
+    public abstract void makeFooter();//组装页脚
+
+    public void make(){
+        makeHeader();//组装头
+        makeBody();//组装身
+        makeFooter();//组装脚
+    }
+}
+package com.pattern;
+
+/**
+ * 页面2
+ */
+public class Page2 extends AbstractPage{
+    @Override
+    public void makeHeader() {
+        System.out.println("页面2，写头");
+    }
+
+    @Override
+    public void makeBody() {
+        System.out.println("页面2，写身");
+    }
+
+    @Override
+    public void makeFooter() {
+        System.out.println("页面2，写脚");
+    }
+}
+
+
+
+
+
+### 45
+public abstract class Game
+{
+	abstract public void initialize();
+	abstract public void menu();
+	abstract public void startPlay();
+	abstract public void endPlay();
+	
+	public final void play() {
+		this.menu();
+		
+		this.startPlay();
+		
+		this.endPlay();
+	}
+	public void initialize(int level) {}
+}
+
+
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+public class Cricket extends Game
+{
+	private final static int w = 650;
+	private final static int h = 500;
+	
+	@Override
+	public void initialize(int level) {
+		System.out.println("Cricked game initilialized");
+		if(level == 1)
+		{
+			System.out.println(level);
+		}
+		if(level == 2)
+		{
+			System.out.println(level);
+		}
+		if(level == 2)
+		{
+			System.out.println(level);
+		}
+	}
+
+	@Override
+	public void startPlay() {
+		System.out.println("Cricked game started");
+		
+	}
+
+	@Override
+	public void endPlay() {
+		System.out.println("Cricked game ended");
+		
+	}
+
+	@Override
+	public void menu() {
+		JFrame frame = new JFrame("Finestra Template");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(w, h));
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
+		frame.pack();
+	}
+
+	@Override
+	public void initialize() {}
+}
+
+
+
+### 46
+public class Football extends Game
+{
+
+	@Override
+	public
+	void initialize() {
+		System.out.println("Football Game Initialized!");		
+	}
+
+	@Override
+	public
+	void startPlay() {
+		System.out.println("Football Game started!");		
+		
+	}
+
+	@Override
+	public
+	void endPlay() {
+		System.out.println("Football Game ended!");		
+		
+	}
+
+	@Override
+	public void menu() {
+
+	}
+
+}
+
+public abstract class Game
+{
+	abstract public void initialize();
+	abstract public void menu();
+	abstract public void startPlay();
+	abstract public void endPlay();
+	
+	public final void play() {
+		this.menu();
+		
+		this.startPlay();
+		
+		this.endPlay();
+	}
+	public void initialize(int level) {}
+}
+
+  
+
+
+
+
+
+
+### 47
+package com.company;
+
+/**
+ * Created by brusk on 21.04.2016.
+ */
+public abstract class  Dürüm {
+
+    public final void dürümYap(){
+        ekmegiHazırla();
+        salataKoy();
+        etKoy();
+        baharatEkle();
+        paketYap();
+
+    }
+
+    public void ekmegiHazırla(){
+        System.out.println("Ekmek hazırlandı");
+    }
+    public void salataKoy(){
+        System.out.println("Salata ekmeğin içine koyuldu");
+
+    }
+    abstract void etKoy();
+    abstract void baharatEkle();
+    public void paketYap(){
+        System.out.println("Paket yapıldı. Afiyet olsun.");
+    }
+}
+
+
+
+
+package com.company;
+
+/**
+ * Created by brusk on 21.04.2016.
+ */
+public class AdanaDürüm extends Dürüm {
+
+
+    @Override
+    void etKoy() {
+        System.out.println("Kırmızı et eklendi");
+
+    }
+
+    @Override
+    void baharatEkle() {
+        System.out.println("az acı ekledi");
+
+    }
+
+
+}
+
+
+
+
+### 48
+package com.company;
+
+/**
+ * Created by brusk on 21.04.2016.
+ */
+public abstract class  Dürüm {
+
+    public final void dürümYap(){
+        ekmegiHazırla();
+        salataKoy();
+        etKoy();
+        baharatEkle();
+        paketYap();
+
+    }
+
+    public void ekmegiHazırla(){
+        System.out.println("Ekmek hazırlandı");
+    }
+    public void salataKoy(){
+        System.out.println("Salata ekmeğin içine koyuldu");
+
+    }
+    abstract void etKoy();
+    abstract void baharatEkle();
+    public void paketYap(){
+        System.out.println("Paket yapıldı. Afiyet olsun.");
+    }
+}
+
+
+
+
+
+package com.company;
+
+/**
+ * Created by brusk on 21.04.2016.
+ */
+public class CiğerDürüm extends Dürüm {
+
+    @Override
+    void etKoy() {
+        System.out.println("Kuzu çiğeri eklendi");
+
+    }
+
+    @Override
+    void baharatEkle() {
+        System.out.println("Acısız");
+
+    }
+
+
+}
+
+
+
+### 49
+package com.company;
+
+/**
+ * Created by brusk on 21.04.2016.
+ */
+public abstract class  Dürüm {
+
+    public final void dürümYap(){
+        ekmegiHazırla();
+        salataKoy();
+        etKoy();
+        baharatEkle();
+        paketYap();
+
+    }
+
+    public void ekmegiHazırla(){
+        System.out.println("Ekmek hazırlandı");
+    }
+    public void salataKoy(){
+        System.out.println("Salata ekmeğin içine koyuldu");
+
+    }
+    abstract void etKoy();
+    abstract void baharatEkle();
+    public void paketYap(){
+        System.out.println("Paket yapıldı. Afiyet olsun.");
+    }
+}
+
+
+
+package com.company;
+
+/**
+ * Created by brusk on 21.04.2016.
+ */
+public class Tantuni extends Dürüm {
+
+
+    @Override
+    void etKoy() {
+        System.out.println("tavuk eti eklendi");
+
+    }
+
+    @Override
+    void baharatEkle() {
+        System.out.println("Ac acı eklendi");
+
+    }
+
+
+}
+
+
+
+
+### 50
+package com.company;
+
+/**
+ * Created by brusk on 21.04.2016.
+ */
+public abstract class  Dürüm {
+
+    public final void dürümYap(){
+        ekmegiHazırla();
+        salataKoy();
+        etKoy();
+        baharatEkle();
+        paketYap();
+
+    }
+
+    public void ekmegiHazırla(){
+        System.out.println("Ekmek hazırlandı");
+    }
+    public void salataKoy(){
+        System.out.println("Salata ekmeğin içine koyuldu");
+
+    }
+    abstract void etKoy();
+    abstract void baharatEkle();
+    public void paketYap(){
+        System.out.println("Paket yapıldı. Afiyet olsun.");
+    }
+}
+
+
+
+package com.company;
+
+/**
+ * Created by brusk on 21.04.2016.
+ */
+public class TavukDürüm extends Dürüm {
+
+
+    @Override
+    void etKoy() {
+        System.out.println("tavuk eti eklendi");
+
+    }
+
+    @Override
+    void baharatEkle() {
+        System.out.println("Acı eklendi");
+
+    }
+
+
+}
+
+
+
+
+
+
+### 51
+package com.example.demo;
+
+/**
+ * @pathName：BlackEagle
+ * @author：ZhangWei
+ */
+public class BlackEagle extends EagleModel {
+    
+    /**
+     * 开始
+     */
+    @Override
+    void start() {
+        System.out.println("黑鹰准备飞翔");
+    }
+
+    /**
+     * 飞翔
+     */
+    @Override
+    void fly() {
+        System.out.println("黑鹰飞翔于天空");
+    }
+
+    /**
+     * 发出叫声
+     */
+    @Override
+    void call() {
+        System.out.println("黑鹰发出叫声");
+    }
+
+    /**
+     * 停止
+     */
+    @Override
+    void stop() {
+        System.out.println("黑鹰落地");
+    }
+    
+}
+
+
+
+package com.example.demo;
+
+/**
+ * @pathName：EagleModel
+ * @author：ZhangWei
+ */
+public abstract class EagleModel {
+
+    /**
+     * 开始
+     */
+    abstract void start();
+
+    /**
+     * 飞翔
+     */
+    abstract void fly();
+
+    /**
+     * 发出叫声
+     */
+    abstract void call();
+
+    /**
+     * 停止
+     */
+    abstract void stop();
+
+    /**
+     * 开始行动
+     * 这里模板方法加入final修饰，防止被覆写
+     */
+    final public void move() {
+        this.start();
+        this.fly();
+        this.call();
+        this.stop();
+    }
+
+}
+
+
+
+
+
+### 52
+package com.example.demo;
+
+/**
+ * @pathName：EagleModel
+ * @author：ZhangWei
+ */
+public abstract class EagleModel {
+
+    /**
+     * 开始
+     */
+    abstract void start();
+
+    /**
+     * 飞翔
+     */
+    abstract void fly();
+
+    /**
+     * 发出叫声
+     */
+    abstract void call();
+
+    /**
+     * 停止
+     */
+    abstract void stop();
+
+    /**
+     * 开始行动
+     * 这里模板方法加入final修饰，防止被覆写
+     */
+    final public void move() {
+        this.start();
+        this.fly();
+        this.call();
+        this.stop();
+    }
+
+}
+
+
+
+
+
+
+package com.example.demo;
+
+/**
+ * @pathName：WhiteEagle
+ * @author：ZhangWei
+ */
+public class WhiteEagle extends EagleModel {
+
+    /**
+     * 开始
+     */
+    @Override
+    void start() {
+        System.out.println("白鹰准备飞翔");
+    }
+
+    /**
+     * 飞翔
+     */
+    @Override
+    void fly() {
+        System.out.println("白鹰飞翔于天空");
+    }
+
+    /**
+     * 发出叫声
+     */
+    @Override
+    void call() {
+        System.out.println("白鹰发出叫声");
+    }
+
+    /**
+     * 停止
+     */
+    @Override
+    void stop() {
+        System.out.println("白鹰落地");
+    }
+
+}
+
+
+
+
+
+
+### 53
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pattern;
+
+/**
+ *
+ * @author vinicius
+ */
+public abstract class MatriculaAluno {   
+        
+    final void realizaMatrícula() {
+        escolheDisciplinas();
+        finalizaMatricula();
+        realizaPagamento();
+        System.out.println();
+    }
+    
+    abstract void escolheDisciplinas();
+    abstract void finalizaMatricula();
+    
+    final void realizaPagamento() {
+        System.out.println("Você pagou a matrícula - Está matriculado");
+    }
+}
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pattern;
+
+/**
+ *
+ * @author vinicius
+ */
+public class MatriculaAlunoADS extends MatriculaAluno {
+
+    @Override
+    void escolheDisciplinas() {
+        System.out.println("Você escolheu para esse Semestre:");
+        System.out.println("Programação II");
+        System.out.println("Programação Para Internet II");
+        System.out.println("Engenharia de Software III");
+    }
+
+    @Override
+    void finalizaMatricula() {
+        System.out.println("Parabéns. você se matriculou em ADS");
+    }    
+}
+
+
+### 54
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pattern;
+
+/**
+ *
+ * @author vinicius
+ */
+public abstract class MatriculaAluno {   
+        
+    final void realizaMatrícula() {
+        escolheDisciplinas();
+        finalizaMatricula();
+        realizaPagamento();
+        System.out.println();
+    }
+    
+    abstract void escolheDisciplinas();
+    abstract void finalizaMatricula();
+    
+    final void realizaPagamento() {
+        System.out.println("Você pagou a matrícula - Está matriculado");
+    }
+}
+
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pattern;
+
+/**
+ *
+ * @author vinicius
+ */
+public class MatriculaAlunoMarketing extends MatriculaAluno{
+
+    @Override
+    void escolheDisciplinas() {
+        System.out.println("Você escolheu para esse Semestre:");
+        System.out.println("Segmentação de Mercado");
+        System.out.println("Marketing Digital");
+    }
+
+    @Override
+    void finalizaMatricula() {
+        System.out.println("Parabéns. você se matriculou em Marketing");
+    }
+    
+}
+
+
+
+
+
+### 55
+package templateMethod;
+
+public abstract class WeekDay {
+
+    public final void startTheDay(TypeOfTransport typeOfTransport){
+        wakeUp();
+        getReady();
+        summary(goToWork(typeOfTransport));
+        work();
+        goHome();
+    }
+
+    protected abstract void work();
+    protected abstract int goToWork(TypeOfTransport typeOfTransport);
+
+    private void goHome() {
+        System.out.println("Going home.");
+    }
+
+    private void summary(int time) {
+        System.out.println("Time spend for going to work: " + time);
+    }
+
+    private void getReady() {
+        System.out.println("Preparing to work.");
+    }
+
+    private void wakeUp(){
+        System.out.println("Waking up.");
+    }
+}
+
+
+package templateMethod;
+
+public enum TypeOfTransport {
+    CAR,
+    BIKE,
+    TRAM
+}
+
+
+
+
+package templateMethod;
+
+public class ElizasDay extends WeekDay {
+    @Override
+    protected void work() {
+        System.out.println("Fry some fishes, boil some soup and some standing.");
+    }
+
+    @Override
+    protected int goToWork(TypeOfTransport typeOfTransport) {
+        switch (typeOfTransport){
+            case CAR:
+                return 15;
+            case BIKE:
+                return 45;
+            case TRAM:
+                return 30;
+            default:
+                throw new UnsupportedOperationException("Unknown type of transport");
+        }
+    }
+}
+
+
+### 56
+package templateMethod;
+
+public class MyDay extends WeekDay {
+    @Override
+    protected void work() {
+        System.out.println("Writing some code, debugging, drinking some tea and talking.");
+    }
+
+    @Override
+    protected int goToWork(TypeOfTransport typeOfTransport) {
+        switch (typeOfTransport){
+            case CAR:
+                return 30;
+            case BIKE:
+                return 60;
+            case TRAM:
+                return 40;
+            default:
+                    throw new UnsupportedOperationException("Unknown type of transport");
+        }
+    }
+}
+
+package templateMethod;
+
+public enum TypeOfTransport {
+    CAR,
+    BIKE,
+    TRAM
+}
+
+
+package templateMethod;
+
+public abstract class WeekDay {
+
+    public final void startTheDay(TypeOfTransport typeOfTransport){
+        wakeUp();
+        getReady();
+        summary(goToWork(typeOfTransport));
+        work();
+        goHome();
+    }
+
+    protected abstract void work();
+    protected abstract int goToWork(TypeOfTransport typeOfTransport);
+
+    private void goHome() {
+        System.out.println("Going home.");
+    }
+
+    private void summary(int time) {
+        System.out.println("Time spend for going to work: " + time);
+    }
+
+    private void getReady() {
+        System.out.println("Preparing to work.");
+    }
+
+    private void wakeUp(){
+        System.out.println("Waking up.");
+    }
+}
+
+  
+
+
+
+### 57
+package com.manny;
+
+public abstract class DataProcessor {
+
+    public void readProcessAndSave(){
+        readData();
+        processData();
+        saveData();
+    }
+
+    public abstract void readData();
+    public abstract void processData();
+
+    public void saveData(){
+
+        System.out.println("Save data to DB");
+    }
+}
+
+  
+package com.manny;
+
+public class ExcelFile extends DataProcessor{
+
+    @Override
+    public void readData(){
+
+        System.out.println("Read data from excel file");
+    }
+
+    @Override
+    public void processData(){
+
+        System.out.println("Process data from excel file");
+    }
+
+}
+
+
+
+
+### 58
+package com.manny;
+
+public abstract class DataProcessor {
+
+    public void readProcessAndSave(){
+        readData();
+        processData();
+        saveData();
+    }
+
+    public abstract void readData();
+    public abstract void processData();
+
+    public void saveData(){
+
+        System.out.println("Save data to DB");
+    }
+}
+
+
+
+package com.manny;
+
+public class TextFile extends DataProcessor{
+
+    @Override
+    public void readData(){
+
+        System.out.println("Read data from text file");
+    }
+
+    @Override
+    public void processData(){
+
+        System.out.println("Process data from text file");
+    }
+}
+
+
+
+
+
+
+### 59
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: ButtonExtension.java
+  Abstract class from which other buttons are extended from to dictate the behavior
+  for child classes using the Template Method Pattern.
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+
+/**
+ * Abstract class from which other buttons are extended from to dictate the behavior
+ * for child classes using the Template Method Pattern.
+ */
+public abstract class ButtonExtension extends Button{
+
+    /**
+     * Super Constructor for each class that extends from this class that will then pass
+     * the parameters to the javafx.scene.control.Button from which this class extends from.
+     *
+     * Then sets a ClickListener to run each of the 4 methods defined in this class.
+     * @param label - String - the Button label.
+     */
+    ButtonExtension(String label) {
+        super(label);
+
+        /*
+         Create a ClickListener that will run each of the 4 methods included in this class.
+         If the child class does not implement the method, the default behavior defined below
+         will be performed with the exception of the abstrac_t method showResultsText() which must be
+         implemented by any class that extends from this class.
+        */
+        setOnAction((event) -> {
+            showResultsText(event);
+            changeColor();
+            changeText();
+            resizeButton();
+        });
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     * @param event - MouseEvent - Click Listener
+     */
+    public abstract void showResultsText(ActionEvent event);
+
+    /**
+     * Intended behavior is to change the color properties of the button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void changeColor(){
+    
+    }
+
+    /**
+     * Change the text within the button.
+     *
+     * The default behavior is to print the class that called this method and print it to the
+     * console.
+     */
+    public void changeText() {
+        System.out.println(this.getClass().getSimpleName() + " is the button class that called changeText()");
+        System.out.println("This is default behaviour and doesn't do anything.");
+        System.out.println();
+    }
+
+    /**
+     * Intended behavior is to change the size of a button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void resizeButton() {
+    
+    }
+}
+
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: ColorChangingButton.java
+  A button that changes in both background and text color.
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import ui.UI;
+
+import java.util.Random;
+
+/**
+ * A button that changes in both background and text color.
+ */
+public class ColorChangingButton extends ButtonExtension {
+    private Random random = new Random();
+    private int RGB_COLOR_MAX_LIMIT = 255;
+
+    /**
+     * Constructor
+     * @param label - String - the Button label.
+     */
+    public ColorChangingButton(String label) {
+        super(label);
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     *
+     * @param event - MouseEvent - Click Listener
+     */
+    @Override
+    public void showResultsText(ActionEvent event) {
+        Label colorChangePopup = new Label("Changing color!");
+        colorChangePopup.setAlignment(Pos.CENTER);
+        colorChangePopup.setTextFill(getRandomColor());
+        colorChangePopup.setStyle("-fx-font-size: 20;" +
+                "-fx-font-weight: bold");
+
+        ScrollPane popoverScrollPane = (ScrollPane) UI.getLabelPane();
+        VBox popOverBox = (VBox) popoverScrollPane.getContent();
+        popOverBox.getChildren().add(colorChangePopup);
+    }
+
+    /**
+     * Change the text color and the background of the button.
+     */
+    @Override
+    public void changeColor() {
+        setStyle("-fx-font-weight: bold");
+        setFillAndTextColor(getRandomColor(), getRandomColor());
+    }
+
+    private void setFillAndTextColor(Color background, Color textColor) {
+        setBackground(new Background(new BackgroundFill(background, CornerRadii.EMPTY, Insets.EMPTY)));
+        setTextFill(textColor);
+    }
+
+    private Color getRandomColor() {
+        return Color.rgb(random.nextInt(RGB_COLOR_MAX_LIMIT),
+                random.nextInt(RGB_COLOR_MAX_LIMIT),
+                random.nextInt(RGB_COLOR_MAX_LIMIT));
+    }
+}
+
+
+
+
+
+
+### 60
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: ButtonExtension.java
+  Abstract class from which other buttons are extended from to dictate the behavior
+  for child classes using the Template Method Pattern.
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+
+/**
+ * Abstract class from which other buttons are extended from to dictate the behavior
+ * for child classes using the Template Method Pattern.
+ */
+public abstract class ButtonExtension extends Button{
+
+    /**
+     * Super Constructor for each class that extends from this class that will then pass
+     * the parameters to the javafx.scene.control.Button from which this class extends from.
+     *
+     * Then sets a ClickListener to run each of the 4 methods defined in this class.
+     * @param label - String - the Button label.
+     */
+    ButtonExtension(String label) {
+        super(label);
+
+        /*
+         Create a ClickListener that will run each of the 4 methods included in this class.
+         If the child class does not implement the method, the default behavior defined below
+         will be performed with the exception of the abstrac_t method showResultsText() which must be
+         implemented by any class that extends from this class.
+        */
+        setOnAction((event) -> {
+            showResultsText(event);
+            changeColor();
+            changeText();
+            resizeButton();
+        });
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     * @param event - MouseEvent - Click Listener
+     */
+    public abstract void showResultsText(ActionEvent event);
+
+    /**
+     * Intended behavior is to change the color properties of the button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void changeColor(){
+    
+    }
+
+    /**
+     * Change the text within the button.
+     *
+     * The default behavior is to print the class that called this method and print it to the
+     * console.
+     */
+    public void changeText() {
+        System.out.println(this.getClass().getSimpleName() + " is the button class that called changeText()");
+        System.out.println("This is default behaviour and doesn't do anything.");
+        System.out.println();
+    }
+
+    /**
+     * Intended behavior is to change the size of a button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void resizeButton() {
+    
+    }
+}
+
+
+
+
+
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: DefaultButton.java
+  A default button that only implements showResultsText().
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
+import ui.UI;
+
+/**
+ * A default button that only implements showResultsText().
+ */
+public class DefaultButton extends ButtonExtension {
+
+    /**
+     * Constructor
+     * @param label - String - the Button label.
+     */
+    public DefaultButton(String label) {
+        super(label);
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     *
+     * @param event - MouseEvent - Click Listener
+     */
+    @Override
+    public void showResultsText(ActionEvent event) {
+        Label defaultChange = new Label("You clicked a default button.");
+        defaultChange.setAlignment(Pos.CENTER);
+        defaultChange.setStyle("-fx-font-size: 20;" +
+                "-fx-text-fill: black;" +
+                "-fx-font-weight: bold");
+
+        ScrollPane popoverScrollPane = (ScrollPane) UI.getLabelPane();
+        VBox popOverBox = (VBox) popoverScrollPane.getContent();
+        popOverBox.getChildren().add(defaultChange);
+    }
+}
+
+
+
+
+### 61
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: ButtonExtension.java
+  Abstract class from which other buttons are extended from to dictate the behavior
+  for child classes using the Template Method Pattern.
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+
+/**
+ * Abstract class from which other buttons are extended from to dictate the behavior
+ * for child classes using the Template Method Pattern.
+ */
+public abstract class ButtonExtension extends Button{
+
+    /**
+     * Super Constructor for each class that extends from this class that will then pass
+     * the parameters to the javafx.scene.control.Button from which this class extends from.
+     *
+     * Then sets a ClickListener to run each of the 4 methods defined in this class.
+     * @param label - String - the Button label.
+     */
+    ButtonExtension(String label) {
+        super(label);
+
+        /*
+         Create a ClickListener that will run each of the 4 methods included in this class.
+         If the child class does not implement the method, the default behavior defined below
+         will be performed with the exception of the abstrac_t method showResultsText() which must be
+         implemented by any class that extends from this class.
+        */
+        setOnAction((event) -> {
+            showResultsText(event);
+            changeColor();
+            changeText();
+            resizeButton();
+        });
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     * @param event - MouseEvent - Click Listener
+     */
+    public abstract void showResultsText(ActionEvent event);
+
+    /**
+     * Intended behavior is to change the color properties of the button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void changeColor(){
+    
+    }
+
+    /**
+     * Change the text within the button.
+     *
+     * The default behavior is to print the class that called this method and print it to the
+     * console.
+     */
+    public void changeText() {
+        System.out.println(this.getClass().getSimpleName() + " is the button class that called changeText()");
+        System.out.println("This is default behaviour and doesn't do anything.");
+        System.out.println();
+    }
+
+    /**
+     * Intended behavior is to change the size of a button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void resizeButton() {
+    
+    }
+}
+
+
+
+
+
+
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: EverythingButton.java
+  A button that implements or overrides all methods provided by the abstract parent
+  ButtonExtension class.
+ */
+
+package buttons;
+
+import ui.UI;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+
+import java.util.Random;
+
+/**
+ * A button that implements or overrides all methods provided by the abstract parent
+ * ButtonExtension class.
+ */
+public class EverythingButton extends ButtonExtension {
+    private Random random = new Random();
+    private String firstToggleText = "3 months left!!!";
+    private String secondToggleText = "Let's get CRAZY NOW!!!";
+    String toggle = firstToggleText;
+
+    /**
+     * Constructor
+     * @param label - String - the Button label.
+     */
+    public EverythingButton(String label) {
+        super(label);
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     *
+     * @param event - MouseEvent - Click Listener
+     */
+    @Override
+    public void showResultsText(ActionEvent event) {
+        String text = toggle;
+
+        Label colorChangePopup = new Label(text);
+        colorChangePopup.setAlignment(Pos.CENTER);
+        colorChangePopup.setTextFill(getRandomColor());
+        colorChangePopup.setStyle("-fx-font: 25px Magneto;" +
+                "-fx-font-weight: bolder;");
+
+        ScrollPane popoverScrollPane = (ScrollPane) UI.getLabelPane();
+        VBox popOverBox = (VBox) popoverScrollPane.getContent();
+        popOverBox.getChildren().add(colorChangePopup);
+    }
+
+    /**
+     * Change the text color and the background of the button.
+     */
+    @Override
+    public void changeColor() {
+        setPadding(Insets.EMPTY);
+        setFillAndTextColor(getRandomColor(), getRandomColor());
+    }
+
+    private void setFillAndTextColor(Color background, Color textColor) {
+        setBackground(new Background(new BackgroundFill(background, CornerRadii.EMPTY, Insets.EMPTY)));
+        setTextFill(textColor);
+    }
+
+    private Color getRandomColor() {
+        return Color.rgb(random.nextInt(255),
+                random.nextInt(255),
+                random.nextInt(255));
+    }
+
+    /**
+     * Set the text of the button to the toggled value. then change this value to be either the
+     * first or second toggle text.
+     */
+    @Override
+    public void changeText() {
+        setText(toggle);
+
+        if(toggle.equals(firstToggleText)) {
+            toggle = secondToggleText;
+        } else {
+            toggle = firstToggleText;
+        }
+    }
+
+    /**
+     * Toggle the size of the button.
+     */
+    @Override
+    public void resizeButton() {
+        if(getPrefWidth() == 300) {
+            setPrefSize(600, 200);
+            setStyle("-fx-font-size: 33");
+        } else {
+            setPrefSize(300, 100);
+            setStyle("-fx-font-size: 28");
+        }
+    }
+}
+
+
+
+
+
+### 62 
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: ButtonExtension.java
+  Abstract class from which other buttons are extended from to dictate the behavior
+  for child classes using the Template Method Pattern.
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+
+/**
+ * Abstract class from which other buttons are extended from to dictate the behavior
+ * for child classes using the Template Method Pattern.
+ */
+public abstract class ButtonExtension extends Button{
+
+    /**
+     * Super Constructor for each class that extends from this class that will then pass
+     * the parameters to the javafx.scene.control.Button from which this class extends from.
+     *
+     * Then sets a ClickListener to run each of the 4 methods defined in this class.
+     * @param label - String - the Button label.
+     */
+    ButtonExtension(String label) {
+        super(label);
+
+        /*
+         Create a ClickListener that will run each of the 4 methods included in this class.
+         If the child class does not implement the method, the default behavior defined below
+         will be performed with the exception of the Abstract method showResultsText() which must be
+         implemented by any class that extends from this class.
+        */
+        setOnAction((event) -> {
+            showResultsText(event);
+            changeColor();
+            changeText();
+            resizeButton();
+        });
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     * @param event - MouseEvent - Click Listener
+     */
+    public abstract void showResultsText(ActionEvent event);
+
+    /**
+     * Intended behavior is to change the color properties of the button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void changeColor(){
+    
+    }
+
+    /**
+     * Change the text within the button.
+     *
+     * The default behavior is to print the class that called this method and print it to the
+     * console.
+     */
+    public void changeText() {
+        System.out.println(this.getClass().getSimpleName() + " is the button class that called changeText()");
+        System.out.println("This is default behaviour and doesn't do anything.");
+        System.out.println();
+    }
+
+    /**
+     * Intended behavior is to change the size of a button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void resizeButton() {
+    
+    }
+}
+
+
+
+
+
+
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: SizeChangingButton.java
+  A button that changes size and toggles between two sizes.
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
+import ui.UI;
+
+/**
+ * A button that changes size and toggles between two sizes.
+ */
+public class SizeChangingButton extends ButtonExtension {
+
+    /**
+     * Constructor
+     * @param label - String - the Button label.
+     */
+    public SizeChangingButton(String label) {
+        super(label);
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     *
+     * @param event - MouseEvent - Click Listener
+     */
+    @Override
+    public void showResultsText(ActionEvent event) {
+        String text;
+        if (getPrefWidth() == 400) {
+            text = "100x50";
+        } else {
+            text = "400x100";
+        }
+
+        Label sizeChangePopup = new Label("Button size changing to " + text);
+        sizeChangePopup.setAlignment(Pos.CENTER);
+        sizeChangePopup.setStyle("-fx-font-size: 20;" +
+                "-fx-text-fill: red;" +
+                "-fx-font-weight: bold");
+
+        ScrollPane popoverScrollPane = (ScrollPane)UI.getLabelPane();
+        VBox popOverBox = (VBox) popoverScrollPane.getContent();
+        popOverBox.getChildren().add(sizeChangePopup);
+    }
+
+    /**
+     * Toggle the size of the button.
+     */
+    @Override
+    public void resizeButton() {
+        if(getPrefWidth() == 400) {
+            setPrefSize(150, 50);
+        } else {
+            setPrefSize(400, 100);
+        }
+    }
+}
+
+
+
+
+
+### 63
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: ButtonExtension.java
+  Abstract class from which other buttons are extended from to dictate the behavior
+  for child classes using the Template Method Pattern.
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+
+/**
+ * Abstract class from which other buttons are extended from to dictate the behavior
+ * for child classes using the Template Method Pattern.
+ */
+public abstract class ButtonExtension extends Button{
+
+    /**
+     * Super Constructor for each class that extends from this class that will then pass
+     * the parameters to the javafx.scene.control.Button from which this class extends from.
+     *
+     * Then sets a ClickListener to run each of the 4 methods defined in this class.
+     * @param label - String - the Button label.
+     */
+    ButtonExtension(String label) {
+        super(label);
+
+        /*
+         Create a ClickListener that will run each of the 4 methods included in this class.
+         If the child class does not implement the method, the default behavior defined below
+         will be performed with the exception of the Abstract method showResultsText() which must be
+         implemented by any class that extends from this class.
+        */
+        setOnAction((event) -> {
+            showResultsText(event);
+            changeColor();
+            changeText();
+            resizeButton();
+        });
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     * @param event - MouseEvent - Click Listener
+     */
+    public abstract void showResultsText(ActionEvent event);
+
+    /**
+     * Intended behavior is to change the color properties of the button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void changeColor(){
+    
+    }
+
+    /**
+     * Change the text within the button.
+     *
+     * The default behavior is to print the class that called this method and print it to the
+     * console.
+     */
+    public void changeText() {
+        System.out.println(this.getClass().getSimpleName() + " is the button class that called changeText()");
+        System.out.println("This is default behaviour and doesn't do anything.");
+        System.out.println();
+    }
+
+    /**
+     * Intended behavior is to change the size of a button.
+     *
+     * Default behavior is a blank method meaning the child class may choose to implement this
+     * method.
+     */
+    public void resizeButton() {
+    
+    }
+}
+
+
+
+
+
+
+/*
+  Author: Jonnathon McCoy
+  Author: Sofiya Antonyuk
+  Date: 3/13/2018
+  Filename: TextChangingButton.java
+  A button that changes the label text of the button.
+ */
+
+package buttons;
+
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
+import ui.UI;
+
+/**
+ * A button that changes the label text of the button.
+ */
+public class TextChangingButton extends ButtonExtension {
+    
+    private String oldText;
+    private String defaultText = "Wanna know something?";
+
+    /**
+     * Constructor
+     * @param label - String - the Button label.
+     */
+    public TextChangingButton(String label) {
+        super(label);
+    }
+
+    /**
+     * Show the results in the ScrollPane upon clicking the button.
+     *
+     * @param event - MouseEvent - Click Listener
+     */
+    @Override
+    public void showResultsText(ActionEvent event) {
+        String text;
+        if(oldText == null) {
+            text = defaultText;
+        } else {
+            text = oldText;
+        }
+
+        Label textChangePopup = new Label(text);
+        textChangePopup.setAlignment(Pos.CENTER);
+        textChangePopup.setStyle("-fx-font-size: 20;" +
+                "-fx-text-fill: blue;" +
+                "-fx-font-weight: bold");
+
+        ScrollPane popoverScrollPane = (ScrollPane) UI.getLabelPane();
+        VBox popOverBox = (VBox) popoverScrollPane.getContent();
+        popOverBox.getChildren().add(textChangePopup);
+    }
+
+    /**
+     * Set the text of the button to the toggled value. then change this value to be either the
+     * defaultText or the text previously stored.
+     */
+    @Override
+    public void changeText() {
+        if(oldText == null) {
+            oldText = getText();
+            setText(defaultText);
+        } else {
+            setText(oldText);
+            oldText = null;
+        }
+    }
+}
+
+
+
+
+
+### 64
+package com.example.javatest;
+
+/**
+ * GoHome:抽象类
+ * Created by My on 2018/1/17.
+ */
+
+public abstract class GoHome {
+    // 方便子类使用
+    protected String name;
+    protected String address;
+
+    public GoHome() {
+    }
+
+    // 构造方法的重载，方便为成员变量赋值
+    public GoHome(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    /**
+     * 定义一个操作中的算法的骨架
+     */
+    public void goHome() {
+        // 1.自我介绍,父类实现
+        this.introduce();
+        // 2.买票，A，B地址不同，买不同的票，延伸到子类实现
+        this.buyTicket();
+        // 3.回家
+        System.out.println("票已买到了，回家过年！");
+    }
+
+
+    public void introduce() {
+        System.out.println("我是：" + this.name + ",我的家在：" + this.address);
+    }
+
+    // 将一些可变部分的实现延迟到子类中
+    public abstract void buyTicket();
+
+
+}
+
+
+
+
+package com.example.javatest;
+
+/**
+ * AGoHome
+ * Created by My on 2018/1/17.
+ */
+
+public class AGoHome extends GoHome {
+
+    public AGoHome(String name, String address) {
+        super(name, address);
+    }
+
+    @Override
+    public void buyTicket() {
+        System.out.println("我要买到：" + this.address + "的火车票");
+    }
+}
+
+
+
+
+
+
+### 65
+package com.example.javatest;
+
+/**
+ * GoHome:抽象类
+ * Created by My on 2018/1/17.
+ */
+
+public abstract class GoHome {
+    // 方便子类使用
+    protected String name;
+    protected String address;
+
+    public GoHome() {
+    }
+
+    // 构造方法的重载，方便为成员变量赋值
+    public GoHome(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    /**
+     * 定义一个操作中的算法的骨架
+     */
+    public void goHome() {
+        // 1.自我介绍,父类实现
+        this.introduce();
+        // 2.买票，A，B地址不同，买不同的票，延伸到子类实现
+        this.buyTicket();
+        // 3.回家
+        System.out.println("票已买到了，回家过年！");
+    }
+
+
+    public void introduce() {
+        System.out.println("我是：" + this.name + ",我的家在：" + this.address);
+    }
+
+    // 将一些可变部分的实现延迟到子类中
+    public abstract void buyTicket();
+
+
+}
+
+
+
+
+
+package com.example.javatest;
+
+/**
+ * Created by My on 2018/1/17.
+ */
+
+public class BGoHome extends GoHome {
+
+    public BGoHome(String name, String address) {
+        super(name, address);
+    }
+
+    @Override
+    public void buyTicket() {
+        System.out.println("我要买到：" + this.address + "的火车票");
+    }
+}
+
+
+
+
+
+
+
+### 66
+public abstract class CaffeineBeverageWithHook {
+    final void prepareRecipe(){
+        boilWater();
+        brew();
+        pourInCup();
+        if(customerWantsCondiments()) {
+            addCondiments();
+        }
+    }
+
+    abstract void brew();
+
+    abstract void addCondiments();
+
+    void boilWater(){
+        System.out.println("Boiling water");
+    }
+
+    void pourInCup(){
+        System.out.println("Pouring into cup");
+    }
+
+    boolean customerWantsCondiments(){
+        return true;
+    }
+}
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class CoffeeWithHook extends CaffeineBeverageWithHook {
+    @Override
+    void brew() {
+        System.out.println("Dripping Coffee through filter");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Sugar and Milk");
+    }
+
+    @Override
+    public boolean customerWantsCondiments(){
+        String answer = getUserInput();
+
+        if(answer.toLowerCase().startsWith("y")){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    private String getUserInput(){
+        String answer = null;
+
+        System.out.print("Would you like milk and sugar with yourt coffee (y/n)?");
+
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            answer = in.readLine();
+        }catch (IOException ioe){
+            System.err.println("IO error trying to read your answer");
+        }
+
+        if(answer == null){
+            return "no";
+        }
+        return answer;
+    }
+}
+
+
+
+
+### 67
+package abstract_class;
+
+public abstract class AbstractClassCaffeineBeverageWithHook {
+
+    final public  void prepareRecipe(){
+        boilWater();
+        brew();
+        pourInCup();
+        if(customerWantsCondiments()){
+            addCondiments();
+        }
+
+    }
+
+    protected abstract void brew();
+    protected abstract  void addCondiments();
+
+    public void boilWater(){
+        System.out.println("Boiling water");
+    }
+    public void pourInCup(){
+        System.out.println("Pouring water");
+    }
+
+    //在这里定义了一个方法,通常是空的缺省实现。这个方法只会返回true，不做别的事
+    //这是一个钩子，子糯可以覆盖这个方法，但不见得一定要这么做
+    protected boolean customerWantsCondiments(){
+        return true;
+    }
+}
+
+package concrete_class;
+
+import abstract_class.AbstractClassCaffeineBeverageWithHook;
+
+public class CoffeeWithHook extends AbstractClassCaffeineBeverageWithHook {
+    @Override
+    protected void brew() {
+        System.out.println("Dripping Coffee through filter");
+
+    }
+
+    @Override
+    protected void addCondiments() {
+        System.out.println("Add sugar and Milk");
+
+    }
+
+    @Override
+    protected boolean customerWantsCondiments() { //覆盖这个钩子，提供自己的功能，不返回true了，返回false。
+        return  false;
+    }
+}
+
+
+
+
+### 68
+package abstract_class;
+
+public abstract class AbstractClassCaffeineBeverageWithHook {
+
+    final public  void prepareRecipe(){
+        boilWater();
+        brew();
+        pourInCup();
+        if(customerWantsCondiments()){
+            addCondiments();
+        }
+
+    }
+
+    protected abstract void brew();
+    protected abstract  void addCondiments();
+
+    public void boilWater(){
+        System.out.println("Boiling water");
+    }
+    public void pourInCup(){
+        System.out.println("Pouring water");
+    }
+
+    //在这里定义了一个方法,通常是空的缺省实现。这个方法只会返回true，不做别的事
+    //这是一个钩子，子糯可以覆盖这个方法，但不见得一定要这么做
+    protected boolean customerWantsCondiments(){
+        return true;
+    }
+}
+
+
+
+
+
+
+package concrete_class;
+
+import abstract_class.AbstractClassCaffeineBeverageWithHook;
+
+public class TeaWithNoHook extends AbstractClassCaffeineBeverageWithHook {
+    @Override
+    protected void brew() {
+        System.out.println("steeping the tea");
+
+    }
+
+    @Override
+    protected void addCondiments() {
+        System.out.println("Add lemon");
+
+    }
+
+}
+
+
+
+
+
+
+
+
+### 69
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+//Light subsystem---------------------------------
+private boolean lightState = false;
+public class LightStateOn extends Event{
+    public LightStateOn(long delatTime) {
+        super(delatTime);
+    }
+    @Override
+    public void action() {
+        lightState=true;
+    }
+    @Override
+    public String toString() {
+        return "Light is On!";
+    }
+}
+
+
+### 70
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+//Light subsystem---------------------------------
+private boolean lightState = false;
+public class LightStateOff extends Event{
+    public LightStateOff(long delatTime) {
+        super(delatTime);
+    }
+    @Override
+    public void action() {
+        lightState=false;
+    }
+    @Override
+    public String toString() {
+        return "Light is Off!";
+    }
+}
+
+### 71
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+//Water subsystem----------------------------------
+private boolean waterState = false;
+public class WaterStateOn extends Event{
+    public WaterStateOn(long delatTime) {
+        super(delatTime);
+    }
+    @Override
+    public void action() {
+        waterState=true;
+    }
+
+    @Override
+    public String toString() {
+        return "Water is On!";
+    }
+}
+
+
+### 72
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+//Water subsystem----------------------------------
+private boolean waterState = false;
+public class WaterStateOff extends Event{
+    public WaterStateOff(long delatTime) {
+        super(delatTime);
+    }
+    @Override
+    public void action() {
+        waterState=false;
+    }
+
+    @Override
+    public String toString() {
+        return "Water is Off!";
+    }
+}
+
+
+### 73
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+//Thermostat subsystem--------------------------------
+private enum THERMOSTAT_STATE{
+    MORNING, DAY, EVENING, NIGHT;
+}
+private THERMOSTAT_STATE thermostatState = THERMOSTAT_STATE.MORNING;
+public class ThermostatStateMorning extends Event{
+
+    public ThermostatStateMorning(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        thermostatState = THERMOSTAT_STATE.MORNING;
+    }
+
+    @Override
+    public String toString() {
+        return "Thermostat State is Morning!";
+    }
+}
+
+
+
+### 74
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+//Thermostat subsystem--------------------------------
+private enum THERMOSTAT_STATE{
+    MORNING, DAY, EVENING, NIGHT;
+}
+private THERMOSTAT_STATE thermostatState = THERMOSTAT_STATE.MORNING;
+public class ThermostatStateDay extends Event{
+
+    public ThermostatStateDay(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        thermostatState = THERMOSTAT_STATE.DAY;
+    }
+
+    @Override
+    public String toString() {
+        return "Thermostat State is Day!";
+    }
+}
+
+### 75
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+//Thermostat subsystem--------------------------------
+private enum THERMOSTAT_STATE{
+    MORNING, DAY, EVENING, NIGHT;
+}
+private THERMOSTAT_STATE thermostatState = THERMOSTAT_STATE.MORNING;
+public class ThermostatStateEvening extends Event{
+
+    public ThermostatStateEvening(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        thermostatState = THERMOSTAT_STATE.EVENING;
+    }
+
+    @Override
+    public String toString() {
+        return "Thermostat State is Evening!";
+    }
+}
+
+### 76
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+//Thermostat subsystem--------------------------------
+private enum THERMOSTAT_STATE{
+    MORNING, DAY, EVENING, NIGHT;
+}
+private THERMOSTAT_STATE thermostatState = THERMOSTAT_STATE.MORNING;
+public class ThermostatStateNight extends Event{
+
+    public ThermostatStateNight(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        thermostatState = THERMOSTAT_STATE.NIGHT;
+    }
+
+    @Override
+    public String toString() {
+        return "Thermostat State is Night!";
+    }
+}
+
+
+### 77
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+//Fan subsystem----------------------------------------
+private enum FAN_STATE{
+    OFF, LOW, MEDIUM, HIGH;
+}
+private FAN_STATE fanState = FAN_STATE.OFF;
+public class FanStateOff extends Event{
+
+    public FanStateOff(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        fanState = FAN_STATE.OFF;
+    }
+
+    @Override
+    public String toString() {
+        return "Fan state is off!";
+    }
+}
+
+
+### 78
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+
+//Fan subsystem----------------------------------------
+private enum FAN_STATE{
+    OFF, LOW, MEDIUM, HIGH;
+}
+private FAN_STATE fanState = FAN_STATE.OFF;
+public class FanStateLow extends Event{
+
+    public FanStateLow(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        fanState = FAN_STATE.LOW;
+    }
+
+    @Override
+    public String toString() {
+        return "Fan state is Low!";
+    }
+}
+
+
+### 79
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+//Fan subsystem----------------------------------------
+private enum FAN_STATE{
+    OFF, LOW, MEDIUM, HIGH;
+}
+private FAN_STATE fanState = FAN_STATE.OFF;
+public class FanStateMedium extends Event{
+
+    public FanStateMedium(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        fanState = FAN_STATE.MEDIUM;
+    }
+
+    @Override
+    public String toString() {
+        return "Fan state is medium!";
+    }
+}
+
+
+### 80
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+
+//Fan subsystem----------------------------------------
+private enum FAN_STATE{
+    OFF, LOW, MEDIUM, HIGH;
+}
+private FAN_STATE fanState = FAN_STATE.OFF;
+public class FanStateHigh extends Event{
+
+    public FanStateHigh(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        fanState = FAN_STATE.HIGH;
+    }
+
+    @Override
+    public String toString() {
+        return "Fan state is high!";
+    }
+}
+
+### 81
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+
+
+
+
+//Bell subsystem
+public class Bell extends Event{
+    public Bell(long delatTime) {
+        super(delatTime);
+    }
+
+    @Override
+    public void action() {
+        System.out.println("Beep!!!");
+    }
+
+    @Override
+    public String toString() {
+        return "Bang!!! Bang!!!";
+    }
+}
+
+
+### 82
+public abstract class Event {
+    private long eventTime;
+    protected final long delayTime;
+    public Event(long delatTime){
+        this.delayTime=delatTime;
+        this.start();
+    }
+
+    public void start() {
+        this.eventTime=System.nanoTime() + this.delayTime;
+    }
+
+    public boolean ready(){
+        return System.nanoTime()>=eventTime;
+    }
+    public abstract void action();
+    public abstract String toString();
+}
+
+
+
+//Terminate subsystem
+public static class Terminate extends Event{
+    public Terminate(long delatTime) {
+        super(delatTime);
+    }
+    @Override
+    public void action() {
+        System.exit(0);
+    }
+    @Override
+    public String toString() {
+        return "Terminating";
+    }
+}
+
+
+
+
+### 83
+public abstract class CrossCompiler {
+    public final void crossCompile() {
+        collectSource();
+        compileToTarget();
+    }
+    //Template methods
+    protected abstract void collectSource();
+    protected abstract void compileToTarget();
+}
+
+
+
+public class AndroidCompiler extends CrossCompiler {
+    @Override
+    protected void collectSource() {
+        //anything specific to this class
+    }
+    @Override
+    protected void compileToTarget() {
+        //android specific compilation
+        System.out.println("Finished compiling Android");
+    }
+}
+
+
+### 84
+public abstract class CrossCompiler {
+    public final void crossCompile() {
+        collectSource();
+        compileToTarget();
+    }
+    //Template methods
+    protected abstract void collectSource();
+    protected abstract void compileToTarget();
+}
+
+
+public class IPhoneCompiler extends CrossCompiler {
+    @Override
+    protected void collectSource() {
+        //anything specific to this class
+    }
+    @Override
+    protected void compileToTarget() {
+        //iphone specific compilation
+        System.out.println("Finished compiling Iphone");
+    }
+}
+
+
+
+
+
+
+
+
+### 85
+/*
+Created by ChrisChan on 2017/8/21.
+*/
+public abstract class CaffeineBeverage {
+    final void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    }
+
+    abstract void brew();
+
+    abstract void addCondiments();
+
+    void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+}
+
+
+$$$
+/*
+Created by ChrisChan on 2017/8/21.
+*/
+public class Coffee extends CaffeineBeverage {
+    @Override
+    void brew() {
+        System.out.println("Dripping Coffee through filter");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Sugar and Milk");
+    }
+}
+
+
+
+
+### 86
+/*
+Created by ChrisChan on 2017/8/21.
+*/
+public abstract class CaffeineBeverage {
+    final void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    }
+
+    abstract void brew();
+
+    abstract void addCondiments();
+
+    void boilWater() {
+        System.out.println("Boiling water");
+    }
+
+    void pourInCup() {
+        System.out.println("Pouring into cup");
+    }
+}
+
+
+
+
+$$$
+/*
+Created by ChrisChan on 2017/8/21.
+*/
+public class Tea extends CaffeineBeverage {
+    @Override
+    void brew() {
+        System.out.println("Steeping the tea");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("Adding Lemon");
+    }
+}
+
+
+
+
+
+
+
+
+### 87
+public abstract class Coffee {
+	// A Template Method Pattern contains a method that provides
+	// the steps of the algorithm. It allows subclasses to override
+	// some of the methods
+
+	// This is the Template Method
+	// Declare this method final to keep subclasses from
+	// changing the algorithm
+	public final void makeCoffee(){
+		//obligatory
+		addCoffee();
+		addWater();
+		
+		//optional
+		if(customerWantsMilk()){
+			addMilk();
+		}
+		if(customerWantsSuggar()){
+			addSuggar();
+		}
+	}
+
+	 // These methods must be overridden by the extending subclasses
+	abstract void addSuggar();
+	abstract void addMilk();
+
+	public void addWater() {
+		 System.out.println("Water ");
+	}
+
+	public void addCoffee() {
+		System.out.println("Coffee ");
+	}
+
+	// These are called hooks
+	// If the user wants to override these they can
+	// Use abstract methods when you want to force the user
+	// to override and use a hook when you want it to be optional
+	boolean customerWantsMilk() { return true; }
+	boolean customerWantsSuggar() { return true; }
+
+}
+
+$$$
+public class Espresso extends Coffee{
+	
+	@Override
+	boolean customerWantsMilk() { return false; }
+
+	@Override
+	void addSuggar() {
+		 System.out.print("Suggar ");
+	}
+	
+
+	@Override
+	void addMilk() {}
+
+}
+
+
+
+### 88
+public abstract class Coffee {
+	// A Template Method Pattern contains a method that provides
+	// the steps of the algorithm. It allows subclasses to override
+	// some of the methods
+
+	// This is the Template Method
+	// Declare this method final to keep subclasses from
+	// changing the algorithm
+	public final void makeCoffee(){
+		//obligatory
+		addCoffee();
+		addWater();
+		
+		//optional
+		if(customerWantsMilk()){
+			addMilk();
+		}
+		if(customerWantsSuggar()){
+			addSuggar();
+		}
+	}
+
+	 // These methods must be overridden by the extending subclasses
+	abstract void addSuggar();
+	abstract void addMilk();
+
+	public void addWater() {
+		 System.out.println("Water ");
+	}
+
+	public void addCoffee() {
+		System.out.println("Coffee ");
+	}
+
+	// These are called hooks
+	// If the user wants to override these they can
+	// Use abstract methods when you want to force the user
+	// to override and use a hook when you want it to be optional
+	boolean customerWantsMilk() { return true; }
+	boolean customerWantsSuggar() { return true; }
+
+}
+
+
+
+$$$
+public class WhiteCoffee extends Coffee{
+	@Override
+	boolean customerWantsSuggar() { return false; }
+
+	@Override
+	void addSuggar() {}
+
+	@Override
+	void addMilk() {
+		System.out.println("Milk ");
+	}
+
+}
+
+
+
+
+
+### 89
+package templatemethod;
+
+public abstract class Game {
+	   abstract void initialize();
+	   abstract void startPlay();
+	   abstract void endPlay();
+
+	   // template method
+	   public final void play(){
+
+	      // initialize the game
+	      initialize();
+
+	      // start game
+	      startPlay();
+
+	      // end game
+	      endPlay();
+	   }
+	}
+
+
+
+$$$
+package templatemethod;
+
+public class Basketball extends Game {
+
+	   @Override
+	   void endPlay() {
+	      System.out.println("Basketball Game Finished!");
+	   }
+
+	   @Override
+	   void initialize() {
+	      System.out.println("Basketball Game Initialized! Start playing.");
+	   }
+
+	   @Override
+	   void startPlay() {
+	      System.out.println("Basketball Game Started. Enjoy the game!");
+	   }
+	}
+
+
+
+### 90
+package templatemethod;
+
+public class Football extends Game {
+
+	   @Override
+	   void endPlay() {
+	      System.out.println("Football Game Finished!");
+	   }
+
+	   @Override
+	   void initialize() {
+	      System.out.println("Football Game Initialized! Start playing.");
+	   }
+
+	   @Override
+	   void startPlay() {
+	      System.out.println("Football Game Started. Enjoy the game!");
+	   }
+	}
+
+
+$$$
+package templatemethod;
+
+public abstract class Game {
+	   abstract void initialize();
+	   abstract void startPlay();
+	   abstract void endPlay();
+
+	   // template method
+	   public final void play(){
+
+	      // initialize the game
+	      initialize();
+
+	      // start game
+	      startPlay();
+
+	      // end game
+	      endPlay();
+	   }
+	}
+
+
+
+
+
+
+
+
+
+### 91
+package ir.hri.bl;
+
+public abstract class CaffeineBeverage {
+    public void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    }
+
+    public void boilWater() {
+        System.out.println("جوشاندن آب");
+    }
+
+    public abstract void brew();
+
+    public abstract void pourInCup();
+
+    public abstract void addCondiments();
+}
+
+
+$$$
+package ir.hri.bl;
+
+public class Coffee extends CaffeineBeverage {
+    @Override
+    public void brew() {
+        System.out.println("ریختن پودر قهوه به داخل آب جوشانده شده");
+    }
+
+    @Override
+    public void pourInCup() {
+        System.out.println("ریختن قهوه به فنجان");
+    }
+
+    @Override
+    public void addCondiments() {
+        System.out.println("اضافه کردن شیر و شکر");
+    }
+}
+
+
+
+
+### 92
+package ir.hri.bl;
+
+public abstract class CaffeineBeverage {
+    public void prepareRecipe() {
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    }
+
+    public void boilWater() {
+        System.out.println("جوشاندن آب");
+    }
+
+    public abstract void brew();
+
+    public abstract void pourInCup();
+
+    public abstract void addCondiments();
+}
+
+
+$$$  
+package ir.hri.bl;
+
+public class Tea extends CaffeineBeverage {
+    @Override
+    public void brew() {
+        System.out.println("ریختن چای به داخل آب جوشانده شده");
+    }
+
+    @Override
+    public void pourInCup() {
+        System.out.println("ریختن چای به فنجان");
+    }
+
+    @Override
+    public void addCondiments() {
+        System.out.println("اضافه کردن شکر");
+    }
+}
+
+
+
+
+
+
+
+
+### 93
+package patterned;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+/**
+ * テキスト処理のための派生クラスに共通の処理を定義する抽象クラス
+ * 
+ * @author shiva
+ *
+ */
+public abstract class TextProcessorBase {
+
+	/**
+	 * メソッドの実行順序を規定する
+	 * 
+	 * final修飾子をつけることで、小クラスでのオーバーライドを禁止する
+	 * 
+	 * @param filePath
+	 */
+	final public void completeProcess(String filePath) {
+		// 1. ファイルの読み込み
+		String[] words = textFileToStringArray(filePath);
+		// 2. 文字配列の処理
+		process(words);
+		// 3. 結果の表示
+		printResult();
+	}
+
+	/**
+	 * 文字列の配列を受け取り処理を行う
+	 * 
+	 * @param words
+	 */
+	protected abstract void process(String[] words);
+
+	/**
+	 * 処理結果をコンソールに表示
+	 */
+	protected abstract void printResult();
+
+	/**
+	 * テキストファイルを読み込みスペースで区切って文字列の配列に格納する
+	 * 
+	 * @param filePath
+	 *            ファイルの場所
+	 * @return 分割された文字列の配列
+	 */
+	protected String[] textFileToStringArray(String filePath) {
+		// System.out.println(new File(filePath).getAbsolutePath());
+
+		// try-with-resource 構文
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(
+				filePath)))) {
+			ArrayList<String> list = new ArrayList<String>();
+
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				String[] words = line.split(" ");
+				for (String word : words) {
+					String w = filter(word);
+					if (w.length() > 0) {
+						list.add(w);
+					}
+				}
+			}
+			// ArrayListをString[]に変換してリターン
+			return list.toArray(new String[0]);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 読み込みに失敗した場合は空の配列をリターン
+		return new String[0];
+	}
+
+	/**
+	 * 不要な文字を取り除く
+	 * 
+	 * @param word
+	 * @return
+	 */
+	private String filter(String word) {
+		String w = word.replace(",", "").replace(".", "").replace(":", "")
+				.replace("-", "").replace("—", "").replace("?", "")
+				.replace("\"", "");
+		try {
+			// 数字として認識できる場合は空文字列を返す
+			Double.parseDouble(word);
+			return "";
+		} catch (Exception e) {
+		}
+
+		return w.trim();
+	}
+
+}
+
+
+$$$
+package patterned.processors;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import patterned.TextProcessorBase;
+
+/**
+ * テキスト内の各単語の出現回数を数える
+ * 
+ * @author shiva
+ *
+ */
+public class WordAppearanceCountProcessor extends TextProcessorBase {
+
+	private Map<String, Integer> map = new HashMap<String, Integer>();
+
+	/**
+	 * 出現した単語数を数える（重複は省く）
+	 */
+	@Override
+	public void process(String[] words) {
+
+		for (String word : words) {
+			// 全て小文字に変換
+			word = word.toLowerCase();
+
+			// まだ出現していなければ追加
+			if (!map.containsKey(word)) {
+				map.put(word, 0);
+			}
+
+			// 単語の出現回数をインクリメント
+			int num = map.get(word) + 1;
+			map.put(word, num);
+		}
+
+	}
+
+	/**
+	 * ワードカウントの結果をコンソールに表示する
+	 */
+	@Override
+	public void printResult() {
+
+		// ラムダを用いて出現回数の多い順にソートして出力している
+		Set<String> keys = map.keySet();
+		keys.stream().sorted((s1, s2) -> {
+			// 出現回数順にソート
+				return map.get(s2) - map.get(s1);
+			}).forEach((key) -> {
+			// 出力
+				System.out.println(key + ":" + map.get(key));
+			});
+	}
+
+
+}
+
+
+
+
+
+
+### 94
+package patterned;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+/**
+ * テキスト処理のための派生クラスに共通の処理を定義する抽象クラス
+ * 
+ * @author shiva
+ *
+ */
+public abstract class TextProcessorBase {
+
+	/**
+	 * メソッドの実行順序を規定する
+	 * 
+	 * final修飾子をつけることで、小クラスでのオーバーライドを禁止する
+	 * 
+	 * @param filePath
+	 */
+	final public void completeProcess(String filePath) {
+		// 1. ファイルの読み込み
+		String[] words = textFileToStringArray(filePath);
+		// 2. 文字配列の処理
+		process(words);
+		// 3. 結果の表示
+		printResult();
+	}
+
+	/**
+	 * 文字列の配列を受け取り処理を行う
+	 * 
+	 * @param words
+	 */
+	protected abstract void process(String[] words);
+
+	/**
+	 * 処理結果をコンソールに表示
+	 */
+	protected abstract void printResult();
+
+	/**
+	 * テキストファイルを読み込みスペースで区切って文字列の配列に格納する
+	 * 
+	 * @param filePath
+	 *            ファイルの場所
+	 * @return 分割された文字列の配列
+	 */
+	protected String[] textFileToStringArray(String filePath) {
+		// System.out.println(new File(filePath).getAbsolutePath());
+
+		// try-with-resource 構文
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(
+				filePath)))) {
+			ArrayList<String> list = new ArrayList<String>();
+
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				String[] words = line.split(" ");
+				for (String word : words) {
+					String w = filter(word);
+					if (w.length() > 0) {
+						list.add(w);
+					}
+				}
+			}
+			// ArrayListをString[]に変換してリターン
+			return list.toArray(new String[0]);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 読み込みに失敗した場合は空の配列をリターン
+		return new String[0];
+	}
+
+	/**
+	 * 不要な文字を取り除く
+	 * 
+	 * @param word
+	 * @return
+	 */
+	private String filter(String word) {
+		String w = word.replace(",", "").replace(".", "").replace(":", "")
+				.replace("-", "").replace("—", "").replace("?", "")
+				.replace("\"", "");
+		try {
+			// 数字として認識できる場合は空文字列を返す
+			Double.parseDouble(word);
+			return "";
+		} catch (Exception e) {
+		}
+
+		return w.trim();
+	}
+
+}
+
+
+
+
+
+
+$$$
+package patterned.processors;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import patterned.TextProcessorBase;
+
+/**
+ * テキスト内の単語数を数える
+ * 
+ * @author shiva
+ *
+ */
+public class WordCountProcessor extends TextProcessorBase {
+
+	private int wordCount;
+
+	/**
+	 * 出現した単語数を数える（重複は省く）
+	 */
+	@Override
+	public void process(String[] words) {
+
+		// セットは重複要素を保持しない
+		Set<String> set = new HashSet<String>();
+
+		for (String word : words) {
+			set.add(word);
+		}
+
+		// 重複要素は含まれないのでセットのサイズが単語の数
+		wordCount = set.size();
+
+	}
+
+	/**
+	 * ワードカウントの結果をコンソールに表示する
+	 */
+	@Override
+	public void printResult() {
+		System.out.println("Word Count : " + wordCount);
+	}
+
+}
+
+
+
+
+
+
+### 95
+public abstract class Hoagie {
+
+	//
+	// TemplateMethod
+	//
+
+	final void templateMethod() {
+
+		// Definitively must be done
+		cutBun();
+
+		//
+		// Options
+		//
+
+		if (customerWantsMeat()) {
+			addMeat();
+		}
+
+		if (customerWantsCheese()) {
+			addCheese();
+		}
+
+		if (customerWantsVegetables()) {
+			addVegetables();
+		}
+
+		if (customerWantsCondiments()) {
+			addCondiments();
+		}
+
+		// Definitively must be done
+		wrapTheHoagie();
+
+	}
+
+	// Definitively must be done
+	public void cutBun() {
+		System.out.println("The Hoagie is cut");
+	}
+
+	// Definitively must be done
+	public void wrapTheHoagie() {
+		System.out.println("Wrap the hoagie");
+	}
+
+	abstract void addMeat();
+
+	abstract void addCheese();
+
+	abstract void addVegetables();
+
+	abstract void addCondiments();
+
+	//
+	// Hooks
+	//
+
+	boolean customerWantsMeat() {
+		return true;
+	}
+
+	boolean customerWantsCheese() {
+		return true;
+	}
+
+	boolean customerWantsVegetables() {
+		return true;
+	}
+
+	boolean customerWantsCondiments() {
+		return true;
+	}
+
+}
+
+$$$
+// Hoagie == Riesensandwitch
+public class ItalianHoagie extends Hoagie {
+
+	String[] meatUsed = { "Salamie", "Pepperoni", "Capicola Ham" };
+	String[] cheeseUsed = { "Provolone" };
+	String[] veggiesUsed = { "Lettuce", "Tomatoes", "Onions", "Sweet Pappers" };
+	String[] condimentsUsed = { "Oil", "Vinegar" };
+
+	@Override
+	void addMeat() {
+
+		System.out.println("Adding the meat: ");
+
+		for (String meat : meatUsed) {
+			System.out.println(meat + " ");
+		}
+
+	}
+
+	@Override
+	void addCheese() {
+
+		System.out.println("Adding the cheese: ");
+
+		for (String cheese : cheeseUsed) {
+			System.out.println(cheese + " ");
+		}
+
+	}
+
+	@Override
+	void addVegetables() {
+
+		System.out.println("Adding the veggies: ");
+
+		for (String veggie : veggiesUsed) {
+			System.out.println(veggie + " ");
+		}
+
+	}
+
+	@Override
+	void addCondiments() {
+
+		System.out.println("Adding the condiments: ");
+
+		for (String condiment : condimentsUsed) {
+			System.out.println(condiment + " ");
+		}
+
+	}
+
+}
+
+
+
+
+
+### 96
+public abstract class Hoagie {
+
+	//
+	// TemplateMethod
+	//
+
+	final void templateMethod() {
+
+		// Definitively must be done
+		cutBun();
+
+		//
+		// Options
+		//
+
+		if (customerWantsMeat()) {
+			addMeat();
+		}
+
+		if (customerWantsCheese()) {
+			addCheese();
+		}
+
+		if (customerWantsVegetables()) {
+			addVegetables();
+		}
+
+		if (customerWantsCondiments()) {
+			addCondiments();
+		}
+
+		// Definitively must be done
+		wrapTheHoagie();
+
+	}
+
+	// Definitively must be done
+	public void cutBun() {
+		System.out.println("The Hoagie is cut");
+	}
+
+	// Definitively must be done
+	public void wrapTheHoagie() {
+		System.out.println("Wrap the hoagie");
+	}
+
+	abstract void addMeat();
+
+	abstract void addCheese();
+
+	abstract void addVegetables();
+
+	abstract void addCondiments();
+
+	//
+	// Hooks
+	//
+
+	boolean customerWantsMeat() {
+		return true;
+	}
+
+	boolean customerWantsCheese() {
+		return true;
+	}
+
+	boolean customerWantsVegetables() {
+		return true;
+	}
+
+	boolean customerWantsCondiments() {
+		return true;
+	}
+
+}
+
+
+
+
+$$$
+// Hoagie == Riesensandwitch
+public class VeggieHoagie extends Hoagie {
+
+	String[] veggiesUsed = { "Lettuce", "Tomatoes", "Onions", "Sweet Pappers" };
+	String[] condimentsUsed = { "Oil", "Vinegar" };
+
+	//
+	// Override the not wanted methods
+	//
+
+	@Override
+	boolean customerWantsMeat() {
+		return false; // Now false
+	}
+
+	@Override
+	boolean customerWantsCheese() {
+		return false; // Now false
+	}
+
+	//
+	//
+	//
+
+	@Override
+	void addMeat() {
+
+		// Empty
+
+	}
+
+	@Override
+	void addCheese() {
+
+		// Empty
+
+	}
+
+	@Override
+	void addVegetables() {
+
+		System.out.println("Adding the veggies: ");
+
+		for (String veggie : veggiesUsed) {
+			System.out.println(veggie + " ");
+		}
+
+	}
+
+	@Override
+	void addCondiments() {
+
+		System.out.println("Adding the condiments: ");
+
+		for (String condiment : condimentsUsed) {
+			System.out.println(condiment + " ");
+		}
+
+	}
+
+}
+
+
+
+
+
+
+### 97
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package abstractclass;
+
+/**
+ *
+ * @author qt
+ */
+public abstract class Application {
+
+    public void templateMethod() {
+        primitiveOperation1();
+        primitiveOperation2();
+    }
+    
+    
+    public abstract void primitiveOperation1();
+    public abstract void primitiveOperation2();
+}
+
+
+
+$$$
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package concreteclass;
+
+import abstractclass.Application;
+
+/**
+ *
+ * @author qt
+ */
+public class MyApplication extends Application{
+
+    @Override
+    public void primitiveOperation1() {
+        System.out.println("Primitive Operation 1");
+    }
+
+    @Override
+    public void primitiveOperation2() {
+        System.out.println("Primitive Operation 2");
+    }
+    
+}
+
+
+
+
+
+
+
+
+### 98
+  
+public class ItalianSub extends Sub {
+
+    String meat = "Pepperoni";
+    String cheese = "Cheddar";
+    String[] veggiesUsed = {"Salad", "Tomatoes", "Onions"};
+
+    @Override
+    void addMeat() {
+        System.out.println("Adding the meat: " +  meat);
+    }
+
+    @Override
+    void addCheese() {
+        System.out.println("Adding the cheese: " + cheese);
+    }
+
+    @Override
+    void addVegtables() {
+        for(String veggie: veggiesUsed) {
+            System.out.println("Adding the veggies: " + veggie);
+        }
+    }
+}
+
+
+$$$
+public abstract class Sub {
+
+    // Template methods
+    final void makeSandwhich() {
+
+        cutBread();
+
+        if(customerWantsMeat()) {
+            addMeat();
+        }
+        if(customerWantsCheese()) {
+            addCheese();
+        }
+        if(customerWantsVegetables()) {
+            addVegtables();
+        }
+
+        wrapSub();
+    }
+
+    // Abstract methods
+    abstract void addMeat();
+    abstract void addCheese();
+    abstract void addVegtables();
+
+    // Hook methods
+    boolean customerWantsMeat(){return true;}
+    boolean customerWantsCheese() {return true;}
+    boolean customerWantsVegetables() {return true;}
+
+    // Concrete methods
+    public void cutBread() {
+        System.out.println("The sub is cut");
+    }
+
+    public void wrapSub() {
+        System.out.println("Wrap the sub");
+    }
+
+}
+
+
+### 99
+public abstract class Sub {
+
+    // Template methods
+    final void makeSandwhich() {
+
+        cutBread();
+
+        if(customerWantsMeat()) {
+            addMeat();
+        }
+        if(customerWantsCheese()) {
+            addCheese();
+        }
+        if(customerWantsVegetables()) {
+            addVegtables();
+        }
+
+        wrapSub();
+    }
+
+    // Abstract methods
+    abstract void addMeat();
+    abstract void addCheese();
+    abstract void addVegtables();
+
+    // Hook methods
+    boolean customerWantsMeat(){return true;}
+    boolean customerWantsCheese() {return true;}
+    boolean customerWantsVegetables() {return true;}
+
+    // Concrete methods
+    public void cutBread() {
+        System.out.println("The sub is cut");
+    }
+
+    public void wrapSub() {
+        System.out.println("Wrap the sub");
+    }
+
+}
+
+
+
+$$$
+public class VeggieSub extends Sub {
+
+    String[] veggiesUsed = {"Salad", "Tomatoes", "Onions"};
+
+    @Override
+    boolean customerWantsMeat(){return false;}
+    @Override
+    boolean customerWantsCheese(){return false;}
+
+    @Override
+    void addMeat() { }
+
+    @Override
+    void addCheese() { }
+
+    @Override
+    void addVegtables() {
+        for (String veggie: veggiesUsed) {
+            System.out.println("Adding veggie: " + veggie);
+        }
+    }
+}
+
+
+
+
+
+
+### 100
+package myweb.templates;
+
+import myweb.models.Model;
+import myweb.models.Role;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+/**
+ * Created by And.Zarazka on 16.04.2017.
+ */
+public class RoleTemplate extends Template {
+    @Override
+    public List<Model> getListOfResult(ResultSet rs) throws SQLException {
+        List<Model> models = new ArrayList<>();
+        while (rs.next()) {
+            Role role = new Role();
+            role.setId(rs.getInt("ID"));
+            role.setName(rs.getString("NAME"));
+            models.add(role);
+        }
+        return models;
+    }
+}
+
+
+$$$
+package myweb.templates;
+
+import myweb.utils.DataSource;
+import myweb.models.Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * Template class for working with JDBC
+ * Created by And.Zarazka on 14.04.2017.
+ */
+public abstract class Template {
+
+    /**
+     * Execute query (CREATE, UPDATE, DELETE ) the database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     */
+    public final void execute(final DataSource instance, final String query) {
+        executeQuery(instance, query, new Object[0]);
+    }
+
+    /**
+     * Execute query (CREATE, UPDATE, DELETE ) the database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     */
+    public final void execute(final DataSource instance, final String query, Object... args) {
+        executeQuery(instance, query, args);
+    }
+
+    /**
+     * Reading from database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @return the list of {@link myweb.models.Model}
+     */
+    public final List<Model> executeAndReturn(final DataSource instance, final String query) {
+        return executeAndReturnValue(instance, query, new Object[0]);
+    }
+
+    /**
+     * Reading from database by parameter
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     * @return the list of {@link myweb.models.Model}
+     */
+    public final List<Model> executeAndReturn(final DataSource instance, final String query, Object... args) {
+        return executeAndReturnValue(instance, query, args);
+    }
+
+    /**
+     * Template for methods {@link #execute(DataSource, String), {@link #execute(DataSource, String, Object...)}}
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     */
+    private final void executeQuery(final DataSource instance, String query, Object... args) {
+        Connection conn = instance.getConnection();
+        try (PreparedStatement st = conn.prepareStatement(query);) {
+            setArgsOfPreparedStatement(st, args);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        instance.closeConnection(conn);
+    }
+
+    /**
+     * Template for methods {@link #executeAndReturn(DataSource, String)} ,
+     * {@link #executeAndReturn(DataSource, String, Object...)}}
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     * @return the list of {@link myweb.models.Model}
+     */
+    private final List<Model> executeAndReturnValue(final DataSource instance, final String query, Object... args) {
+        List<Model> models = null;
+        Connection conn = instance.getConnection();
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            setArgsOfPreparedStatement(statement, args);
+            try (ResultSet rs = statement.executeQuery();) {
+                models = getListOfResult(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        instance.closeConnection(conn);
+        return models;
+    }
+
+    /**
+     * Sets args of prepared statement.
+     * Sets the value of the designated parameter using the given object.
+     * The JDBC specification specifies a standard mapping from Java Object types to SQL types.
+     * The given argument will be converted to the corresponding SQL type before being sent to the database.
+     *
+     * @param statement the PreparedStatement
+     * @param args      the args
+     * @throws SQLException hte SQL exception
+     */
+    private final void setArgsOfPreparedStatement(PreparedStatement statement, Object... args) throws SQLException {
+        for (int i = 0; i < args.length; i++) {
+            statement.setObject(i + 1, args[i]);
+        }
+    }
+
+    /**
+     * Creates objects {@link myweb.models.User, {@link myweb.models.Role}}
+     *
+     * @param rs the ResultSet
+     * @return the list of {@link myweb.models.Model}
+     * @throws SQLException hte SQL exception
+     */
+    public abstract List<Model> getListOfResult(ResultSet rs) throws SQLException;
+}
+
+
+### 101
+package myweb.templates;
+
+import myweb.utils.DataSource;
+import myweb.models.Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * Template class for working with JDBC
+ * Created by And.Zarazka on 14.04.2017.
+ */
+public abstract class Template {
+
+    /**
+     * Execute query (CREATE, UPDATE, DELETE ) the database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     */
+    public final void execute(final DataSource instance, final String query) {
+        executeQuery(instance, query, new Object[0]);
+    }
+
+    /**
+     * Execute query (CREATE, UPDATE, DELETE ) the database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     */
+    public final void execute(final DataSource instance, final String query, Object... args) {
+        executeQuery(instance, query, args);
+    }
+
+    /**
+     * Reading from database
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @return the list of {@link myweb.models.Model}
+     */
+    public final List<Model> executeAndReturn(final DataSource instance, final String query) {
+        return executeAndReturnValue(instance, query, new Object[0]);
+    }
+
+    /**
+     * Reading from database by parameter
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     * @return the list of {@link myweb.models.Model}
+     */
+    public final List<Model> executeAndReturn(final DataSource instance, final String query, Object... args) {
+        return executeAndReturnValue(instance, query, args);
+    }
+
+    /**
+     * Template for methods {@link #execute(DataSource, String), {@link #execute(DataSource, String, Object...)}}
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     */
+    private final void executeQuery(final DataSource instance, String query, Object... args) {
+        Connection conn = instance.getConnection();
+        try (PreparedStatement st = conn.prepareStatement(query);) {
+            setArgsOfPreparedStatement(st, args);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        instance.closeConnection(conn);
+    }
+
+    /**
+     * Template for methods {@link #executeAndReturn(DataSource, String)} ,
+     * {@link #executeAndReturn(DataSource, String, Object...)}}
+     *
+     * @param instance the DataSource instance
+     * @param query    the database query
+     * @param args     the args
+     * @return the list of {@link myweb.models.Model}
+     */
+    private final List<Model> executeAndReturnValue(final DataSource instance, final String query, Object... args) {
+        List<Model> models = null;
+        Connection conn = instance.getConnection();
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            setArgsOfPreparedStatement(statement, args);
+            try (ResultSet rs = statement.executeQuery();) {
+                models = getListOfResult(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        instance.closeConnection(conn);
+        return models;
+    }
+
+    /**
+     * Sets args of prepared statement.
+     * Sets the value of the designated parameter using the given object.
+     * The JDBC specification specifies a standard mapping from Java Object types to SQL types.
+     * The given argument will be converted to the corresponding SQL type before being sent to the database.
+     *
+     * @param statement the PreparedStatement
+     * @param args      the args
+     * @throws SQLException hte SQL exception
+     */
+    private final void setArgsOfPreparedStatement(PreparedStatement statement, Object... args) throws SQLException {
+        for (int i = 0; i < args.length; i++) {
+            statement.setObject(i + 1, args[i]);
+        }
+    }
+
+    /**
+     * Creates objects {@link myweb.models.User, {@link myweb.models.Role}}
+     *
+     * @param rs the ResultSet
+     * @return the list of {@link myweb.models.Model}
+     * @throws SQLException hte SQL exception
+     */
+    public abstract List<Model> getListOfResult(ResultSet rs) throws SQLException;
+}
+
+
+
+
+
+
+
+$$$
+package myweb.templates;
+
+import myweb.models.Model;
+import myweb.models.Role;
+import myweb.models.User;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+/**
+ * Created by And.Zarazka on 14.04.2017.
+ */
+public class UserTemplate extends Template {
+    @Override
+    public List<Model> getListOfResult(ResultSet rs) throws SQLException {
+        List<Model> models = new ArrayList<>();
+        while (rs.next()) {
+            User user = new User();
+            user.setId(rs.getInt("ID"));
+            user.setLogin(rs.getString("LOGIN"));
+            user.setPassword(rs.getString("PASSWORD"));
+            user.setFirstName(rs.getString("FIRST_NAME"));
+            user.setLastName(rs.getString("LAST_NAME"));
+            user.setAge(rs.getInt("AGE"));
+            user.setRole(new Role(rs.getInt("ROLE_ID")));
+            models.add(user);
+        }
+        return models;
+    }
+}
+
+
+
+
+
+
+
+
+
+### 102
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.Imposto;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public abstract class TemplateDeImpostoCondicional implements Imposto{
+
+    public double calcula(Orcamento orcamento) {
+	 if(deveUsarMaximaTaxacao(orcamento)) {
+	     return maximaTaxacao(orcamento);
+	 } else {
+	     return minimaTaxacao(orcamento);
+	 }
+    }
+
+    public abstract double minimaTaxacao(Orcamento orcamento);
+    public abstract double maximaTaxacao(Orcamento orcamento);
+    public abstract boolean deveUsarMaximaTaxacao(Orcamento orcamento);
+
+}
+
+
+
+
+
+$$$
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public class ICPP extends TemplateDeImpostoCondicional {
+
+    @Override
+    public double minimaTaxacao(Orcamento orcamento) {
+	return orcamento.getValor() * 0.05;
+    }
+
+    @Override
+    public double maximaTaxacao(Orcamento orcamento) {
+	return orcamento.getValor() * 0.07;
+    }
+
+    @Override
+    public boolean deveUsarMaximaTaxacao(Orcamento orcamento) {
+	if (orcamento.getValor() >= 500) return true;
+	return false;
+    }
+
+}
+
+
+
+
+
+### 103
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.Imposto;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public abstract class TemplateDeImpostoCondicional implements Imposto{
+
+    public double calcula(Orcamento orcamento) {
+	 if(deveUsarMaximaTaxacao(orcamento)) {
+	     return maximaTaxacao(orcamento);
+	 } else {
+	     return minimaTaxacao(orcamento);
+	 }
+    }
+
+    public abstract double minimaTaxacao(Orcamento orcamento);
+    public abstract double maximaTaxacao(Orcamento orcamento);
+    public abstract boolean deveUsarMaximaTaxacao(Orcamento orcamento);
+
+}
+
+
+
+
+
+
+
+$$$
+package com.learning.pattern.template.method.imposto.impl;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.learning.pattern.template.method.imposto.models.Item;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public class IHIT extends TemplateDeImpostoCondicional{
+
+    @Override
+    public double minimaTaxacao(Orcamento orcamento) {
+	return calculaPorcentagemPorItem(orcamento);
+    }
+
+    private double calculaPorcentagemPorItem(Orcamento orcamento) {
+	System.out.println("Aplicando taxação para cada item");
+	double total = 0;
+	for(Item item : orcamento.getItens()){
+	    total = total + (item.getValor() * 0.01);
+    	}
+	return total;
+    }
+
+    @Override
+    public double maximaTaxacao(Orcamento orcamento) {
+	System.out.println("Aplicando máxima taxação por itens com mesmo nome");
+	return (orcamento.getValor() * 0.13) + 100.0;
+    }
+
+    @Override
+    public boolean deveUsarMaximaTaxacao(Orcamento orcamento) {
+	if(possuiDoisItensComMesmoNome(orcamento)) return true;
+	return false;
+    }
+
+    private boolean possuiDoisItensComMesmoNome(Orcamento orcamento) {
+	Set<String> nomesSemRepetir = new HashSet<>(); 
+	List<Item> itens = orcamento.getItens();
+	itens.stream().forEach(item -> {
+	    nomesSemRepetir.add(item.getNome());
+	});
+	if(nomesSemRepetir.size() < itens.size()) return true;
+	return false;
+    }
+    
+   
+
+}
+
+
+
+
+
+
+### 104
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.Imposto;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public abstract class TemplateDeImpostoCondicional implements Imposto{
+
+    public double calcula(Orcamento orcamento) {
+	 if(deveUsarMaximaTaxacao(orcamento)) {
+	     return maximaTaxacao(orcamento);
+	 } else {
+	     return minimaTaxacao(orcamento);
+	 }
+    }
+
+    public abstract double minimaTaxacao(Orcamento orcamento);
+    public abstract double maximaTaxacao(Orcamento orcamento);
+    public abstract boolean deveUsarMaximaTaxacao(Orcamento orcamento);
+
+}
+
+
+
+
+
+
+$$$
+package com.learning.pattern.template.method.imposto.impl;
+
+import com.learning.pattern.template.method.imposto.models.Item;
+import com.learning.pattern.template.method.imposto.models.Orcamento;
+
+public class IKCV extends TemplateDeImpostoCondicional{
+
+    @Override
+    public double minimaTaxacao(Orcamento orcamento) {
+	return orcamento.getValor() * 0.06;
+    }
+
+    @Override
+    public double maximaTaxacao(Orcamento orcamento) {
+	return orcamento.getValor() * 0.10;
+    }
+
+    @Override
+    public boolean deveUsarMaximaTaxacao(Orcamento orcamento) {
+	if(orcamento.getValor() > 500 && possuiItemComValorSuperiorACem(orcamento)) return true;
+	return false;
+    }
+
+    private boolean possuiItemComValorSuperiorACem(Orcamento orcamento) {
+	for(Item item : orcamento.getItens()){
+	    if(item.getValor() > 100) return true;
+	}
+	return false;
+    }
+
+}
+
+
+
+
+
+
+### 105
+public abstract class Game {
+
+    abstract void initialize();
+    abstract void startPlay();
+    abstract void endPlay();
+
+    public final void play() {
+        initialize();
+        startPlay();
+        endPlay();
+    }
+
+}
+
+
+
+$$$
+public class Cricket extends Game {
+
+    @Override
+    void initialize() {
+        System.out.println("Cricket Game Initialized! Start playing.");
+    }
+
+    @Override
+    void startPlay() {
+        System.out.println("Cricket Game Started. Enjoy the game!");
+    }
+
+    @Override
+    void endPlay() {
+        System.out.println("Cricket Game Finished!");
+    }
+
+}
+
+
+
+### 106
+public class Football extends Game {
+
+    @Override
+    void initialize() {
+        System.out.println("Football Game Initialized! Start playing.");
+    }
+
+    @Override
+    void startPlay() {
+        System.out.println("Football Game Started. Enjoy the game!");
+    }
+
+    @Override
+    void endPlay() {
+        System.out.println("Football Game Finished!");
+    }
+
+}
+
+$$$
+public abstract class Game {
+
+    abstract void initialize();
+    abstract void startPlay();
+    abstract void endPlay();
+
+    public final void play() {
+        initialize();
+        startPlay();
+        endPlay();
+    }
+
+}
+
+
+
+
+
+
+
+### 107
+public class GlassHouse extends HouseTemplate{
+
+	@Override
+	public void buildWalls() {
+		System.out.println("Building Glass Walls");
+		
+	}
+
+	@Override
+	public void buildPillars() {
+		System.out.println("Building Pillars with Glass coating");
+	}
+
+}
+
+$$$
+public abstract class HouseTemplate {
+
+	public final void buildHouse(){
+		buildFundation();
+		buildPillars();
+		buildWalls();
+		buildWindows();
+		System.out.println("House is built.");
+	}
+	
+	public void buildWindows(){
+		System.out.println("Building glass windows.");
+	}
+	
+	public abstract void buildWalls();
+	
+	public abstract void buildPillars();
+	
+	public void buildFundation(){
+		System.out.println("Building fundation with cement,iron rods and sand.");
+	}
+	
+	
+}
+
+
+### 108
+public abstract class HouseTemplate {
+
+	public final void buildHouse(){
+		buildFundation();
+		buildPillars();
+		buildWalls();
+		buildWindows();
+		System.out.println("House is built.");
+	}
+	
+	public void buildWindows(){
+		System.out.println("Building glass windows.");
+	}
+	
+	public abstract void buildWalls();
+	
+	public abstract void buildPillars();
+	
+	public void buildFundation(){
+		System.out.println("Building fundation with cement,iron rods and sand.");
+	}
+	
+	
+}
+
+
+
+$$$
+public class WoodenHouse extends HouseTemplate{
+
+	@Override
+	public void buildWalls() {
+		System.out.println("Building Wooden Walls");
+		
+	}
+
+	@Override
+	public void buildPillars() {
+		System.out.println("Building Pillars with Wood coating");
+		
+	}
+
+}
+
+
+
+
+
+### 109
+package implementacao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Bolo {
+	
+	protected List<String> ingredientes = new ArrayList<String>();
+	protected String tempoDeAssar;
+	
+	public final String fazerBolo() {
+		
+		adicionarIngredientes();
+		
+		adicionarTempoParaAssar();
+		
+		return finalizar();
+	}
+
+	protected abstract void adicionarIngredientes();
+	
+	protected abstract void adicionarTempoParaAssar();
+
+	protected abstract String finalizar();
+	
+}
+
+
+$$$
+package implementacao;
+
+public class BoloCenoura extends Bolo{
+
+	@Override
+	protected void adicionarIngredientes() {
+
+		this.ingredientes.add("1/2 xícara (chá) de óleo");
+		this.ingredientes.add("3 cenouras médias raladas");
+		this.ingredientes.add("4 ovos");
+		this.ingredientes.add("2 xícaras (chá) de açúcar");
+		this.ingredientes.add("2 e 1/2 xícaras (chá) de farinha de trigo");
+		this.ingredientes.add("1 colher (sopa) de fermento em pó");
+		
+	}
+
+	@Override
+	protected void adicionarTempoParaAssar() {
+		this.tempoDeAssar = "1 hora";
+	}
+
+	@Override
+	protected String finalizar() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Igredientes: \n");
+		
+		for (String ingrediente : ingredientes) {
+			builder.append(ingrediente +'\n');
+		}
+		
+		builder.append("\nO bolo de Cenoura com os ingredientes acima foi assado por "+tempoDeAssar+" e está pronto para consumo.");
+		return builder.toString();
+	}
+
+}
+
+
+
+
+### 110
+package implementacao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Bolo {
+	
+	protected List<String> ingredientes = new ArrayList<String>();
+	protected String tempoDeAssar;
+	
+	public final String fazerBolo() {
+		
+		adicionarIngredientes();
+		
+		adicionarTempoParaAssar();
+		
+		return finalizar();
+	}
+
+	protected abstract void adicionarIngredientes();
+	
+	protected abstract void adicionarTempoParaAssar();
+
+	protected abstract String finalizar();
+	
+}
+
+
+
+
+$$$
+package implementacao;
+
+public class BoloChocolate extends Bolo{
+
+	@Override
+	protected void adicionarIngredientes() {
+		
+		this.ingredientes.add("4 ovos");
+		this.ingredientes.add("2 colheres (sopa) de manteiga");
+		this.ingredientes.add("4 colheres (sopa) de chocolate em pó");
+		this.ingredientes.add("3 xícaras (chá) de farinha de trigo");
+		this.ingredientes.add("2 xícaras (chá) de açúcar");
+		this.ingredientes.add("2 colheres (sopa) de fermento");
+		this.ingredientes.add("1 xícara (chá) de leite");
+		
+	}
+
+	@Override
+	protected void adicionarTempoParaAssar() {
+		this.tempoDeAssar = "40 minutos";
+	}
+
+	@Override
+	protected String finalizar() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Igredientes: \n");
+		
+		for (String ingrediente : ingredientes) {
+			builder.append(ingrediente +'\n');
+		}
+		
+		builder.append("\nO bolo de chocolate com os ingredientes acima foi assado por "+tempoDeAssar +" e está pronto para consumo.");
+		return builder.toString();
+	}
+
+}
+
+
+
+
+
+
+
+
+### 111
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designpatterntemplatemethod.papers;
+
+/**
+ *
+ * @author rocket
+ */
+public abstract class BasicEngineering {
+    
+    public void papers(){
+        math();
+        softSkills();
+        specialPaper();
+    }
+    
+    // already implemented by Template class
+    private void math(){
+        System.out.println("Mathematics");
+    }
+    
+    // already implemented by Template class
+    private void softSkills(){
+        System.out.println("Soft Skills");
+    }
+    
+    //abstract method must be implemented by the derived class
+    public abstract void specialPaper();
+
+   
+}
+
+$$$
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designpatterntemplatemethod.papers;
+
+/**
+ *
+ * @author rocket
+ */
+public class ComputerScience extends BasicEngineering{
+
+    @Override
+    public void specialPaper() {
+        System.out.println("Object oriented programming stuff.");
+    }
+    
+}
+
+
+
+
+### 112
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designpatterntemplatemethod.papers;
+
+/**
+ *
+ * @author rocket
+ */
+public abstract class BasicEngineering {
+    
+    public void papers(){
+        math();
+        softSkills();
+        specialPaper();
+    }
+    
+    // already implemented by Template class
+    private void math(){
+        System.out.println("Mathematics");
+    }
+    
+    // already implemented by Template class
+    private void softSkills(){
+        System.out.println("Soft Skills");
+    }
+    
+    //abstract method must be implemented by the derived class
+    public abstract void specialPaper();
+
+   
+}
+
+
+
+
+$$$
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designpatterntemplatemethod.papers;
+
+/**
+ *
+ * @author rocket
+ */
+public class Electronics extends BasicEngineering{
+
+    @Override
+    public void specialPaper() {
+        System.out.println("Digital Logic and Circuit theory");
+    }
+    
+}
+
+
+
+
+
+
+
+
+### 113
+import java.util.Arrays;
+
+/**
+ * Created by proshad on 9/21/16.
+ */
+public abstract class SortTemplatePattern {
+
+    // template method
+    public final void sort(int[] array, int low, int high) {
+        if (low < high) {
+            int q = divide(array, low, high);
+            sort(array, low, q - 1);
+            sort(array, q + 1, high);
+            merge(array, low, q, high);
+        }
+    }
+
+    abstract int divide(int[] array, int left, int right);
+    abstract void merge(int[] array, int left, int center, int right);
+
+}
+
+
+
+
+$$$
+import java.util.Arrays;
+
+/**
+ * Created by proshad on 9/21/16.
+ * take help from https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/p/challenge-implement-merge
+ */
+public class MergeSort extends SortTemplatePattern {
+    public MergeSort() {
+        System.out.println("Using merge sort:");
+    }
+
+
+    @Override
+    int divide(int[] array, int left, int right) {
+
+        int center = (left + right) / 2;
+        return center;
+    }
+
+    @Override
+    void merge(int[] array, int left, int center, int right) {
+
+        int firstArrSize = center - left + 1;
+        int[] lowHalf = new int[firstArrSize];
+        int secondArrSize = right - center;
+        int[] highHalf = new int[secondArrSize];
+
+        int i, j, k = left;
+        for (i = 0; k <= center; i++, k++) {
+            lowHalf[i] = array[k];
+        }
+        for (j = 0; k <= right; j++, k++) {
+            highHalf[j] = array[k];
+        }
+
+        k = left;
+        i = 0;
+        j = 0;
+
+
+        while (i < lowHalf.length && j < highHalf.length) {
+            if (lowHalf[i] < highHalf[j]) {
+                array[k++] = lowHalf[i++];
+            } else {
+                array[k++] = highHalf[j++];
+            }
+        }
+        while (i < lowHalf.length) {
+            array[k++] = lowHalf[i++];
+        }
+        while (j < highHalf.length) {
+            array[k++] = highHalf[j++];
+        }
+
+    }
+
+}
+
+
+
+
+### 114
+import java.util.Arrays;
+
+/**
+ * Created by proshad on 9/21/16.
+ *
+ * algorithm from https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/p/challenge-implement-partition
+ */
+
+public class QuickSort extends SortTemplatePattern {
+    public QuickSort() {
+        System.out.println("Using quicksort:");
+    }
+
+
+    @Override
+    int divide(int[] array, int left, int right) {
+        for (int i = left; i < right; i++) {
+            if (array[i] <= array[right]) {
+                swap(array, i, left);
+                left++;
+            }
+        }
+        swap(array, right, left);
+        return left;
+
+    }
+    @Override
+    void merge(int[] array, int left, int center, int right) {
+        // in quick sort, no need to merge as merge taken place in parallel with dividing steps
+    }
+
+    private void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+
+}
+
+$$$
+import java.util.Arrays;
+
+/**
+ * Created by proshad on 9/21/16.
+ */
+public abstract class SortTemplatePattern {
+
+    // template method
+    public final void sort(int[] array, int low, int high) {
+        if (low < high) {
+            int q = divide(array, low, high);
+            sort(array, low, q - 1);
+            sort(array, q + 1, high);
+            merge(array, low, q, high);
+        }
+    }
+
+    abstract int divide(int[] array, int left, int right);
+    abstract void merge(int[] array, int left, int center, int right);
+
+}
+
+
+
+
+
+
+
+### 115
+package com.game.Process;
+/*
+ * 简易游戏流程抽象类
+ */
+public abstract class Module{
+    //模板方法，用来控制配置游戏的流程（游戏的流程是一样的-复用）
+    //申明为final,不希望子类复用这个方法，防止更改流程的执行顺序
+        public final void gameProcess(){
+            //第一步：选择登陆方式
+            this.loginMethod();
+            //第二步：登陆游戏
+            this.login();
+            //第三步：点击开始按钮
+            this.clickBeginBt();
+            //第四步：选择英雄
+            this.chooseHero();
+            //第五步：选择召唤师技能
+            this.chooseSkill();
+            //开始游戏
+            this.beginGame();
+        }
+    //定义结构里哪些方法是所有过程都是一样的可复用的，哪些是需要子类进行实现的
+
+    //第一步：登陆方式不一样（一个是QQ登陆，一个是微信登陆）
+    //所以申明为抽象方法，具体由子类实现
+        abstract void loginMethod();
+
+    //第二步：登陆游戏是一样的，直接实现
+        void login(){
+            System.out.println("登陆游戏");
+        }
+
+    //第三步：点击开始按钮是，直接实现
+        void clickBeginBt(){
+            System.out.println("点击开始按钮");
+        }
+
+    //第四步：玩家选择的英雄有差异，申明为抽象方法，具体由子类实现
+        abstract void chooseHero();
+
+    //第五步：选择召唤师技能不同，申明为抽象方法，具体由子类实现
+        abstract void chooseSkill();
+
+    //开始游戏
+        void beginGame(){
+            System.out.println("敌军还有5s到达战场，请做好准备！");
+        }
+}
+
+
+$$$
+package com.game.Process;
+/*
+ *Module子类
+ */
+
+import com.game.Skill.imple.JiPao;
+import com.game.domain.HouYi;
+
+public class ModuleSon01 extends Module {
+
+    @Override
+    void loginMethod() {
+        System.out.println("选择QQ登陆");
+    }
+
+    @Override
+    void chooseHero() {
+        System.out.println("选择出战的英雄是：【"+new HouYi().getHeroName()+"】");
+    }
+
+    @Override
+    void chooseSkill() {
+        HouYi hero=new HouYi();
+        System.out.print("选择的召唤师技能是：");
+        hero.setIskill(new JiPao());
+        hero.skill();
+    }
+}
+
+
+
+
+
+### 116
+package com.game.Process;
+/*
+ * 简易游戏流程抽象类
+ */
+public abstract class Module{
+    //模板方法，用来控制配置游戏的流程（游戏的流程是一样的-复用）
+    //申明为final,不希望子类复用这个方法，防止更改流程的执行顺序
+        public final void gameProcess(){
+            //第一步：选择登陆方式
+            this.loginMethod();
+            //第二步：登陆游戏
+            this.login();
+            //第三步：点击开始按钮
+            this.clickBeginBt();
+            //第四步：选择英雄
+            this.chooseHero();
+            //第五步：选择召唤师技能
+            this.chooseSkill();
+            //开始游戏
+            this.beginGame();
+        }
+    //定义结构里哪些方法是所有过程都是一样的可复用的，哪些是需要子类进行实现的
+
+    //第一步：登陆方式不一样（一个是QQ登陆，一个是微信登陆）
+    //所以申明为抽象方法，具体由子类实现
+        abstract void loginMethod();
+
+    //第二步：登陆游戏是一样的，直接实现
+        void login(){
+            System.out.println("登陆游戏");
+        }
+
+    //第三步：点击开始按钮是，直接实现
+        void clickBeginBt(){
+            System.out.println("点击开始按钮");
+        }
+
+    //第四步：玩家选择的英雄有差异，申明为抽象方法，具体由子类实现
+        abstract void chooseHero();
+
+    //第五步：选择召唤师技能不同，申明为抽象方法，具体由子类实现
+        abstract void chooseSkill();
+
+    //开始游戏
+        void beginGame(){
+            System.out.println("敌军还有5s到达战场，请做好准备！");
+        }
+    }
+
+
+
+
+
+$$$
+package com.game.Process;
+/*
+ *Module子类
+ */
+import com.game.Skill.imple.KuangBao;
+import com.game.domain.LuBanQiHao;
+
+public class ModuleSon02 extends Module {
+
+    @Override
+    void loginMethod() {
+        System.out.println("选择微信登陆");
+    }
+
+    @Override
+    void chooseHero() {
+        System.out.println("选择出战的英雄是：【"+new LuBanQiHao().getHeroName()+"】");
+    }
+
+    @Override
+    void chooseSkill() {
+        LuBanQiHao hero=new LuBanQiHao();
+        System.out.print("选择的召唤师技能是：");
+        hero.setIskill(new KuangBao());
+        hero.skill();
+    }
+
+}
+
+
+
+
+
+### 117
+package com.game.domain;
+import com.game.Skill.ISkill;
+/*
+ * 英雄类（抽象类）
+ */
+public abstract class Hero {
+    //英雄的名称
+    private String heroName;
+    //英雄的召唤师技能的接口（组合关系，需要使用时传入一个具体的技能对象）
+    private ISkill iskill;  
+    //英雄的自我介绍的方法
+    public abstract void display(); 
+    //加入一个新的成员（英雄单次攻击的伤害值）
+    private int heroHurt;   
+    //英雄的普通攻击的方法
+    public abstract void normalAttack();    
+    //英雄的召唤师技能的使用方法
+    public void skill() {
+        iskill.useSkill();
+    }   
+    //set/get
+    public String getHeroName() {
+        return heroName;
+    }
+    public void setHeroName(String heroName) {
+        this.heroName = heroName;
+    }
+    public void setIskill(ISkill iskill) {
+        this.iskill = iskill;
+    }
+    public int getHeroHurt() {
+        return heroHurt;
+    }
+    public void setHeroHurt(int heroHurt) {
+        this.heroHurt = heroHurt;
+    }
+}
+
+
+$$$
+package com.game.domain;
+/*
+ * 英雄后羿类
+ */
+public class HouYi extends Hero {
+    //编写构造方法
+    public HouYi() {
+        super.setHeroName("后羿");
+    }
+    //后羿英雄的自我介绍
+    @Override
+    public void display() {
+        System.out.println("觉醒吧，猎杀时刻！");
+
+    }
+    //后羿英雄的普通攻击
+    @Override
+    public void normalAttack() {
+        System.out.println("xiuxiu~ 被动：迟缓之箭");
+    }
+}
+
+
+
+### 118
+package com.game.domain;
+import com.game.Skill.ISkill;
+/*
+ * 英雄类（抽象类）
+ */
+public abstract class Hero {
+    //英雄的名称
+    private String heroName;
+    //英雄的召唤师技能的接口（组合关系，需要使用时传入一个具体的技能对象）
+    private ISkill iskill;  
+    //英雄的自我介绍的方法
+    public abstract void display(); 
+    //加入一个新的成员（英雄单次攻击的伤害值）
+    private int heroHurt;   
+    //英雄的普通攻击的方法
+    public abstract void normalAttack();    
+    //英雄的召唤师技能的使用方法
+    public void skill() {
+        iskill.useSkill();
+    }   
+    //set/get
+    public String getHeroName() {
+        return heroName;
+    }
+    public void setHeroName(String heroName) {
+        this.heroName = heroName;
+    }
+    public void setIskill(ISkill iskill) {
+        this.iskill = iskill;
+    }
+    public int getHeroHurt() {
+        return heroHurt;
+    }
+    public void setHeroHurt(int heroHurt) {
+        this.heroHurt = heroHurt;
+    }
+}
+
+
+
+
+
+$$$
+package com.game.domain;
+
+/*
+ * 英雄（鲁班七号）
+ */
+public class LuBanQiHao extends Hero {
+    
+    public LuBanQiHao() {
+        super.setHeroName("鲁班七号");
+    }
+    
+    //英雄的自我介绍
+    @Override
+    public void display() {
+        System.out.println("鲁班七号，智商二百五");
+    }
+
+    //英雄的普通攻击
+    @Override
+    public void normalAttack() {
+        System.out.println("dadada~ 被动：集中火力");
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+### 119
+package in.blogspot.randomcompiler.template.method.pattern.api;
+
+public abstract class BoardGame {
+	public abstract void initializeBoard();
+	
+	public abstract void startGame();
+	
+	public abstract void endGame();
+	
+	public void play() {
+		initializeBoard();
+		startGame();
+		endGame();
+	}
+
+}
+
+
+$$$
+package in.blogspot.randomcompiler.template.method.pattern.impl;
+
+import in.blogspot.randomcompiler.template.method.pattern.api.BoardGame;
+
+public class Chess extends BoardGame {
+
+	@Override
+	public void initializeBoard() {
+		System.out.println("Intializing chess board");
+	}
+
+	@Override
+	public void startGame() {
+		System.out.println("Starting the game of chess");
+	}
+
+	@Override
+	public void endGame() {
+		System.out.println("Ending the game of chess");
+	}
+}
+
+
+
+
+### 120
+package in.blogspot.randomcompiler.template.method.pattern.api;
+
+public abstract class BoardGame {
+	public abstract void initializeBoard();
+	
+	public abstract void startGame();
+	
+	public abstract void endGame();
+	
+	public void play() {
+		initializeBoard();
+		startGame();
+		endGame();
+	}
+
+}
+
+
+
+$$$
+package in.blogspot.randomcompiler.template.method.pattern.impl;
+
+import in.blogspot.randomcompiler.template.method.pattern.api.BoardGame;
+
+public class SnakesAndLadders extends BoardGame {
+
+	@Override
+	public void initializeBoard() {
+		System.out.println("Intializing snakes and ladders board");
+	}
+
+	@Override
+	public void startGame() {
+		System.out.println("Starting the game of snakes and ladders");
+	}
+
+	@Override
+	public void endGame() {
+		System.out.println("Ending the game of snakes and ladders");
+	}
+}
+
+
+
+
+
+
+
+
+
+### 121
+package com.sarandis;
+
+public abstract class DataProcessor {
+
+	public void processMethod() {
+		capRemoval();
+		oilReplace();
+		cleanMess();
+	}
+	
+	
+	
+	
+	public  abstract void capRemoval();
+	public  abstract void cleanMess();
+
+
+
+
+	public void oilReplace() {
+		System.out.println("Now change the oil");
+	}
+	
+	
+}
+
+
+
+
+$$$
+package com.sarandis;
+
+public class Car extends DataProcessor {
+	
+	
+	@Override
+	public void capRemoval() {
+		System.out.println("Please remove the oil cap of the CAR");
+	}
+	
+	
+	@Override
+	public void cleanMess() {
+		System.out.println("Please now clean the mess you have created in the CAR");
+	}
+
+}
+
+
+### 122
+package com.sarandis;
+
+public abstract class DataProcessor {
+
+	public void processMethod() {
+		capRemoval();
+		oilReplace();
+		cleanMess();
+	}
+	
+	
+	
+	
+	public  abstract void capRemoval();
+	public  abstract void cleanMess();
+
+
+
+
+	public void oilReplace() {
+		System.out.println("Now change the oil");
+	}
+	
+	
+}
+
+
+$$$
+package com.sarandis;
+
+public class Truck extends DataProcessor {
+	
+	
+	@Override
+	public void capRemoval() {
+		System.out.println("Please remove the oil cap of the Truck");
+	}
+	
+	
+	@Override
+	public void cleanMess() {
+		System.out.println("Please now clean the mess you have created in the Truck");
+	}
+}
+
+
+
+
+
+
+### 123
+/**
+ * The MIT License
+ */
+package com.iluwatar.templatemethod;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * StealingMethod defines skeleton for the algorithm.
+ */
+public abstract class StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(StealingMethod.class);
+
+  protected abstract String pickTarget();
+
+  protected abstract void confuseTarget(String target);
+
+  protected abstract void stealTheItem(String target);
+
+  /* Metodo Template  */
+  public void steal() {
+    String target = pickTarget();
+    LOGGER.info("The target has been chosen as {}.", target);
+    confuseTarget(target);
+    stealTheItem(target);
+  }
+}
+
+
+
+
+$$$
+/**
+ * The MIT License
+ */
+package com.iluwatar.templatemethod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * HitAndRunMethod implementation of {@link StealingMethod}.
+ */
+public class HitAndRunMethod extends StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(HitAndRunMethod.class);
+
+  @Override
+  protected String pickTarget() {
+    return "old goblin woman";
+  }
+
+  @Override
+  protected void confuseTarget(String target) {
+    LOGGER.info("Approach the {} from behind.", target);
+  }
+
+  @Override
+  protected void stealTheItem(String target) {
+    LOGGER.info("Grab the handbag and run away fast!");
+  }
+}
+
+
+
+
+
+### 124
+/**
+ * The MIT License
+ */
+package com.iluwatar.templatemethod;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * StealingMethod defines skeleton for the algorithm.
+ */
+public abstract class StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(StealingMethod.class);
+
+  protected abstract String pickTarget();
+
+  protected abstract void confuseTarget(String target);
+
+  protected abstract void stealTheItem(String target);
+
+  /* Metodo Template  */
+  public void steal() {
+    String target = pickTarget();
+    LOGGER.info("The target has been chosen as {}.", target);
+    confuseTarget(target);
+    stealTheItem(target);
+  }
+}
+
+
+$$$
+/**
+ * The MIT License
+ */
+package com.iluwatar.templatemethod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/** 
+ * SubtleMethod implementation of {@link StealingMethod}.
+ */
+public class SubtleMethod extends StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SubtleMethod.class);
+
+  @Override
+  protected String pickTarget() {
+    return "shop keeper";
+  }
+
+  @Override
+  protected void confuseTarget(String target) {
+    LOGGER.info("Approach the {} with tears running and hug him!", target);
+  }
+
+  @Override
+  protected void stealTheItem(String target) {
+    LOGGER.info("While in close contact grab the {}'s wallet.", target);
+  }
+}
+
+
+
+
+
+
+### 125
+package com.runnablepatterns.templatemethodpattern;
+
+/**
+ * 
+ * @author Carlos Marin
+ * Runnable Patterns (runnablepatterns.com)
+ * 
+ * Class to handle payable persons.
+ * It will contain the payment process algorithm. 
+ */
+public abstract class PayablePerson {
+	
+	/**
+	 * Variables to store payment details
+	 */
+	private double salaryAmount = 0;
+	private double deductionAmount = 0;
+
+	/**
+	 * Template Method.
+	 * This method contains the algorithm steps and structure. It is final so the subclasses can't change it.
+	 */
+	public final void processPayment() {
+		// call specific steps to process the payment
+		getSalary();
+		getDeduction();
+		sendPayment();
+		notifyAccountant();
+		sendPaymentCopy();
+	}
+	
+	/**
+	 * This method has to be implemented by subclasses.
+	 * It calculates the salary.
+	 */
+	abstract void getSalary();
+	
+	/**
+	 * This method has to be implemented by subclasses.
+	 * It calculates the deduction.
+	 */
+	abstract void getDeduction();
+	
+	/**
+	 * This method has to be implemented by subclasses
+	 * It sends the money.
+	 */
+	abstract void sendPayment();
+	
+	/**
+	 * This method is used by all subclasses.
+	 */
+	final void notifyAccountant() {
+		System.out.println("Sending notification to Accountant Department.");
+	}
+	
+	/**
+	 * This method is a hook. As you can see, it has the default implementation.
+	 * Subclasses can then override this
+	 */
+	void sendPaymentCopy() {
+		System.out.println("No copy needed by default.");
+	}
+
+	/**
+	 * Gets the salary
+	 * @return the salary
+	 */
+	public double getSalaryAmount() {
+		return salaryAmount;
+	}
+
+	/**
+	 * Set the salary
+	 * @param salaryAmount
+	 */
+	public void setSalaryAmount(double salaryAmount) {
+		this.salaryAmount = salaryAmount;
+	}
+
+	/**
+	 * Gets the deduction
+	 * @return the deduction
+	 */
+	public double getDeductionAmount() {
+		return deductionAmount;
+	}
+
+	/**
+	 * Sets the deduction
+	 * @param deductionAmount
+	 */
+	public void setDeductionAmount(double deductionAmount) {
+		this.deductionAmount = deductionAmount;
+	}
+}
+
+
+
+
+
+$$$
+package com.runnablepatterns.templatemethodpattern;
+
+/**
+ * 
+ * @author Carlos Marin
+ * Runnable Patterns (runnablepatterns.com)
+ * 
+ * Class to handle consultant payment.
+ *  
+ */
+public class Consultant extends PayablePerson {
+
+	@Override
+	void getSalary() {
+		setSalaryAmount(1800);
+		System.out.println("Calculating hourly salary.");
+	}
+
+	@Override
+	void getDeduction() {
+		setDeductionAmount(getSalaryAmount()*0.05);
+		System.out.println(String.format("5%s Deduction of $%s is: $%s.", "%", getSalaryAmount(), getDeductionAmount()));
+	}
+
+	@Override
+	void sendPayment() {
+		System.out.println("Printing check.");
+	}
+	
+	@Override
+	void sendPaymentCopy() {
+		System.out.println("Sending payment copy via email.");
+	}
+
+}
+
+
+
+
+### 126
+package com.runnablepatterns.templatemethodpattern;
+
+/**
+ * 
+ * @author Carlos Marin
+ * Runnable Patterns (runnablepatterns.com)
+ * 
+ * Class to handle employee payment.
+ *  
+ */
+public class Employee extends PayablePerson {
+
+	@Override
+	void getSalary() {
+		setSalaryAmount(1500);
+		System.out.println("Calculating base salary.");
+	}
+
+	@Override
+	void getDeduction() {
+		setDeductionAmount(getSalaryAmount()*0.11);
+		System.out.println(String.format("11%s Deduction of $%s is: $%s.", "%", getSalaryAmount(), getDeductionAmount()));
+	}
+
+	@Override
+	void sendPayment() {
+		System.out.println("Transfering payment to account.");
+	}
+
+}
+
+
+$$$
+package com.runnablepatterns.templatemethodpattern;
+
+/**
+ * 
+ * @author Carlos Marin
+ * Runnable Patterns (runnablepatterns.com)
+ * 
+ * Class to handle payable persons.
+ * It will contain the payment process algorithm. 
+ */
+public abstract class PayablePerson {
+	
+	/**
+	 * Variables to store payment details
+	 */
+	private double salaryAmount = 0;
+	private double deductionAmount = 0;
+
+	/**
+	 * Template Method.
+	 * This method contains the algorithm steps and structure. It is final so the subclasses can't change it.
+	 */
+	public final void processPayment() {
+		// call specific steps to process the payment
+		getSalary();
+		getDeduction();
+		sendPayment();
+		notifyAccountant();
+		sendPaymentCopy();
+	}
+	
+	/**
+	 * This method has to be implemented by subclasses.
+	 * It calculates the salary.
+	 */
+	abstract void getSalary();
+	
+	/**
+	 * This method has to be implemented by subclasses.
+	 * It calculates the deduction.
+	 */
+	abstract void getDeduction();
+	
+	/**
+	 * This method has to be implemented by subclasses
+	 * It sends the money.
+	 */
+	abstract void sendPayment();
+	
+	/**
+	 * This method is used by all subclasses.
+	 */
+	final void notifyAccountant() {
+		System.out.println("Sending notification to Accountant Department.");
+	}
+	
+	/**
+	 * This method is a hook. As you can see, it has the default implementation.
+	 * Subclasses can then override this
+	 */
+	void sendPaymentCopy() {
+		System.out.println("No copy needed by default.");
+	}
+
+	/**
+	 * Gets the salary
+	 * @return the salary
+	 */
+	public double getSalaryAmount() {
+		return salaryAmount;
+	}
+
+	/**
+	 * Set the salary
+	 * @param salaryAmount
+	 */
+	public void setSalaryAmount(double salaryAmount) {
+		this.salaryAmount = salaryAmount;
+	}
+
+	/**
+	 * Gets the deduction
+	 * @return the deduction
+	 */
+	public double getDeductionAmount() {
+		return deductionAmount;
+	}
+
+	/**
+	 * Sets the deduction
+	 * @param deductionAmount
+	 */
+	public void setDeductionAmount(double deductionAmount) {
+		this.deductionAmount = deductionAmount;
+	}
+}
+
+
+
+##### 126 шаблонов готово
